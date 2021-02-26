@@ -100,4 +100,13 @@
   <data name="Gerayis" xml:space="preserve">
     <value>Gerayis</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>QR Code</value>
+  </data>
+  <data name="BarCode" xml:space="preserve">
+    <value>Bar Code</value>
+  </data>
 </root>

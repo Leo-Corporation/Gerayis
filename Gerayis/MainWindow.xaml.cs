@@ -24,5 +24,25 @@ namespace Gerayis
         {
             InitializeComponent();
         }
+
+        private void TabEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void TabLeave(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0); // Quit
+        }
+
+        private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized; // Minimize window
+        }
     }
 }
