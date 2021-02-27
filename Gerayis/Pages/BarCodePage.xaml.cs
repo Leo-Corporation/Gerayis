@@ -43,6 +43,11 @@ namespace Gerayis.Pages
     /// </summary>
     public partial class BarCodePage : Page
     {
+        private System.Drawing.Font BarCodeFont
+        {
+            get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
+        }
+
         public BarCodePage()
         {
             InitializeComponent();
@@ -50,12 +55,20 @@ namespace Gerayis.Pages
 
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
+            BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+            System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, "Gerayis", System.Drawing.Color.Black, System.Drawing.Color.White, 290, 120); // Generate
 
+            var bitmap = new System.Drawing.Bitmap(image);
+            IntPtr bmpPt = bitmap.GetHbitmap();
+            BitmapSource bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+            bitmapSource.Freeze();
+            BarCodeImg.Source = bitmapSource;
         }
 
         private void CopyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
