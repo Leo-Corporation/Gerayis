@@ -53,14 +53,15 @@ namespace Gerayis.Pages
             InitializeComponent();
         }
 
+        BitmapSource bitmapSource;
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
             BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
-            System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, "Gerayis", System.Drawing.Color.Black, System.Drawing.Color.White, 290, 120); // Generate
+            System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, 290, 120); // Generate
 
             var bitmap = new System.Drawing.Bitmap(image);
             IntPtr bmpPt = bitmap.GetHbitmap();
-            BitmapSource bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
             bitmapSource.Freeze();
             BarCodeImg.Source = bitmapSource;
