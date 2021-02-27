@@ -44,6 +44,7 @@ namespace Gerayis
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Button CheckedButton { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -53,16 +54,45 @@ namespace Gerayis
         private void InitUI()
         {
             HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
+
+            CheckButton(BarCodeTabBtn); // Check the start page button
+        }
+
+        private void CheckButton(Button button)
+        {
+            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+            button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+
+            CheckedButton = button; // Set the "checked" button
+        }
+
+        private void ResetAllCheckStatus()
+        {
+            BarCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+            BarCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
+            QRCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+            QRCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
+            SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+            SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
         }
 
         private void TabEnter(object sender, MouseEventArgs e)
         {
+            Button button = (Button)sender; // Create button
 
+            button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
         }
 
         private void TabLeave(object sender, MouseEventArgs e)
         {
+            Button button = (Button)sender; // Create button
 
+            if (button != CheckedButton)
+            {
+                button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -73,6 +103,24 @@ namespace Gerayis
         private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized; // Minimize window
+        }
+
+        private void BarCodeTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+            CheckButton(BarCodeTabBtn); // Check the "BarCode" button
+        }
+
+        private void QRCodeTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+            CheckButton(QRCodeTabBtn); // Check the "QRCode" button
+        }
+
+        private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+            CheckButton(SettingsTabBtn); // Check the "Settings" button
         }
     }
 }
