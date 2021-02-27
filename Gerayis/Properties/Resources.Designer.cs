@@ -133,6 +133,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please specify a correct value..
+        /// </summary>
+        public static string PleaseSpecifyValue {
+            get {
+                return ResourceManager.GetString("PleaseSpecifyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à QR Code.
         /// </summary>
         public static string QRCode {
@@ -147,17 +156,6 @@ namespace Gerayis.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à PleaseSpecifyValue.
-        /// </summary>
-        public static string PleaseSpecifyValue
-        {
-            get
-            {
-                return ResourceManager.GetString("PleaseSpecifyValue", resourceCulture);
             }
         }
     }
