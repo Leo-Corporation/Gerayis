@@ -56,6 +56,7 @@ namespace Gerayis
             HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
             CheckButton(BarCodeTabBtn); // Check the start page button
+            PageContent.Content = Global.BarCodePage;
         }
 
         private void CheckButton(Button button)

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
+using Gerayis.Classes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -37,5 +38,11 @@ namespace Gerayis
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Global.BarCodePage = new(); // Create a new BarCodePage
+
+            base.OnStartup(e);
+        }
     }
 }

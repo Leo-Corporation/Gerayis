@@ -141,4 +141,10 @@
   <data name="GoodEvening" xml:space="preserve">
     <value>Bonne soirée</value>
   </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Générer</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copier</value>
+  </data>
 </root>
