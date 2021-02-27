@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Gerayis.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,12 @@ namespace Gerayis
         public MainWindow()
         {
             InitializeComponent();
+            InitUI(); // Load the UI
+        }
+
+        private void InitUI()
+        {
+            HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
         }
 
         private void TabEnter(object sender, MouseEventArgs e)
