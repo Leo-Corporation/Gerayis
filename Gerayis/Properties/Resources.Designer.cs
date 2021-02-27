@@ -149,5 +149,16 @@ namespace Gerayis.Properties {
                 return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à PleaseSpecifyValue.
+        /// </summary>
+        public static string PleaseSpecifyValue
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseSpecifyValue", resourceCulture);
+            }
+        }
     }
 }

@@ -147,4 +147,7 @@
   <data name="Copy" xml:space="preserve">
     <value>Copier</value>
   </data>
+  <data name="PleaseSpecifyValue" xml:space="preserve">
+    <value>Veuillez spécifier une valeur correcte.</value>
+  </data>
 </root>
