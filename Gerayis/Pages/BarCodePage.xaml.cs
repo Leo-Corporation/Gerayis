@@ -69,7 +69,7 @@ namespace Gerayis.Pages
 
         private void CopyBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            Clipboard.SetImage(bitmapSource); // Copy to clipboard
         }
     }
 }
