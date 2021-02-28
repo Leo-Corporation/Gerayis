@@ -56,21 +56,28 @@ namespace Gerayis.Pages
         BitmapSource bitmapSource;
         private void GenerateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(BarCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(BarCodeStringTxt.Text))
+            try
             {
-                BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
-                System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, 290, 120); // Generate
+                if (!string.IsNullOrEmpty(BarCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(BarCodeStringTxt.Text))
+                {
+                    BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+                    System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, BarCodeStringTxt.Text.Length * 50, 240); // Generate
 
-                var bitmap = new System.Drawing.Bitmap(image);
-                IntPtr bmpPt = bitmap.GetHbitmap();
-                bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    var bitmap = new System.Drawing.Bitmap(image);
+                    IntPtr bmpPt = bitmap.GetHbitmap();
+                    bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
-                bitmapSource.Freeze();
-                BarCodeImg.Source = bitmapSource; 
+                    bitmapSource.Freeze();
+                    BarCodeImg.Source = bitmapSource;
+                }
+                else
+                {
+                    MessageBox.Show(Properties.Resources.PleaseSpecifyValue, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(Properties.Resources.PleaseSpecifyValue, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show($"{Properties.Resources.Error}:\n{Properties.Resources.ErrorCode} {ex.HResult}\n{ex.Message}", $"{Properties.Resources.Error} - {ex.HResult}", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
