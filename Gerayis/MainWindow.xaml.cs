@@ -110,18 +110,24 @@ namespace Gerayis
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(BarCodeTabBtn); // Check the "BarCode" button
+
+            PageContent.Navigate(Global.BarCodePage); // Navigate
         }
 
         private void QRCodeTabBtn_Click(object sender, RoutedEventArgs e)
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(QRCodeTabBtn); // Check the "QRCode" button
+
+            PageContent.Navigate(Global.QRCodePage); // Navigate
         }
 
         private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
         {
             ResetAllCheckStatus(); // Reset the background and foreground of all buttons
             CheckButton(SettingsTabBtn); // Check the "Settings" button
+
+            PageContent.Navigate(Global.SettingsPage); // Navigate
         }
     }
 }

@@ -42,6 +42,16 @@ namespace Gerayis.Classes
         public static BarCodePage BarCodePage { get; set; }
 
         /// <summary>
+        /// The <see cref="Pages.QRCodePage"/>.
+        /// </summary>
+        public static QRCodePage QRCodePage { get; set; }
+
+        /// <summary>
+        /// The <see cref="Pages.SettingsPage"/>.
+        /// </summary>
+        public static SettingsPage SettingsPage { get; set; }
+
+        /// <summary>
         /// Gets the "Hi" sentence message.
         /// </summary>
         public static string GetHiSentence
