@@ -79,6 +79,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error code:.
+        /// </summary>
+        public static string ErrorCode {
+            get {
+                return ResourceManager.GetString("ErrorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Generate.
         /// </summary>
         public static string Generate {
@@ -133,6 +151,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Do not use special characters..
+        /// </summary>
+        public static string NoUseSpecialChars {
+            get {
+                return ResourceManager.GetString("NoUseSpecialChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Please specify a correct value..
         /// </summary>
         public static string PleaseSpecifyValue {
@@ -156,6 +183,15 @@ namespace Gerayis.Properties {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Text.
+        /// </summary>
+        public static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
             }
         }
     }

@@ -150,4 +150,16 @@
   <data name="PleaseSpecifyValue" xml:space="preserve">
     <value>Please specify a correct value.</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Error code:</value>
+  </data>
+  <data name="NoUseSpecialChars" xml:space="preserve">
+    <value>Do not use special characters.</value>
+  </data>
 </root>
