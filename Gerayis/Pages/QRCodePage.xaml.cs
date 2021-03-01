@@ -80,7 +80,10 @@ namespace Gerayis.Pages
 
         private void CopyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetImage(bitmapSource); // Copy to clipboard
+            if (QRCodeImg.Source is not null) // If the image is not empty
+            {
+                Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+            }
         }
     }
 }

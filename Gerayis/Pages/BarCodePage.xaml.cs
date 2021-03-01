@@ -83,7 +83,10 @@ namespace Gerayis.Pages
 
         private void CopyBtn_Click(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetImage(bitmapSource); // Copy to clipboard
+            if (BarCodeImg.Source is not null) // If there is an image
+            {
+                Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+            }
         }
     }
 }
