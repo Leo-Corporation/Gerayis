@@ -9,7 +9,6 @@
       d:DesignHeight="350" d:DesignWidth="560"
       FontFamily="../Fonts/#Montserrat"
       Title="SettingsPage">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -34,7 +33,8 @@
             <TextBlock Text="{x:Static lang:Resources.ChangeTheme}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
 
             <StackPanel Orientation="Horizontal">
-                
+                <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="LightRadioBtn" Checked="LightRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Light}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center"/>
+                <RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="DarkRadioBtn" Checked="DarkRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Dark}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 <Button x:Name="ThemeApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="ThemeApplyBtn_Click" Visibility="Hidden">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="&#xE98E;" FontWeight="Regular" FontFamily="..\Fonts\#FluentlyIcons" Margin="0,0,5,0" VerticalAlignment="Center"/>

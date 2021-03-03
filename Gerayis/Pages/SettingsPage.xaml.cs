@@ -56,25 +56,36 @@ namespace Gerayis.Pages
 
         private async void InitUI()
         {
-            // Load LangComboBox
-            LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
-
-            for (int i = 0; i < Global.LanguageList.Count; i++)
+            try
             {
-                LangComboBox.Items.Add(Global.LanguageList[i]);
+                // Load RadioButtons
+                DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
+                LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+
+                // Load LangComboBox
+                LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
+
+                for (int i = 0; i < Global.LanguageList.Count; i++)
+                {
+                    LangComboBox.Items.Add(Global.LanguageList[i]);
+                }
+
+                LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+
+                LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+                ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+
+                // Update the UpdateStatusTxt
+                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+                InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
             }
-
-            LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
-
-            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
-
-            // Update the UpdateStatusTxt
-            isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
-
-            UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-            InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
-            InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+            }
         }
 
         private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
@@ -106,7 +117,10 @@ namespace Gerayis.Pages
 
         private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+            SettingsManager.Save(); // Save the changes
+            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+            DisplayRestartMessage();
         }
 
         private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -129,9 +143,19 @@ namespace Gerayis.Pages
         {
             if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe"); // Start
+                Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start
                 Environment.Exit(0); // Close
             }
+        }
+
+        private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+        }
+
+        private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
         }
     }
 }

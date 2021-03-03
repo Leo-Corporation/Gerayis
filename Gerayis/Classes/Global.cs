@@ -26,7 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Gerayis.Classes
 {
@@ -102,6 +104,47 @@ namespace Gerayis.Classes
                 {
                     return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
                 }
+            }
+        }
+
+        /// <summary>
+        /// Changes the application's theme.
+        /// </summary>
+        public static void ChangeTheme()
+        {
+            App.Current.Resources.MergedDictionaries.Clear();
+            ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
+
+            if (Settings.IsDarkTheme) // If the dark theme is on
+            {
+                resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
+            }
+            else
+            {
+                resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
+            }
+
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
+        }
+
+        /// <summary>
+        /// Changes the application's language.
+        /// </summary>
+        public static void ChangeLanguage()
+        {
+            switch (Global.Settings.Language) // For each case
+            {
+                case "_default": // No language
+                    break;
+                case "en-US": // English (US)
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US"); // Change
+                    break;
+
+                case "fr-FR": // French (FR)
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
+                    break;
+                default: // No language
+                    break;
             }
         }
     }
