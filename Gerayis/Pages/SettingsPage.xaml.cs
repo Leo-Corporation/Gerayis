@@ -47,5 +47,25 @@ namespace Gerayis.Pages
         {
             InitializeComponent();
         }
+
+        private void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
