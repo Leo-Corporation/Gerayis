@@ -162,4 +162,58 @@
   <data name="NoUseSpecialChars" xml:space="preserve">
     <value>Do not use special characters.</value>
   </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ChangeTheme" xml:space="preserve">
+    <value>Change Gerayis theme.</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>Check updates</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Change Gerayis language.</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Gerayis is up to date.</value>
+  </data>
+  <data name="InstallConfirmMsg" xml:space="preserve">
+    <value>To install updates, Gerayis needs to restarts. Do you want to continue?</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="InstallVersion" xml:space="preserve">
+    <value>Install version</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AvailableUpdates" xml:space="preserve">
+    <value>Updates are available.</value>
+  </data>
 </root>
