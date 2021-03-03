@@ -52,6 +52,11 @@ namespace Gerayis.Classes
         public static SettingsPage SettingsPage { get; set; }
 
         /// <summary>
+        /// The <see cref="Classes.Settings"/> of Gerayis
+        /// </summary>
+        public static Settings Settings { get; set; }
+
+        /// <summary>
         /// Gets the "Hi" sentence message.
         /// </summary>
         public static string GetHiSentence

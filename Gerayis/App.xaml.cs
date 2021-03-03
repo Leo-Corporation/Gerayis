@@ -40,6 +40,8 @@ namespace Gerayis
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            SettingsManager.Load(); // Load settings
+
             Global.BarCodePage = new(); // Create a new BarCodePage
             Global.QRCodePage = new(); // Create a new QRCodePage
             Global.SettingsPage = new(); // Create a new SettingsPage
