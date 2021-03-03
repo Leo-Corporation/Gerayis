@@ -58,7 +58,7 @@ namespace Gerayis.Classes
         /// </summary>
         public static void Load()
         {
-            string path = Env.AppDataPath + @"Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+            string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
             if (File.Exists(path)) // If the file exist
             {
@@ -82,13 +82,14 @@ namespace Gerayis.Classes
         /// </summary>
         public static void Save()
         {
-            string path = Env.AppDataPath + @"Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+            string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
 
-            if (!Directory.Exists(Env.AppDataPath + @"\Gerayis")) // If the directory doesn't exist
+            if (!Directory.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis")) // If the directory doesn't exist
             {
-                Directory.CreateDirectory(Env.AppDataPath + @"\Gerayis"); // Create the directory
+                Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\"); // Create the directory
+                Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\Gerayis"); // Create the directory
             }
 
             StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
