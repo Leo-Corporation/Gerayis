@@ -277,6 +277,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Gerayis needs to restart to apply the changes. Do you want to restart now?.
+        /// </summary>
+        public static string NeedRestartToApplyChanges {
+            get {
+                return ResourceManager.GetString("NeedRestartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Do not use special characters..
         /// </summary>
         public static string NoUseSpecialChars {

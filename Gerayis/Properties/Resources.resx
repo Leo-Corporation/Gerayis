@@ -196,4 +196,7 @@
   <data name="AvailableUpdates" xml:space="preserve">
     <value>Updates are available.</value>
   </data>
+  <data name="NeedRestartToApplyChanges" xml:space="preserve">
+    <value>Gerayis needs to restart to apply the changes. Do you want to restart now?</value>
+  </data>
 </root>

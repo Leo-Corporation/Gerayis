@@ -35,6 +35,25 @@ namespace Gerayis.Classes
     /// </summary>
     public static class Global
     {
+        /// <summary>
+        /// The current version of Gerayis.
+        /// </summary>
+        public static string Version => "1.0.0.2103";
+
+        /// <summary>
+        /// List of the available languages.
+        /// </summary>
+        public static List<string> LanguageList => new List<string> { "English (United States)", "Français (France)" };
+
+        /// <summary>
+        /// List of the available languages codes.
+        /// </summary>
+        public static List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
+
+        /// <summary>
+        /// GitHub link for the last version (<see cref="string"/>).
+        /// </summary>
+        public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt"; }
 
         /// <summary>
         /// The <see cref="Pages.BarCodePage"/>.

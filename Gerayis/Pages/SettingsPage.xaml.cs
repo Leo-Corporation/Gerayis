@@ -21,8 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Gerayis.Classes;
+using LeoCorpLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,19 +47,61 @@ namespace Gerayis.Pages
     /// </summary>
     public partial class SettingsPage : Page
     {
+        bool isAvailable;
         public SettingsPage()
         {
             InitializeComponent();
+            InitUI(); // Load the UI
         }
 
-        private void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+        private async void InitUI()
         {
+            // Load LangComboBox
+            LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
+            for (int i = 0; i < Global.LanguageList.Count; i++)
+            {
+                LangComboBox.Items.Add(Global.LanguageList[i]);
+            }
+
+            LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+
+            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+
+            // Update the UpdateStatusTxt
+            isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+            UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+            InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+            InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+        }
+
+        private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (isAvailable) // If there is updates
+            {
+                string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+                if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                {
+                    Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+                    Environment.Exit(0); // Close
+                }
+            }
+            else
+            {
+                // Update the UpdateStatusTxt
+                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+                InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+            }
         }
 
         private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            LangApplyBtn.Visibility = Visibility.Visible; // Show the LangApplyBtn button
         }
 
         private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -65,7 +111,27 @@ namespace Gerayis.Pages
 
         private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
         {
+            Global.Settings.Language = LangComboBox.Text switch
+            {
+                "English (United States)" => Global.LanguageCodeList[0], // Set the settings value
+                "Français (France)"       => Global.LanguageCodeList[1], // Set the settings value
+                _                         => "_default" // Set the settings value
+            };
+            SettingsManager.Save(); // Save the changes
+            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+            DisplayRestartMessage();
+        }
 
+        /// <summary>
+        /// Restarts Gerayis.
+        /// </summary>
+        private void DisplayRestartMessage()
+        {
+            if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Process.Start(Directory.GetCurrentDirectory() + @"\Passliss.exe"); // Start
+                Environment.Exit(0); // Close
+            }
         }
     }
 }
