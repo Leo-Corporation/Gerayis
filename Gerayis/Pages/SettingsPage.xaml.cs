@@ -79,7 +79,7 @@ namespace Gerayis.Pages
                 isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
                 UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uE9EA" : "\uE92A"; // Set text 
+                InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
                 InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
             }
             catch (Exception ex)
