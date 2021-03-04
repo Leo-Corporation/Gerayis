@@ -90,6 +90,7 @@ namespace Gerayis.Pages
 
         private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(ActualHeight.ToString());
             if (isAvailable) // If there is updates
             {
                 string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
@@ -156,6 +157,16 @@ namespace Gerayis.Pages
         private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
         {
             ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+                "Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+                "QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
+                "barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
+                "LeoCorpLibrary - MIT License - © 2020 Léo Corporation\n" +
+                "Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
