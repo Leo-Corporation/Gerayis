@@ -259,6 +259,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Licenses.
+        /// </summary>
+        public static string Licenses {
+            get {
+                return ResourceManager.GetString("Licenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Light.
         /// </summary>
         public static string Light {
@@ -309,6 +318,15 @@ namespace Gerayis.Properties {
         public static string QRCode {
             get {
                 return ResourceManager.GetString("QRCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à See licenses.
+        /// </summary>
+        public static string SeeLicenses {
+            get {
+                return ResourceManager.GetString("SeeLicenses", resourceCulture);
             }
         }
         

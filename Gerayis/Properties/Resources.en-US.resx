@@ -219,4 +219,10 @@
   <data name="NeedRestartToApplyChanges" xml:space="preserve">
     <value>Gerayis needs to restart to apply the changes. Do you want to restart now?</value>
   </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="SeeLicenses" xml:space="preserve">
+    <value>See licenses</value>
+  </data>
 </root>
