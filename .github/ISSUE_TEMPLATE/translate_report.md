@@ -2,10 +2,11 @@
 name: Report a problem of translation
 about: Report an error of translation in the software, or in a GitHub file
 title: "[Translation] "
-labels: translation
+labels: ''
 assignees: ''
 
 ---
+
 <!---You can remove all the sections that aren't needed--->
 
 <!---
