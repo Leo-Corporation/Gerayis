@@ -2,7 +2,7 @@
 name: Misc
 about: The issue doesn't fit in any categories
 title: "[Misc] "
-labels: ''
+labels: misc
 assignees: ''
 
 ---
