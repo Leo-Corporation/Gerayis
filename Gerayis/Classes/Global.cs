@@ -24,10 +24,7 @@ SOFTWARE.
 using Gerayis.Pages;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Gerayis.Classes
@@ -45,12 +42,12 @@ namespace Gerayis.Classes
         /// <summary>
         /// List of the available languages.
         /// </summary>
-        public static List<string> LanguageList => new List<string> { "English (United States)", "Français (France)" };
+        public static List<string> LanguageList => new() { "English (United States)", "Français (France)" };
 
         /// <summary>
         /// List of the available languages codes.
         /// </summary>
-        public static List<string> LanguageCodeList => new List<string> { "en-US", "fr-FR" };
+        public static List<string> LanguageCodeList => new() { "en-US", "fr-FR" };
 
         /// <summary>
         /// GitHub link for the last version (<see cref="string"/>).
