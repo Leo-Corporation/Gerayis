@@ -6,10 +6,18 @@
     <RootNamespace>Xalyus_Updater</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Xalyus Updater.ico</ApplicationIcon>
+    <Version>1.0.0.2103</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Léo Corporation</Authors>
+    <PackageIcon></PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\Xalyus Updater.png" />
+    <None Include="..\..\Passliss\Xalyus Updater\Images\Xalyus Updater.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
