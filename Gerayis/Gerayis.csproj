@@ -6,6 +6,14 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Gerayis.ico</ApplicationIcon>
+    <Version>1.0.0.2103-rc1</Version>
+    <Authors>Léo Corporation</Authors>
+    <Description>A modern Bar/QR Code generator for Windows.</Description>
+    <Copyright>© 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Leo-Corporation/Gerayis</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Leo-Corporation/Gerayis</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
