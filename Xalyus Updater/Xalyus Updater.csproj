@@ -5,6 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>Xalyus_Updater</RootNamespace>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Xalyus Updater.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
