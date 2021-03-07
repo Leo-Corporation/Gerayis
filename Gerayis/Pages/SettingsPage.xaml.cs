@@ -90,7 +90,6 @@ namespace Gerayis.Pages
 
         private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(ActualHeight.ToString());
             if (isAvailable) // If there is updates
             {
                 string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version

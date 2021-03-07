@@ -55,7 +55,7 @@ namespace Gerayis.Classes
         /// <summary>
         /// GitHub link for the last version (<see cref="string"/>).
         /// </summary>
-        public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Passliss/Version.txt"; }
+        public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Gerayis/Version.txt"; }
 
         /// <summary>
         /// The <see cref="Pages.BarCodePage"/>.
