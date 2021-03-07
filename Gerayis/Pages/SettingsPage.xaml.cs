@@ -165,7 +165,7 @@ namespace Gerayis.Pages
                 "Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
                 "QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
                 "barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
-                "LeoCorpLibrary - MIT License - © 2020 Léo Corporation\n" +
+                "LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
                 "Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
