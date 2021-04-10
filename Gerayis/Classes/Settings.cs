@@ -32,80 +32,80 @@ using System.Xml.Serialization;
 
 namespace Gerayis.Classes
 {
-    /// <summary>
-    /// Settings of Gerayis
-    /// </summary>
-    public class Settings
-    {
-        /// <summary>
-        /// True if the theme of Gerayis is set to dark.
-        /// </summary>
-        public bool IsDarkTheme { get; set; }
+	/// <summary>
+	/// Settings of Gerayis
+	/// </summary>
+	public class Settings
+	{
+		/// <summary>
+		/// True if the theme of Gerayis is set to dark.
+		/// </summary>
+		public bool IsDarkTheme { get; set; }
 
-        /// <summary>
-        /// The language of the app (country code). Can be _default, en-US, fr-FR...
-        /// </summary>
-        public string Language { get; set; }
+		/// <summary>
+		/// The language of the app (country code). Can be _default, en-US, fr-FR...
+		/// </summary>
+		public string Language { get; set; }
 
-        /// <summary>
-        /// True if Gerayis should check updates on start.
-        /// </summary>
-        public bool? CheckUpdatesOnStart { get; set; }
+		/// <summary>
+		/// True if Gerayis should check updates on start.
+		/// </summary>
+		public bool? CheckUpdatesOnStart { get; set; }
 
-        /// <summary>
-        /// True if Gerayis should show a notification to the user.
-        /// </summary>
-        public bool? NotifyUpdates { get; set; }
-    }
+		/// <summary>
+		/// True if Gerayis should show a notification to the user.
+		/// </summary>
+		public bool? NotifyUpdates { get; set; }
+	}
 
-    /// <summary>
-    /// Class that contains methods that can manage Gerayis' settings.
-    /// </summary>
-    public static class SettingsManager
-    {
-        /// <summary>
-        /// Loads Gerayis settings.
-        /// </summary>
-        public static void Load()
-        {
-            string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+	/// <summary>
+	/// Class that contains methods that can manage Gerayis' settings.
+	/// </summary>
+	public static class SettingsManager
+	{
+		/// <summary>
+		/// Loads Gerayis settings.
+		/// </summary>
+		public static void Load()
+		{
+			string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
-            if (File.Exists(path)) // If the file exist
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // XML Serializer
-                StreamReader streamReader = new StreamReader(path); // Where the file is going to be read
+			if (File.Exists(path)) // If the file exist
+			{
+				XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // XML Serializer
+				StreamReader streamReader = new StreamReader(path); // Where the file is going to be read
 
-                Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
+				Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
 
-                streamReader.Dispose();
-            }
-            else
-            {
-                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
+				streamReader.Dispose();
+			}
+			else
+			{
+				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
 
-                Save(); // Save the changes
-            }
-        }
+				Save(); // Save the changes
+			}
+		}
 
-        /// <summary>
-        /// Saves Gerayis settings.
-        /// </summary>
-        public static void Save()
-        {
-            string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+		/// <summary>
+		/// Saves Gerayis settings.
+		/// </summary>
+		public static void Save()
+		{
+			string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
 
-            if (!Directory.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis")) // If the directory doesn't exist
-            {
-                Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\"); // Create the directory
-                Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\Gerayis"); // Create the directory
-            }
+			if (!Directory.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis")) // If the directory doesn't exist
+			{
+				Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\"); // Create the directory
+				Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\Gerayis"); // Create the directory
+			}
 
-            StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
-            xmlSerializer.Serialize(streamWriter, Global.Settings);
+			StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
+			xmlSerializer.Serialize(streamWriter, Global.Settings);
 
-            streamWriter.Dispose();
-        }
-    }
+			streamWriter.Dispose();
+		}
+	}
 }

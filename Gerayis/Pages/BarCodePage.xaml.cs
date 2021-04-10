@@ -38,55 +38,55 @@ using System.Windows.Shapes;
 
 namespace Gerayis.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour BarCodePage.xaml
-    /// </summary>
-    public partial class BarCodePage : Page
-    {
-        private System.Drawing.Font BarCodeFont
-        {
-            get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
-        }
+	/// <summary>
+	/// Logique d'interaction pour BarCodePage.xaml
+	/// </summary>
+	public partial class BarCodePage : Page
+	{
+		private System.Drawing.Font BarCodeFont
+		{
+			get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
+		}
 
-        public BarCodePage()
-        {
-            InitializeComponent();
-        }
+		public BarCodePage()
+		{
+			InitializeComponent();
+		}
 
-        BitmapSource bitmapSource;
-        private void GenerateBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(BarCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(BarCodeStringTxt.Text))
-                {
-                    BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
-                    System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, BarCodeStringTxt.Text.Length * 50, 240); // Generate
+		BitmapSource bitmapSource;
+		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				if (!string.IsNullOrEmpty(BarCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(BarCodeStringTxt.Text))
+				{
+					BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+					System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, BarCodeStringTxt.Text.Length * 50, 240); // Generate
 
-                    var bitmap = new System.Drawing.Bitmap(image);
-                    IntPtr bmpPt = bitmap.GetHbitmap();
-                    bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+					var bitmap = new System.Drawing.Bitmap(image);
+					IntPtr bmpPt = bitmap.GetHbitmap();
+					bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
-                    bitmapSource.Freeze();
-                    BarCodeImg.Source = bitmapSource;
-                }
-                else
-                {
-                    MessageBox.Show(Properties.Resources.PleaseSpecifyValue, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{Properties.Resources.Error}:\n{Properties.Resources.ErrorCode} {ex.HResult}\n{ex.Message}", $"{Properties.Resources.Error} - {ex.HResult}", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+					bitmapSource.Freeze();
+					BarCodeImg.Source = bitmapSource;
+				}
+				else
+				{
+					MessageBox.Show(Properties.Resources.PleaseSpecifyValue, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"{Properties.Resources.Error}:\n{Properties.Resources.ErrorCode} {ex.HResult}\n{ex.Message}", $"{Properties.Resources.Error} - {ex.HResult}", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
 
-        private void CopyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (BarCodeImg.Source is not null) // If there is an image
-            {
-                Clipboard.SetImage(bitmapSource); // Copy to clipboard 
-            }
-        }
-    }
+		private void CopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (BarCodeImg.Source is not null) // If there is an image
+			{
+				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+	}
 }

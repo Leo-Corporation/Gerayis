@@ -42,53 +42,53 @@ using System.Windows.Shapes;
 
 namespace Gerayis.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour SettingsPage.xaml
-    /// </summary>
-    public partial class SettingsPage : Page
-    {
-        bool isAvailable;
-        System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
-        public SettingsPage()
-        {
-            InitializeComponent();
-            notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + @"\Gerayis.exe");
-            notifyIcon.BalloonTipClicked += async (o, e) =>
-            {
-                string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
-                if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-                {
-                    Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
-                    Environment.Exit(0); // Close
-                }
-            };
-            InitUI(); // Load the UI
-        }
+	/// <summary>
+	/// Logique d'interaction pour SettingsPage.xaml
+	/// </summary>
+	public partial class SettingsPage : Page
+	{
+		bool isAvailable;
+		System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+		public SettingsPage()
+		{
+			InitializeComponent();
+			notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + @"\Gerayis.exe");
+			notifyIcon.BalloonTipClicked += async (o, e) =>
+			{
+				string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+				{
+					Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+					Environment.Exit(0); // Close
+				}
+			};
+			InitUI(); // Load the UI
+		}
 
-        private async void InitUI()
-        {
-            try
-            {
-                // Load RadioButtons
-                DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
-                LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+		private async void InitUI()
+		{
+			try
+			{
+				// Load RadioButtons
+				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
+				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 
-                // Load checkboxes
-                CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
-                NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
+				// Load checkboxes
+				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
+				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
 
-                // Load LangComboBox
-                LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
+				// Load LangComboBox
+				LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
-                for (int i = 0; i < Global.LanguageList.Count; i++)
-                {
-                    LangComboBox.Items.Add(Global.LanguageList[i]);
-                }
+				for (int i = 0; i < Global.LanguageList.Count; i++)
+				{
+					LangComboBox.Items.Add(Global.LanguageList[i]);
+				}
 
-                LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+				LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
-                LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-                ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+				LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+				ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 				// Update the UpdateStatusTxt
 				if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -113,23 +113,23 @@ namespace Gerayis.Pages
 						UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
 						InstallIconTxt.Text = "\uF191"; // Set text 
 						InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-					} 
+					}
 				}
-                else
-                {
-                    UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
-                    InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-                    InstallIconTxt.Text = "\uF191"; // Set text 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
-            }
-        }
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					InstallIconTxt.Text = "\uF191"; // Set text 
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+			}
+		}
 
-        private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
-        {
+		private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+		{
 			if (Global.Settings.CheckUpdatesOnStart.Value)
 			{
 				if (await NetworkConnection.IsAvailableAsync()) // If there is Internet
@@ -165,84 +165,84 @@ namespace Gerayis.Pages
 					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
 					InstallIconTxt.Text = "\uF191"; // Set text 
 					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-				} 
+				}
 			}
-            else
-            {
-                UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
-                InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-                InstallIconTxt.Text = "\uF191"; // Set text 
-            }
-        }
+			else
+			{
+				UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
+				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+				InstallIconTxt.Text = "\uF191"; // Set text 
+			}
+		}
 
-        private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LangApplyBtn.Visibility = Visibility.Visible; // Show the LangApplyBtn button
-        }
+		private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			LangApplyBtn.Visibility = Visibility.Visible; // Show the LangApplyBtn button
+		}
 
-        private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
-            SettingsManager.Save(); // Save the changes
-            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
-            DisplayRestartMessage();
-        }
+		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			SettingsManager.Save(); // Save the changes
+			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+			DisplayRestartMessage();
+		}
 
-        private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Global.Settings.Language = LangComboBox.Text switch
-            {
-                "English (United States)" => Global.LanguageCodeList[0], // Set the settings value
-                "Français (France)"       => Global.LanguageCodeList[1], // Set the settings value
-                _                         => "_default" // Set the settings value
-            };
-            SettingsManager.Save(); // Save the changes
-            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-            DisplayRestartMessage();
-        }
+		private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.Language = LangComboBox.Text switch
+			{
+				"English (United States)" => Global.LanguageCodeList[0], // Set the settings value
+				"Français (France)" => Global.LanguageCodeList[1], // Set the settings value
+				_ => "_default" // Set the settings value
+			};
+			SettingsManager.Save(); // Save the changes
+			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+			DisplayRestartMessage();
+		}
 
-        /// <summary>
-        /// Restarts Gerayis.
-        /// </summary>
-        private void DisplayRestartMessage()
-        {
-            if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start
-                Environment.Exit(0); // Close
-            }
-        }
+		/// <summary>
+		/// Restarts Gerayis.
+		/// </summary>
+		private void DisplayRestartMessage()
+		{
+			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start
+				Environment.Exit(0); // Close
+			}
+		}
 
-        private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
-        }
+		private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+		}
 
-        private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
-        }
+		private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+		}
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
-                "Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-                "QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
-                "barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
-                "LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
-                "Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+		private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+				"QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
+				"barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
+				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
+				"Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
 
 		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
 		{
-            Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
-            SettingsManager.Save(); // Save changes
-        }
+			Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
 
 		private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
 		{
-            Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
-            SettingsManager.Save(); // Save changes
-        }
+			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
 	}
 }
