@@ -75,12 +75,21 @@ namespace Gerayis.Pages
                 LangApplyBtn.Visibility = Visibility.Hidden; // Hide
                 ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
-                // Update the UpdateStatusTxt
-                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+				// Update the UpdateStatusTxt
+				if (await NetworkConnection.IsAvailableAsync())
+				{
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
-                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
+				}
+				else
+				{
+                    UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
+                    InstallIconTxt.Text = "\uF191"; // Set text 
+                    InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+                }
             }
             catch (Exception ex)
             {
@@ -90,23 +99,32 @@ namespace Gerayis.Pages
 
         private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (isAvailable) // If there is updates
-            {
-                string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
-                if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-                {
-                    Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
-                    Environment.Exit(0); // Close
-                }
-            }
-            else
-            {
-                // Update the UpdateStatusTxt
-                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+			if (await NetworkConnection.IsAvailableAsync()) // If there is Internet
+			{
+				if (isAvailable) // If there is updates
+				{
+					string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+					if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+					{
+						Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+						Environment.Exit(0); // Close
+					}
+				}
+				else
+				{
+					// Update the UpdateStatusTxt
+					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
-                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+					InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
+					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+				}
+			}
+			else
+			{
+                UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
+                InstallIconTxt.Text = "\uF191"; // Set text 
+                InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
             }
         }
 
