@@ -2,7 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Gerayis"
-#define MyAppVersion "1.0.0.2103"
+#define MyAppVersion "1.1.0.2104"
+#define MyAppFullVersion "1.1.0.2104-pre1"
 #define MyAppPublisher "Léo Corporation"
 #define MyAppURL "https://leocorp.fr/"
 #define MyAppExeName "Gerayis.exe"
@@ -10,10 +11,11 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{7CC0533B-710D-46C5-ABE4-5DA6DC2AE921}
+AppId={{90E5076F-29D7-4C25-A25F-B7AEE97C2AF4}}
 AppName={#MyAppName}
-AppVersion={#MyAppVersion}
+AppVersion={#MyAppFullVersion}
 VersionInfoVersion={#MyAppVersion}
+UninstallDisplayIcon={app}\{#MyAppExeName}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
