@@ -46,6 +46,16 @@ namespace Gerayis.Classes
         /// The language of the app (country code). Can be _default, en-US, fr-FR...
         /// </summary>
         public string Language { get; set; }
+
+        /// <summary>
+        /// True if Gerayis should check updates on start.
+        /// </summary>
+        public bool? CheckUpdatesOnStart { get; set; }
+
+        /// <summary>
+        /// True if Gerayis should show a notification to the user.
+        /// </summary>
+        public bool? NotifyUpdates { get; set; }
     }
 
     /// <summary>
@@ -71,7 +81,7 @@ namespace Gerayis.Classes
             }
             else
             {
-                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default" }; // Create a new settings file
+                Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
 
                 Save(); // Save the changes
             }
