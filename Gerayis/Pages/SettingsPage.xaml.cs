@@ -42,130 +42,302 @@ using System.Windows.Shapes;
 
 namespace Gerayis.Pages
 {
-    /// <summary>
-    /// Logique d'interaction pour SettingsPage.xaml
-    /// </summary>
-    public partial class SettingsPage : Page
-    {
-        bool isAvailable;
-        public SettingsPage()
-        {
-            InitializeComponent();
-            InitUI(); // Load the UI
-        }
+	/// <summary>
+	/// Logique d'interaction pour SettingsPage.xaml
+	/// </summary>
+	public partial class SettingsPage : Page
+	{
+		bool isAvailable;
+		System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+		public SettingsPage()
+		{
+			InitializeComponent();
+			notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + @"\Gerayis.exe");
+			notifyIcon.BalloonTipClicked += async (o, e) =>
+			{
+				string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+				if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+				{
+					Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+					Environment.Exit(0); // Close
+				}
+			};
+			InitUI(); // Load the UI
+		}
 
-        private async void InitUI()
-        {
-            try
-            {
-                // Load RadioButtons
-                DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
-                LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+		private async void InitUI()
+		{
+			try
+			{
+				if (string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor))
+				{
+					Global.Settings.BarCodeBackgroundColor = "255;255;255"; // Set
+				}
 
-                // Load LangComboBox
-                LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
+				if (string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
+				{
+					Global.Settings.BarCodeForegroundColor = "0;0;0"; // Set
+				}
 
-                for (int i = 0; i < Global.LanguageList.Count; i++)
-                {
-                    LangComboBox.Items.Add(Global.LanguageList[i]);
-                }
+				// Load RadioButtons
+				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
+				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 
-                LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
+				// Load checkboxes
+				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
+				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
 
-                LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-                ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+				// Load LangComboBox
+				LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
-                // Update the UpdateStatusTxt
-                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+				for (int i = 0; i < Global.LanguageList.Count; i++)
+				{
+					LangComboBox.Items.Add(Global.LanguageList[i]);
+				}
 
-                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
-                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
-            }
-        }
+				LangComboBox.SelectedIndex = (Global.Settings.Language == "_default") ? 0 : Global.LanguageCodeList.IndexOf(Global.Settings.Language) + 1;
 
-        private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (isAvailable) // If there is updates
-            {
-                string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
-                if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
-                {
-                    Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
-                    Environment.Exit(0); // Close
-                }
-            }
-            else
-            {
-                // Update the UpdateStatusTxt
-                isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+				LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+				ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
-                UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-                InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
-                InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
-            }
-        }
+				// Update the UpdateStatusTxt
+				if (Global.Settings.CheckUpdatesOnStart.Value)
+				{
+					if (await NetworkConnection.IsAvailableAsync())
+					{
+						isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-        private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LangApplyBtn.Visibility = Visibility.Visible; // Show the LangApplyBtn button
-        }
+						UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+						InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
+						InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text 
 
-        private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
-            SettingsManager.Save(); // Save the changes
-            ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
-            DisplayRestartMessage();
-        }
+						if (isAvailable && Global.Settings.NotifyUpdates.Value)
+						{
+							notifyIcon.Visible = true; // Show
+							notifyIcon.ShowBalloonTip(5000, Properties.Resources.Gerayis, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+							notifyIcon.Visible = false; // Hide
+						}
+					}
+					else
+					{
+						UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
+						InstallIconTxt.Text = "\uF191"; // Set text 
+						InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					}
+				}
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+					InstallIconTxt.Text = "\uF191"; // Set text 
+				}
 
-        private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Global.Settings.Language = LangComboBox.Text switch
-            {
-                "English (United States)" => Global.LanguageCodeList[0], // Set the settings value
-                "Français (France)"       => Global.LanguageCodeList[1], // Set the settings value
-                _                         => "_default" // Set the settings value
-            };
-            SettingsManager.Save(); // Save the changes
-            LangApplyBtn.Visibility = Visibility.Hidden; // Hide
-            DisplayRestartMessage();
-        }
+				// Load Bar code colors
+				if (!string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
+				{
+					string[] foreColor = Global.Settings.BarCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					ForeColorRec.Fill = new SolidColorBrush { Color = (foreColor.Length == 3) ? Color.FromRgb((byte)int.Parse(foreColor[0]), (byte)int.Parse(foreColor[1]), (byte)int.Parse(foreColor[2])) : Color.FromRgb(0, 0, 0) }; // Set color 
+				}
+				else
+				{
+					ForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 0, 0) }; // Set color
+				}
 
-        /// <summary>
-        /// Restarts Gerayis.
-        /// </summary>
-        private void DisplayRestartMessage()
-        {
-            if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start
-                Environment.Exit(0); // Close
-            }
-        }
+				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor))
+				{
+					string[] backColor = Global.Settings.BarCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					BackColorRec.Fill = new SolidColorBrush { Color = (backColor.Length == 3) ? Color.FromRgb((byte)int.Parse(backColor[0]), (byte)int.Parse(backColor[1]), (byte)int.Parse(backColor[2])) : Color.FromRgb(255, 255, 255) }; // Set color 
+				}
+				else
+				{
+					BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
+				}
 
-        private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
-        }
+				SettingsManager.Save(); // Save changes
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+			}
+		}
 
-        private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
-        }
+		private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (Global.Settings.CheckUpdatesOnStart.Value)
+			{
+				if (await NetworkConnection.IsAvailableAsync()) // If there is Internet
+				{
+					if (isAvailable) // If there is updates
+					{
+						string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+						if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+						{
+							Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+							Environment.Exit(0); // Close
+						}
+					}
+					else
+					{
+						// Update the UpdateStatusTxt
+						isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
-                "Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
-                "QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
-                "barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
-                "LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
-                "Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-    }
+						UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+						InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
+						InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+
+						if (isAvailable && Global.Settings.NotifyUpdates.Value)
+						{
+							notifyIcon.Visible = true; // Show
+							notifyIcon.ShowBalloonTip(5000, Properties.Resources.Gerayis, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+							notifyIcon.Visible = false; // Hide
+						}
+					}
+				}
+				else
+				{
+					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
+					InstallIconTxt.Text = "\uF191"; // Set text 
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+				}
+			}
+			else
+			{
+				UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
+				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+				InstallIconTxt.Text = "\uF191"; // Set text 
+			}
+		}
+
+		private void LangComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			LangApplyBtn.Visibility = Visibility.Visible; // Show the LangApplyBtn button
+		}
+
+		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			SettingsManager.Save(); // Save the changes
+			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+			DisplayRestartMessage();
+		}
+
+		private void LangApplyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.Language = LangComboBox.Text switch
+			{
+				"English (United States)" => Global.LanguageCodeList[0], // Set the settings value
+				"Français (France)" => Global.LanguageCodeList[1], // Set the settings value
+				_ => "_default" // Set the settings value
+			};
+			SettingsManager.Save(); // Save the changes
+			LangApplyBtn.Visibility = Visibility.Hidden; // Hide
+			DisplayRestartMessage();
+		}
+
+		/// <summary>
+		/// Restarts Gerayis.
+		/// </summary>
+		private void DisplayRestartMessage()
+		{
+			if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start
+				Environment.Exit(0); // Close
+			}
+		}
+
+		private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+		}
+
+		private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show the ThemeApplyBtn button
+		}
+
+		private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			MessageBox.Show($"{Properties.Resources.Licenses}\n\n" +
+				"Fluent System Icons - MIT License - © 2020 Microsoft Corporation\n" +
+				"QRCoder - MIT License - © 2013-2018 Raffael Herrmann\n" +
+				"barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
+				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
+				"Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void ResetSettingsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmMsg, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Global.Settings = new()
+				{
+					CheckUpdatesOnStart = true,
+					IsDarkTheme = false,
+					Language = "_default",
+					NotifyUpdates = true
+				}; // Create default settings
+
+				SettingsManager.Save(); // Save the changes
+				InitUI(); // Reload the page
+
+				MessageBox.Show(Properties.Resources.SettingsReset, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information);
+				Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe");
+				Environment.Exit(0); // Quit
+			}
+		}
+
+		private void ForeColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.BarCodeForegroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				ForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
+		}
+
+		private void BackColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.BarCodeBackgroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
+		}
+
+		private void ResetColorsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			Global.Settings.BarCodeForegroundColor = "0;0;0"; // Set black
+			Global.Settings.BarCodeBackgroundColor = "255;255;255"; // Set white
+
+			SettingsManager.Save(); // Save changes
+			InitUI(); // Referesh
+		}
+	}
 }

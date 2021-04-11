@@ -33,23 +33,23 @@ using System.Windows;
 
 namespace Gerayis
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            SettingsManager.Load(); // Load settings
+	/// <summary>
+	/// Interaction logic for App.xaml
+	/// </summary>
+	public partial class App : Application
+	{
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			SettingsManager.Load(); // Load settings
 
-            Global.ChangeTheme(); // Change the theme
-            Global.ChangeLanguage(); // Change the language
+			Global.ChangeTheme(); // Change the theme
+			Global.ChangeLanguage(); // Change the language
 
-            Global.BarCodePage = new(); // Create a new BarCodePage
-            Global.QRCodePage = new(); // Create a new QRCodePage
-            Global.SettingsPage = new(); // Create a new SettingsPage
+			Global.BarCodePage = new(); // Create a new BarCodePage
+			Global.QRCodePage = new(); // Create a new QRCodePage
+			Global.SettingsPage = new(); // Create a new SettingsPage
 
-            base.OnStartup(e);
-        }
-    }
+			base.OnStartup(e);
+		}
+	}
 }
