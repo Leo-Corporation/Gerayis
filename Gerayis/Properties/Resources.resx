@@ -217,4 +217,25 @@
   <data name="UnableToCheckUpdates" xml:space="preserve">
     <value>Unable to check updates</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="ResetSettingsConfirmMsg" xml:space="preserve">
+    <value>Are you sure you want to reset all settings?</value>
+  </data>
+  <data name="SettingsReset" xml:space="preserve">
+    <value>All settings have been reset, Passliss will now restart.</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>Foreground color</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="ResetColor" xml:space="preserve">
+    <value>Reset colors</value>
+  </data>
 </root>

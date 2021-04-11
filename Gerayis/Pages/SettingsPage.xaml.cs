@@ -244,5 +244,26 @@ namespace Gerayis.Pages
 			Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
 		}
+
+		private void ResetSettingsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (MessageBox.Show(Properties.Resources.ResetSettingsConfirmMsg, Properties.Resources.Settings, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				Global.Settings = new()
+				{
+					CheckUpdatesOnStart = true,
+					IsDarkTheme = false,
+					Language = "_default",
+					NotifyUpdates = true
+				}; // Create default settings
+
+				SettingsManager.Save(); // Save the changes
+				InitUI(); // Reload the page
+
+				MessageBox.Show(Properties.Resources.SettingsReset, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information);
+				Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe");
+				Environment.Exit(0); // Quit
+			}
+		}
 	}
 }
