@@ -333,7 +333,11 @@ namespace Gerayis.Pages
 
 		private void ResetColorsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
+			Global.Settings.BarCodeForegroundColor = "0;0;0"; // Set black
+			Global.Settings.BarCodeBackgroundColor = "255;255;255"; // Set white
 
+			SettingsManager.Save(); // Save changes
+			InitUI(); // Referesh
 		}
 	}
 }
