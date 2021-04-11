@@ -56,6 +56,16 @@ namespace Gerayis.Classes
 		/// True if Gerayis should show a notification to the user.
 		/// </summary>
 		public bool? NotifyUpdates { get; set; }
+
+		/// <summary>
+		/// Bar code foreground color.
+		/// </summary>
+		public string BarCodeForegroundColor { get; set; }
+
+		/// <summary>
+		/// Bar code background color.
+		/// </summary>
+		public string BarCodeBackgroundColor { get; set; }
 	}
 
 	/// <summary>
@@ -81,7 +91,7 @@ namespace Gerayis.Classes
 			}
 			else
 			{
-				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true }; // Create a new settings file
+				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true, BarCodeBackgroundColor = "255;255;255", BarCodeForegroundColor = "0;0;0" }; // Create a new settings file
 
 				Save(); // Save the changes
 			}

@@ -69,6 +69,16 @@ namespace Gerayis.Pages
 		{
 			try
 			{
+				if (string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor))
+				{
+					Global.Settings.BarCodeBackgroundColor = "255;255;255"; // Set
+				}
+
+				if (string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
+				{
+					Global.Settings.BarCodeForegroundColor = "0;0;0"; // Set
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -121,6 +131,29 @@ namespace Gerayis.Pages
 					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 					InstallIconTxt.Text = "\uF191"; // Set text 
 				}
+
+				// Load Bar code colors
+				if (!string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
+				{
+					string[] foreColor = Global.Settings.BarCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					ForeColorRec.Fill = new SolidColorBrush { Color = (foreColor.Length == 3) ? Color.FromRgb((byte)int.Parse(foreColor[0]), (byte)int.Parse(foreColor[1]), (byte)int.Parse(foreColor[2])) : Color.FromRgb(0, 0, 0) }; // Set color 
+				}
+				else
+				{
+					ForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 0, 0) }; // Set color
+				}
+
+				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor))
+				{
+					string[] backColor = Global.Settings.BarCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					BackColorRec.Fill = new SolidColorBrush { Color = (backColor.Length == 3) ? Color.FromRgb((byte)int.Parse(backColor[0]), (byte)int.Parse(backColor[1]), (byte)int.Parse(backColor[2])) : Color.FromRgb(255, 255, 255) }; // Set color 
+				}
+				else
+				{
+					BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
+				}
+
+				SettingsManager.Save(); // Save changes
 			}
 			catch (Exception ex)
 			{
@@ -264,6 +297,43 @@ namespace Gerayis.Pages
 				Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe");
 				Environment.Exit(0); // Quit
 			}
+		}
+
+		private void ForeColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.BarCodeForegroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				ForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
+		}
+
+		private void BackColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.BarCodeBackgroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
+		}
+
+		private void ResetColorsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+
 		}
 	}
 }
