@@ -421,7 +421,7 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All settings have been reset, Passliss will now restart..
+        ///   Looks up a localized string similar to All settings have been reset, Gerayis will now restart..
         /// </summary>
         public static string SettingsReset {
             get {

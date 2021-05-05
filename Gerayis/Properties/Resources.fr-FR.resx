@@ -247,7 +247,7 @@
     <value>Êtes-vous sûr de vouloir réinitialiser tous les paramètres ?</value>
   </data>
   <data name="SettingsReset" xml:space="preserve">
-    <value>Tous les paramètres ont été réinitialisés, Passliss va maintenant redémarrer.</value>
+    <value>Tous les paramètres ont été réinitialisés, Gerayis va maintenant redémarrer.</value>
   </data>
   <data name="ForegroundColor" xml:space="preserve">
     <value>Couleur de premier plan</value>
