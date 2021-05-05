@@ -88,6 +88,7 @@ namespace Gerayis.Pages
 				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
 
 				// Load LangComboBox
+				LangComboBox.Items.Clear(); // Clear
 				LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
 				for (int i = 0; i < Global.LanguageList.Count; i++)
