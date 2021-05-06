@@ -86,6 +86,7 @@ namespace Gerayis.Pages
 				// Load checkboxes
 				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
 				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
+				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
 
 				// Load LangComboBox
 				LangComboBox.Items.Clear(); // Clear
@@ -339,6 +340,12 @@ namespace Gerayis.Pages
 
 			SettingsManager.Save(); // Save changes
 			InitUI(); // Referesh
+		}
+
+		private void GenerateBarCodeOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.GenerateBarCodeOnStart = GenerateBarCodeOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }
