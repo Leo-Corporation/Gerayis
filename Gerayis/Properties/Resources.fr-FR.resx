@@ -258,4 +258,16 @@
   <data name="ResetColor" xml:space="preserve">
     <value>Réinitialiser les couleurs</value>
   </data>
+  <data name="OnStart" xml:space="preserve">
+    <value>Lors du démarrage</value>
+  </data>
+  <data name="GenerateBarCodeOnStart" xml:space="preserve">
+    <value>Générer un code barre lors du démarrage</value>
+  </data>
+  <data name="GenerateQRCodeOnStart" xml:space="preserve">
+    <value>Générer un QR code lors du démarrage</value>
+  </data>
+  <data name="OnStartDesc" xml:space="preserve">
+    <value>Evènements lors du démarrage.</value>
+  </data>
 </root>

@@ -223,6 +223,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate bar code on start.
+        /// </summary>
+        public static string GenerateBarCodeOnStart {
+            get {
+                return ResourceManager.GetString("GenerateBarCodeOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate QR code on start.
+        /// </summary>
+        public static string GenerateQRCodeOnStart {
+            get {
+                return ResourceManager.GetString("GenerateQRCodeOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gerayis.
         /// </summary>
         public static string Gerayis {
@@ -354,6 +372,24 @@ namespace Gerayis.Properties {
         public static string NoUseSpecialChars {
             get {
                 return ResourceManager.GetString("NoUseSpecialChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On start.
+        /// </summary>
+        public static string OnStart {
+            get {
+                return ResourceManager.GetString("OnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On start events..
+        /// </summary>
+        public static string OnStartDesc {
+            get {
+                return ResourceManager.GetString("OnStartDesc", resourceCulture);
             }
         }
         

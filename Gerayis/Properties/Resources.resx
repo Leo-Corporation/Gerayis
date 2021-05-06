@@ -238,4 +238,16 @@
   <data name="ResetColor" xml:space="preserve">
     <value>Reset colors</value>
   </data>
+  <data name="OnStart" xml:space="preserve">
+    <value>On start</value>
+  </data>
+  <data name="GenerateBarCodeOnStart" xml:space="preserve">
+    <value>Generate bar code on start</value>
+  </data>
+  <data name="GenerateQRCodeOnStart" xml:space="preserve">
+    <value>Generate QR code on start</value>
+  </data>
+  <data name="OnStartDesc" xml:space="preserve">
+    <value>On start events.</value>
+  </data>
 </root>
