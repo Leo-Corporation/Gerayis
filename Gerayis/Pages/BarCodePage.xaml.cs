@@ -95,7 +95,7 @@ namespace Gerayis.Pages
 			{
 				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
-				
+
 				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
 				{
 					string[] fC = Global.Settings.BarCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split

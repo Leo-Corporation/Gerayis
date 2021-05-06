@@ -101,14 +101,14 @@ namespace Gerayis.Classes
 			}
 			else
 			{
-				Global.Settings = new Settings 
-				{ 
-					IsDarkTheme = false, 
-					Language = "_default", 
-					CheckUpdatesOnStart = true, 
-					NotifyUpdates = true, 
-					BarCodeBackgroundColor = "255;255;255", 
-					BarCodeForegroundColor = "0;0;0", 
+				Global.Settings = new Settings
+				{
+					IsDarkTheme = false,
+					Language = "_default",
+					CheckUpdatesOnStart = true,
+					NotifyUpdates = true,
+					BarCodeBackgroundColor = "255;255;255",
+					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
 					GenerateQRCodeOnStart = true
 				}; // Create a new settings file

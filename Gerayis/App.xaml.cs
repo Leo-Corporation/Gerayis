@@ -48,7 +48,7 @@ namespace Gerayis
 			Global.SettingsPage = new(); // Create a new SettingsPage
 			Global.BarCodePage = new(); // Create a new BarCodePage
 			Global.QRCodePage = new(); // Create a new QRCodePage
-			
+
 			base.OnStartup(e);
 		}
 	}
