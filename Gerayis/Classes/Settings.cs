@@ -66,6 +66,16 @@ namespace Gerayis.Classes
 		/// Bar code background color.
 		/// </summary>
 		public string BarCodeBackgroundColor { get; set; }
+
+		/// <summary>
+		/// True if Gerayis should generate a bar code on start.
+		/// </summary>
+		public bool? GenerateBarCodeOnStart { get; set; }
+
+		/// <summary>
+		/// True if Gerayis should generate a QR code on start.
+		/// </summary>
+		public bool? GenerateQRCodeOnStart { get; set; }
 	}
 
 	/// <summary>
@@ -91,7 +101,17 @@ namespace Gerayis.Classes
 			}
 			else
 			{
-				Global.Settings = new Settings { IsDarkTheme = false, Language = "_default", CheckUpdatesOnStart = true, NotifyUpdates = true, BarCodeBackgroundColor = "255;255;255", BarCodeForegroundColor = "0;0;0" }; // Create a new settings file
+				Global.Settings = new Settings
+				{
+					IsDarkTheme = false,
+					Language = "_default",
+					CheckUpdatesOnStart = true,
+					NotifyUpdates = true,
+					BarCodeBackgroundColor = "255;255;255",
+					BarCodeForegroundColor = "0;0;0",
+					GenerateBarCodeOnStart = true,
+					GenerateQRCodeOnStart = true
+				}; // Create a new settings file
 
 				Save(); // Save the changes
 			}

@@ -52,6 +52,40 @@ namespace Gerayis.Pages
 		public BarCodePage()
 		{
 			InitializeComponent();
+			InitUI(); // Load UI
+		}
+
+		private void InitUI()
+		{
+			if (Global.Settings.GenerateBarCodeOnStart.Value)
+			{
+				BarCodeStringTxt.Text = Properties.Resources.Gerayis; // Set text
+
+				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
+				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
+
+				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
+				{
+					string[] fC = Global.Settings.BarCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					string[] bC = Global.Settings.BarCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+
+					foreColor = System.Drawing.Color.FromArgb((byte)int.Parse(fC[0]), (byte)int.Parse(fC[1]), (byte)int.Parse(fC[2])); // Create new color
+					backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
+				}
+
+				if (!string.IsNullOrEmpty(BarCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(BarCodeStringTxt.Text))
+				{
+					BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+					System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, foreColor, backColor, BarCodeStringTxt.Text.Length * 50, 240); // Generate
+
+					var bitmap = new System.Drawing.Bitmap(image);
+					IntPtr bmpPt = bitmap.GetHbitmap();
+					bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+					bitmapSource.Freeze();
+					BarCodeImg.Source = bitmapSource;
+				}
+			}
 		}
 
 		BitmapSource bitmapSource;
@@ -61,7 +95,7 @@ namespace Gerayis.Pages
 			{
 				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
-				
+
 				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
 				{
 					string[] fC = Global.Settings.BarCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split

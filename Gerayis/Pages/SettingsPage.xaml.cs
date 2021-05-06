@@ -86,8 +86,11 @@ namespace Gerayis.Pages
 				// Load checkboxes
 				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
 				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
+				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
+				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart.HasValue ? Global.Settings.GenerateQRCodeOnStart.Value : true; // Set
 
 				// Load LangComboBox
+				LangComboBox.Items.Clear(); // Clear
 				LangComboBox.Items.Add(Properties.Resources.Default); // Add "default"
 
 				for (int i = 0; i < Global.LanguageList.Count; i++)
@@ -287,7 +290,11 @@ namespace Gerayis.Pages
 					CheckUpdatesOnStart = true,
 					IsDarkTheme = false,
 					Language = "_default",
-					NotifyUpdates = true
+					NotifyUpdates = true,
+					BarCodeBackgroundColor = "255;255;255",
+					BarCodeForegroundColor = "0;0;0",
+					GenerateBarCodeOnStart = true,
+					GenerateQRCodeOnStart = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -338,6 +345,18 @@ namespace Gerayis.Pages
 
 			SettingsManager.Save(); // Save changes
 			InitUI(); // Referesh
+		}
+
+		private void GenerateBarCodeOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.GenerateBarCodeOnStart = GenerateBarCodeOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void GenerateQRCodeOnStartChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.GenerateQRCodeOnStart = GenerateQRCodeOnStartChk.IsChecked; // Set
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

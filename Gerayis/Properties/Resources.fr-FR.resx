@@ -247,7 +247,7 @@
     <value>Êtes-vous sûr de vouloir réinitialiser tous les paramètres ?</value>
   </data>
   <data name="SettingsReset" xml:space="preserve">
-    <value>Tous les paramètres ont été réinitialisés, Passliss va maintenant redémarrer.</value>
+    <value>Tous les paramètres ont été réinitialisés, Gerayis va maintenant redémarrer.</value>
   </data>
   <data name="ForegroundColor" xml:space="preserve">
     <value>Couleur de premier plan</value>
@@ -257,5 +257,17 @@
   </data>
   <data name="ResetColor" xml:space="preserve">
     <value>Réinitialiser les couleurs</value>
+  </data>
+  <data name="OnStart" xml:space="preserve">
+    <value>Lors du démarrage</value>
+  </data>
+  <data name="GenerateBarCodeOnStart" xml:space="preserve">
+    <value>Générer un code barre lors du démarrage</value>
+  </data>
+  <data name="GenerateQRCodeOnStart" xml:space="preserve">
+    <value>Générer un QR code lors du démarrage</value>
+  </data>
+  <data name="OnStartDesc" xml:space="preserve">
+    <value>Evènements lors du démarrage.</value>
   </data>
 </root>

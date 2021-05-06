@@ -227,7 +227,7 @@
     <value>Are you sure you want to reset all settings?</value>
   </data>
   <data name="SettingsReset" xml:space="preserve">
-    <value>All settings have been reset, Passliss will now restart.</value>
+    <value>All settings have been reset, Gerayis will now restart.</value>
   </data>
   <data name="ForegroundColor" xml:space="preserve">
     <value>Foreground color</value>
@@ -237,5 +237,17 @@
   </data>
   <data name="ResetColor" xml:space="preserve">
     <value>Reset colors</value>
+  </data>
+  <data name="OnStart" xml:space="preserve">
+    <value>On start</value>
+  </data>
+  <data name="GenerateBarCodeOnStart" xml:space="preserve">
+    <value>Generate bar code on start</value>
+  </data>
+  <data name="GenerateQRCodeOnStart" xml:space="preserve">
+    <value>Generate QR code on start</value>
+  </data>
+  <data name="OnStartDesc" xml:space="preserve">
+    <value>On start events.</value>
   </data>
 </root>

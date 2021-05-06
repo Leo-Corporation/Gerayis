@@ -45,9 +45,9 @@ namespace Gerayis
 			Global.ChangeTheme(); // Change the theme
 			Global.ChangeLanguage(); // Change the language
 
+			Global.SettingsPage = new(); // Create a new SettingsPage
 			Global.BarCodePage = new(); // Create a new BarCodePage
 			Global.QRCodePage = new(); // Create a new QRCodePage
-			Global.SettingsPage = new(); // Create a new SettingsPage
 
 			base.OnStartup(e);
 		}

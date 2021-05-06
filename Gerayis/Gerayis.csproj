@@ -6,7 +6,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Gerayis.ico</ApplicationIcon>
-    <Version>1.1.0.2104</Version>
+    <Version>1.2.0.2105</Version>
     <Authors>Léo Corporation</Authors>
     <Description>A modern Bar/QR Code generator for Windows.</Description>
     <Copyright>© 2021</Copyright>
@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.3.0" />
-    <PackageReference Include="LeoCorpLibrary" Version="3.5.0.2104" />
+    <PackageReference Include="LeoCorpLibrary" Version="3.6.0.2105" />
     <PackageReference Include="QRCoder" Version="1.4.1" />
   </ItemGroup>
 
