@@ -290,7 +290,11 @@ namespace Gerayis.Pages
 					CheckUpdatesOnStart = true,
 					IsDarkTheme = false,
 					Language = "_default",
-					NotifyUpdates = true
+					NotifyUpdates = true,
+					BarCodeBackgroundColor = "255;255;255",
+					BarCodeForegroundColor = "0;0;0",
+					GenerateBarCodeOnStart = true,
+					GenerateQRCodeOnStart = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
