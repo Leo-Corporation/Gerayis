@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -359,6 +360,26 @@ namespace Gerayis.Pages
 		{
 			Global.Settings.GenerateQRCodeOnStart = GenerateQRCodeOnStartChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
+		}
+
+		private void ImportBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void ExportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new() 
+			{ 
+				FileName = "GerayisSettings.xml", 
+				Filter = "XML|*.xml", 
+				Title = Properties.Resources.Export 
+			}; // Create file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Export(saveFileDialog.FileName); // Export games
+			}
 		}
 	}
 }

@@ -28,6 +28,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace Gerayis.Classes
@@ -136,6 +137,54 @@ namespace Gerayis.Classes
 			xmlSerializer.Serialize(streamWriter, Global.Settings);
 
 			streamWriter.Dispose();
+		}
+
+		/// <summary>
+		/// Exports current settings.
+		/// </summary>
+		/// <param name="path">The path where the settings file should be exported.</param>
+		public static void Export(string path)
+		{
+			try
+			{
+				XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // Create XML Serializer
+
+				StreamWriter streamWriter = new StreamWriter(path); // The place where the file is going to be written
+				xmlSerializer.Serialize(streamWriter, Global.Settings);
+
+				streamWriter.Dispose();
+
+				MessageBox.Show(Properties.Resources.SettingsExportedSucessMsg, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show message
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Error); // Show error message
+			}
+		}
+
+		/// <summary>
+		/// Imports settings.
+		/// </summary>
+		/// <param name="path">The path to the settings file.</param>
+		public static void Import(string path)
+		{
+			try
+			{
+				if (File.Exists(path)) // If the file exist
+				{
+					XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings)); // XML Serializer
+					StreamReader streamReader = new StreamReader(path); // Where the file is going to be read
+
+					Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
+
+					streamReader.Dispose();
+					MessageBox.Show(Properties.Resources.SettingsImportedMsg, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show error message
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Error); // Show error message
+			}
 		}
 	}
 }
