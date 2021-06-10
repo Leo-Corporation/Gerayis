@@ -24,6 +24,7 @@ SOFTWARE.
 using LeoCorpLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -178,7 +179,12 @@ namespace Gerayis.Classes
 					Global.Settings = (Settings)xmlSerializer.Deserialize(streamReader); // Read
 
 					streamReader.Dispose();
+					Save(); // Save
 					MessageBox.Show(Properties.Resources.SettingsImportedMsg, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show error message
+
+					// Restart app
+					Process.Start(Directory.GetCurrentDirectory() + @"\Gerayis.exe"); // Start app
+					Environment.Exit(0); // Quit
 				}
 			}
 			catch (Exception ex)
