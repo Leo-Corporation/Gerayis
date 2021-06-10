@@ -390,5 +390,17 @@ namespace Gerayis.Pages
 				SettingsManager.Export(saveFileDialog.FileName); // Export games
 			}
 		}
+
+		private void BtnEnter(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		}
+
+		private void BtnLeave(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		}
 	}
 }
