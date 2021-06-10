@@ -156,6 +156,8 @@ namespace Gerayis.Pages
 					BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
 				}
 
+				VersionTxt.Text = Global.Version; // Set text
+
 				SettingsManager.Save(); // Save changes
 			}
 			catch (Exception ex)
