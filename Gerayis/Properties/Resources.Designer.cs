@@ -457,6 +457,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your image has been sucessfully saved..
+        /// </summary>
+        public static string SaveSucess {
+            get {
+                return ResourceManager.GetString("SaveSucess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See licenses.
         /// </summary>
         public static string SeeLicenses {

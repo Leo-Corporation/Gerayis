@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,6 +134,21 @@ namespace Gerayis.Pages
 			if (BarCodeImg.Source is not null) // If there is an image
 			{
 				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+
+		private void SaveBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				Filter = "PNG|*.png",
+				FileName = $"{Properties.Resources.BarCode}.png",
+				Title = Properties.Resources.Save
+			}; // Create Save file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
 			}
 		}
 	}

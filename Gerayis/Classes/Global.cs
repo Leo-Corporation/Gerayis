@@ -24,8 +24,10 @@ SOFTWARE.
 using Gerayis.Pages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Gerayis.Classes
 {
@@ -142,6 +144,25 @@ namespace Gerayis.Classes
 					break;
 				default: // No language
 					break;
+			}
+		}
+
+		public static void SaveImage(string filePath, BitmapSource bitmapImage)
+		{
+			try
+			{
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					BitmapEncoder encoder = new PngBitmapEncoder();
+					encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+					encoder.Save(fileStream);
+				}
+
+				MessageBox.Show(Properties.Resources.SaveSucess, Properties.Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information); // Show sucess message
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
 			}
 		}
 	}
