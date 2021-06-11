@@ -87,10 +87,10 @@
 					</Grid.RowDefinitions>
 
 					<TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Resources.ForegroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-					<Rectangle Grid.Row="0" Grid.Column="1" x:Name="ForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="ForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3"/>
+					<Rectangle Grid.Row="0" Grid.Column="1" x:Name="ForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="ForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
 
 					<TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Resources.BackgroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-					<Rectangle Grid.Row="1" Grid.Column="1" x:Name="BackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="BackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3"/>
+					<Rectangle Grid.Row="1" Grid.Column="1" x:Name="BackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="BackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
 				</Grid>
 
 				<TextBlock x:Name="ResetColorsLink" Text="{x:Static lang:Resources.ResetColor}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" FontWeight="Bold" Cursor="Hand" MouseLeftButtonDown="ResetColorsLink_MouseLeftButtonDown">
