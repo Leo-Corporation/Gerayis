@@ -3,7 +3,7 @@
 
 #define MyAppName "Gerayis"
 #define MyAppVersion "1.3.0.2106"
-#define MyAppFullVersion "1.3.0.2106-pre1"
+#define MyAppFullVersion "1.3.0.2106-rc1"
 #define MyAppPublisher "Léo Corporation"
 #define MyAppURL "https://leocorporation.dev/"
 #define MyAppExeName "Gerayis.exe"
