@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Microsoft.Win32;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -107,6 +108,21 @@ namespace Gerayis.Pages
 			if (QRCodeImg.Source is not null) // If the image is not empty
 			{
 				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+
+		private void SaveBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new()
+			{
+				Filter = "PNG|*.png",
+				FileName = $"{Properties.Resources.QRCode}.png",
+				Title = Properties.Resources.Save
+			}; // Create Save file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
 			}
 		}
 	}

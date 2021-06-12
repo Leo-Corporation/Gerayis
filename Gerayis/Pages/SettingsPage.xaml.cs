@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using LeoCorpLibrary;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -155,6 +156,8 @@ namespace Gerayis.Pages
 				{
 					BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
 				}
+
+				VersionTxt.Text = Global.Version; // Set text
 
 				SettingsManager.Save(); // Save changes
 			}
@@ -357,6 +360,47 @@ namespace Gerayis.Pages
 		{
 			Global.Settings.GenerateQRCodeOnStart = GenerateQRCodeOnStartChk.IsChecked; // Set
 			SettingsManager.Save(); // Save changes
+		}
+
+		private void ImportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new()
+			{
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.Export
+			}; // Create file dialog
+
+			if (openFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Import(openFileDialog.FileName); // Import games
+			}
+		}
+
+		private void ExportBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog saveFileDialog = new() 
+			{ 
+				FileName = "GerayisSettings.xml", 
+				Filter = "XML|*.xml", 
+				Title = Properties.Resources.Export 
+			}; // Create file dialog
+
+			if (saveFileDialog.ShowDialog() ?? true)
+			{
+				SettingsManager.Export(saveFileDialog.FileName); // Export games
+			}
+		}
+
+		private void BtnEnter(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		}
+
+		private void BtnLeave(object sender, MouseEventArgs e)
+		{
+			Button button = (Button)sender; // Create button
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 		}
 	}
 }
