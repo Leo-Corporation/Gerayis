@@ -222,6 +222,8 @@ namespace Gerayis.Pages
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			Global.Settings.IsThemeSystem = SystemRadioBtn.IsChecked; // Set the settings
+
 			SettingsManager.Save(); // Save the changes
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			DisplayRestartMessage();
@@ -297,7 +299,8 @@ namespace Gerayis.Pages
 					BarCodeBackgroundColor = "255;255;255",
 					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
-					GenerateQRCodeOnStart = true
+					GenerateQRCodeOnStart = true,
+					IsThemeSystem = false
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -401,6 +404,11 @@ namespace Gerayis.Pages
 		{
 			Button button = (Button)sender; // Create button
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		}
+
+		private void SystemRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show
 		}
 	}
 }
