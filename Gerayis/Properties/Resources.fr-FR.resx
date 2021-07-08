@@ -288,4 +288,7 @@
   <data name="SaveSucess" xml:space="preserve">
     <value>Votre image a été enregistrée avec succès.</value>
   </data>
+  <data name="System" xml:space="preserve">
+    <value>Système</value>
+  </data>
 </root>

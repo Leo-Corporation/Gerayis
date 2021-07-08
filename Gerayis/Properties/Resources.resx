@@ -268,4 +268,7 @@
   <data name="SaveSucess" xml:space="preserve">
     <value>Your image has been sucessfully saved.</value>
   </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
 </root>
