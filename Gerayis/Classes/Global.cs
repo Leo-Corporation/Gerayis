@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Pages;
+using LeoCorpLibrary;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,7 +41,7 @@ namespace Gerayis.Classes
 		/// <summary>
 		/// The current version of Gerayis.
 		/// </summary>
-		public static string Version => "1.3.0.2106";
+		public static string Version => "1.4.0.2107";
 
 		/// <summary>
 		/// List of the available languages.
@@ -114,6 +116,16 @@ namespace Gerayis.Classes
 			App.Current.Resources.MergedDictionaries.Clear();
 			ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
 
+			if (!Settings.IsThemeSystem.HasValue)
+			{
+				Settings.IsThemeSystem = false;
+			}
+
+			if (Settings.IsThemeSystem.Value)
+			{
+				Settings.IsDarkTheme = IsSystemThemeDark(); // Set
+			}
+
 			if (Settings.IsDarkTheme) // If the dark theme is on
 			{
 				resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
@@ -124,6 +136,22 @@ namespace Gerayis.Classes
 			}
 
 			App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
+		}
+
+		public static bool IsSystemThemeDark()
+		{
+			if (Env.WindowsVersion != WindowsVersion.Windows10)
+			{
+				return false; // Avoid errors on older OSs
+			}
+
+			var t = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme", "1");
+			return t switch
+			{
+				0 => true,
+				1 => false,
+				_ => false
+			}; // Return
 		}
 
 		/// <summary>

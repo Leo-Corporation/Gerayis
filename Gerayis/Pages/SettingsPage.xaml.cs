@@ -80,9 +80,35 @@ namespace Gerayis.Pages
 					Global.Settings.BarCodeForegroundColor = "0;0;0"; // Set
 				}
 
+				if (string.IsNullOrEmpty(Global.Settings.QRCodeBackgroundColor))
+				{
+					Global.Settings.QRCodeBackgroundColor = "255;255;255"; // Set
+				}
+
+				if (string.IsNullOrEmpty(Global.Settings.QRCodeForegroundColor))
+				{
+					Global.Settings.QRCodeForegroundColor = "0;0;0"; // Set
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
+				SystemRadioBtn.IsChecked = Global.Settings.IsThemeSystem; // Change IsChecked property
+
+				// Borders
+				if (DarkRadioBtn.IsChecked.Value)
+				{
+					CheckedBorder = DarkBorder; // Set
+				}
+				else if (LightRadioBtn.IsChecked.Value)
+				{
+					CheckedBorder = LightBorder; // Set
+				}
+				else if (SystemRadioBtn.IsChecked.Value)
+				{
+					CheckedBorder = SystemBorder; // Set
+				}
+				RefreshBorders();
 
 				// Load checkboxes
 				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
@@ -157,6 +183,28 @@ namespace Gerayis.Pages
 					BackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
 				}
 
+				// Load QR Code colors
+				// Load Bar code colors
+				if (!string.IsNullOrEmpty(Global.Settings.QRCodeForegroundColor))
+				{
+					string[] foreColor = Global.Settings.QRCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					QRForeColorRec.Fill = new SolidColorBrush { Color = (foreColor.Length == 3) ? Color.FromRgb((byte)int.Parse(foreColor[0]), (byte)int.Parse(foreColor[1]), (byte)int.Parse(foreColor[2])) : Color.FromRgb(0, 0, 0) }; // Set color 
+				}
+				else
+				{
+					QRForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(0, 0, 0) }; // Set color
+				}
+
+				if (!string.IsNullOrEmpty(Global.Settings.QRCodeBackgroundColor))
+				{
+					string[] backColor = Global.Settings.QRCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+					QRBackColorRec.Fill = new SolidColorBrush { Color = (backColor.Length == 3) ? Color.FromRgb((byte)int.Parse(backColor[0]), (byte)int.Parse(backColor[1]), (byte)int.Parse(backColor[2])) : Color.FromRgb(255, 255, 255) }; // Set color 
+				}
+				else
+				{
+					QRBackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
+				}
+
 				VersionTxt.Text = Global.Version; // Set text
 
 				SettingsManager.Save(); // Save changes
@@ -222,6 +270,8 @@ namespace Gerayis.Pages
 		private void ThemeApplyBtn_Click(object sender, RoutedEventArgs e)
 		{
 			Global.Settings.IsDarkTheme = DarkRadioBtn.IsChecked.Value; // Set the settings
+			Global.Settings.IsThemeSystem = SystemRadioBtn.IsChecked; // Set the settings
+
 			SettingsManager.Save(); // Save the changes
 			ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 			DisplayRestartMessage();
@@ -297,7 +347,10 @@ namespace Gerayis.Pages
 					BarCodeBackgroundColor = "255;255;255",
 					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
-					GenerateQRCodeOnStart = true
+					GenerateQRCodeOnStart = true,
+					IsThemeSystem = false,
+					QRCodeBackgroundColor = "255;255;255",
+					QRCodeForegroundColor = "0;0;0"
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -347,7 +400,7 @@ namespace Gerayis.Pages
 			Global.Settings.BarCodeBackgroundColor = "255;255;255"; // Set white
 
 			SettingsManager.Save(); // Save changes
-			InitUI(); // Referesh
+			InitUI(); // Refresh
 		}
 
 		private void GenerateBarCodeOnStartChk_Checked(object sender, RoutedEventArgs e)
@@ -401,6 +454,98 @@ namespace Gerayis.Pages
 		{
 			Button button = (Button)sender; // Create button
 			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+		}
+
+		private void SystemRadioBtn_Checked(object sender, RoutedEventArgs e)
+		{
+			ThemeApplyBtn.Visibility = Visibility.Visible; // Show
+		}
+
+		private void LightBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			LightRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = LightBorder; // Set
+			RefreshBorders();
+		}
+
+		Border CheckedBorder { get; set; }
+		private void Border_MouseEnter(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			border.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void Border_MouseLeave(object sender, MouseEventArgs e)
+		{
+			Border border = (Border)sender;
+			if (border != CheckedBorder)
+			{
+				border.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			}
+		}
+
+		private void DarkBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			DarkRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = DarkBorder; // Set
+			RefreshBorders();
+		}
+
+		private void SystemBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+		{
+			SystemRadioBtn.IsChecked = true; // Set IsChecked
+			CheckedBorder = SystemBorder; // Set
+			RefreshBorders();
+		}
+
+		private void RefreshBorders()
+		{
+			LightBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			DarkBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+			SystemBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+
+			CheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+		}
+
+		private void QRResetColorsLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			Global.Settings.QRCodeForegroundColor = "0;0;0"; // Set black
+			Global.Settings.QRCodeBackgroundColor = "255;255;255"; // Set white
+
+			SettingsManager.Save(); // Save changes
+			InitUI(); // Refresh
+		}
+
+		private void QRForeColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.QRCodeForegroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				QRForeColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
+		}
+
+		private void QRBackColorRec_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			System.Windows.Forms.ColorDialog colorDialog = new()
+			{
+				AllowFullOpen = true,
+			}; // Create color picker/dialog
+
+			if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) // If the user selected a color
+			{
+				Global.Settings.QRCodeBackgroundColor = $"{colorDialog.Color.R};{colorDialog.Color.G};{colorDialog.Color.B}";
+				SettingsManager.Save(); // Save changes
+
+				QRBackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
+			}
 		}
 	}
 }

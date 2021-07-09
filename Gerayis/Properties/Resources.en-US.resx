@@ -288,4 +288,10 @@
   <data name="SaveSucess" xml:space="preserve">
     <value>Your image has been sucessfully saved.</value>
   </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="HistoryEmpty" xml:space="preserve">
+    <value>The history is empty.</value>
+  </data>
 </root>

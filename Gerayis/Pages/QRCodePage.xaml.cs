@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Gerayis.UserControls;
 using Microsoft.Win32;
 using QRCoder;
 using System;
@@ -60,37 +61,68 @@ namespace Gerayis.Pages
 
 				if (!string.IsNullOrEmpty(QRCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(QRCodeStringTxt.Text))
 				{
+					System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
+					System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
+
+					if (!string.IsNullOrEmpty(Global.Settings.QRCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.QRCodeForegroundColor))
+					{
+						string[] fC = Global.Settings.QRCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+						string[] bC = Global.Settings.QRCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+
+						foreColor = System.Drawing.Color.FromArgb((byte)int.Parse(fC[0]), (byte)int.Parse(fC[1]), (byte)int.Parse(fC[2])); // Create new color
+						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
+					}
+
 					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
 					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
-					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20); // Get QR Code bitmap (image)
+					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();
 					bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
 					bitmapSource.Freeze();
 					QRCodeImg.Source = bitmapSource;
+
+					QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
 				}
 			}
 		}
 
 		BitmapSource bitmapSource;
-		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+		internal void GenerateBtn_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
 				if (!string.IsNullOrEmpty(QRCodeStringTxt.Text) && !string.IsNullOrWhiteSpace(QRCodeStringTxt.Text))
 				{
+					System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
+					System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
+
+					if (!string.IsNullOrEmpty(Global.Settings.QRCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.QRCodeForegroundColor))
+					{
+						string[] fC = Global.Settings.QRCodeForegroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+						string[] bC = Global.Settings.QRCodeBackgroundColor.Split(new string[] { ";" }, StringSplitOptions.None); // Split
+
+						foreColor = System.Drawing.Color.FromArgb((byte)int.Parse(fC[0]), (byte)int.Parse(fC[1]), (byte)int.Parse(fC[2])); // Create new color
+						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
+					}
+
 					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
 					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
-					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20); // Get QR Code bitmap (image)
+					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();
 					bitmapSource = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(bmpPt, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
 					bitmapSource.Freeze();
 					QRCodeImg.Source = bitmapSource;
+
+					if (sender is not HistoryItem)
+					{
+						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+					}
 				}
 				else
 				{
@@ -123,6 +155,42 @@ namespace Gerayis.Pages
 			if (saveFileDialog.ShowDialog() ?? true)
 			{
 				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
+			}
+		}
+
+		internal void HistoryBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (QRCodeHistory.Children.Count > 0)
+			{
+				if (sender is not HistoryItem)
+				{
+					if (Content.Visibility == Visibility.Visible)
+					{
+						Content.Visibility = Visibility.Collapsed; // Hide
+						HistoryScroll.Visibility = Visibility.Visible; // Show
+
+						HistoryBtn.Content = "\uF36A"; // Set text 
+					}
+					else
+					{
+						Content.Visibility = Visibility.Visible; // Show
+						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+						HistoryBtn.Content = "\uF47F"; // Set text
+					}
+				}
+			}
+			else
+			{
+				Content.Visibility = Visibility.Visible; // Show
+				HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+				HistoryBtn.Content = "\uF47F"; // Set text
+
+				if (sender is not HistoryItem)
+				{
+					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show
+				}
 			}
 		}
 	}
