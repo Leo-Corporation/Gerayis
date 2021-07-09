@@ -83,6 +83,16 @@ namespace Gerayis.Classes
 		/// True if Gerayis should follow the system's theme.
 		/// </summary>
 		public bool? IsThemeSystem { get; set; }
+
+		/// <summary>
+		/// QR code foreground color.
+		/// </summary>
+		public string QRCodeForegroundColor { get; set; }
+
+		/// <summary>
+		/// QR code background color.
+		/// </summary>
+		public string QRCodeBackgroundColor { get; set; }
 	}
 
 	/// <summary>
@@ -118,7 +128,9 @@ namespace Gerayis.Classes
 					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
 					GenerateQRCodeOnStart = true,
-					IsThemeSystem = false
+					IsThemeSystem = false,
+					QRCodeBackgroundColor = "255;255;255",
+					QRCodeForegroundColor = "0;0;0"
 				}; // Create a new settings file
 
 				Save(); // Save the changes
