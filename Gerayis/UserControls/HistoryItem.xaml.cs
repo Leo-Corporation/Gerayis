@@ -83,7 +83,11 @@ namespace Gerayis.UserControls
 					Global.BarCodePage.HistoryBtn.Content = "\uF47F"; // Set text
 					break;
 				case AppPages.QRCode:
-
+					Global.QRCodePage.QRCodeStringTxt.Text = ContentText;
+					Global.QRCodePage.GenerateBtn_Click(this, null); // Click
+					Global.QRCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+					Global.QRCodePage.Content.Visibility = Visibility.Visible; // Show
+					Global.QRCodePage.HistoryBtn.Content = "\uF47F"; // Set text
 					break;
 			}
 		}
@@ -98,7 +102,7 @@ namespace Gerayis.UserControls
 					Global.BarCodePage.HistoryBtn_Click(this, null);
 					break;
 				case AppPages.QRCode:
-
+					Global.QRCodePage.HistoryBtn_Click(this, null);
 					break;
 			}
 		}

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Gerayis.UserControls;
 using Microsoft.Win32;
 using QRCoder;
 using System;
@@ -70,12 +71,14 @@ namespace Gerayis.Pages
 
 					bitmapSource.Freeze();
 					QRCodeImg.Source = bitmapSource;
+
+					QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
 				}
 			}
 		}
 
 		BitmapSource bitmapSource;
-		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+		internal void GenerateBtn_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
@@ -91,6 +94,11 @@ namespace Gerayis.Pages
 
 					bitmapSource.Freeze();
 					QRCodeImg.Source = bitmapSource;
+
+					if (sender is not HistoryItem)
+					{
+						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+					}
 				}
 				else
 				{
@@ -123,6 +131,42 @@ namespace Gerayis.Pages
 			if (saveFileDialog.ShowDialog() ?? true)
 			{
 				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
+			}
+		}
+
+		internal void HistoryBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (QRCodeHistory.Children.Count > 0)
+			{
+				if (sender is not HistoryItem)
+				{
+					if (Content.Visibility == Visibility.Visible)
+					{
+						Content.Visibility = Visibility.Collapsed; // Hide
+						HistoryScroll.Visibility = Visibility.Visible; // Show
+
+						HistoryBtn.Content = "\uF36A"; // Set text 
+					}
+					else
+					{
+						Content.Visibility = Visibility.Visible; // Show
+						HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+						HistoryBtn.Content = "\uF47F"; // Set text
+					}
+				}
+			}
+			else
+			{
+				Content.Visibility = Visibility.Visible; // Show
+				HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+
+				HistoryBtn.Content = "\uF47F"; // Set text
+
+				if (sender is not HistoryItem)
+				{
+					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show
+				}
 			}
 		}
 	}
