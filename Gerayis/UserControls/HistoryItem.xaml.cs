@@ -62,6 +62,13 @@ namespace Gerayis.UserControls
 		private void InitUI()
 		{
 			BarCodeTxt.Text = ContentText;
+
+			GenerateBtn.Content = AppPages switch
+			{
+				AppPages.BarCode => "\uF210",
+				AppPages.QRCode => "\uF636",
+				_ => "\uF210",
+			};
 		}
 
 		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
