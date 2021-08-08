@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
-    <PackageReference Include="LeoCorpLibrary" Version="3.8.0.2107" />
+    <PackageReference Include="LeoCorpLibrary" Version="3.9.0.2108" />
     <PackageReference Include="QRCoder" Version="1.4.1" />
   </ItemGroup>
 
