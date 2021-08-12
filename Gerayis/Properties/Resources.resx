@@ -274,4 +274,13 @@
   <data name="HistoryEmpty" xml:space="preserve">
     <value>The history is empty.</value>
   </data>
+  <data name="Code11" xml:space="preserve">
+    <value>Code11</value>
+  </data>
+  <data name="Code128" xml:space="preserve">
+    <value>Code128</value>
+  </data>
+  <data name="UPCA" xml:space="preserve">
+    <value>UPC-A</value>
+  </data>
 </root>

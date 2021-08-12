@@ -151,6 +151,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code11.
+        /// </summary>
+        public static string Code11 {
+            get {
+                return ResourceManager.GetString("Code11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Code128.
+        /// </summary>
+        public static string Code128 {
+            get {
+                return ResourceManager.GetString("Code128", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
@@ -561,6 +579,15 @@ namespace Gerayis.Properties {
         public static string UnableToCheckUpdates {
             get {
                 return ResourceManager.GetString("UnableToCheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPC-A.
+        /// </summary>
+        public static string UPCA {
+            get {
+                return ResourceManager.GetString("UPCA", resourceCulture);
             }
         }
         
