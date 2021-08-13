@@ -11,16 +11,16 @@
     <img src=".github/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Gerayis</h3>
+  <h1 align="center">Gerayis</h3>
 
   <p align="center">
     A modern Bar/QR Code generator for Windows.
     <br />
     <a href="https://github.com/Leo-Corporation/Gerayis/releases"><strong>Download »</strong></a>
     <br />
-    <a href="https://github.com/Leo-Corporation/Gerayis/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5BBug%5D+">Report Bug</a>
+    <a href="https://github.com/Leo-Corporation/Gerayis/issues/new?assignees=&labels=bug&template=bug-report.yml&title=%5BBug%5D+">Report Bug</a>
     ·
-    <a href="https://github.com/Leo-Corporation/Gerayis/issues/new?assignees=&labels=suggestion+enhancement&template=feature_request.md&title=%5BEnhancement%5D+">Request Feature</a>
+    <a href="https://github.com/Leo-Corporation/Gerayis/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=%5BEnhancement%5D+">Request Feature</a>
     ·
     <a href="https://github.com/Leo-Corporation/Gerayis/issues?q=is%3Aopen+is%3Aissue+label%3Abug">Known Issues</a>
 
@@ -45,5 +45,16 @@ To contribute to the project, you'll need:
 - (*optionnal*) Inno Setup v6.1 or higher
 
 [Click here](https://github.com/Leo-Corporation/Gerayis/blob/main/CONTRIBUTING.md) to see the full guidelines.
+
+## Branches
+This Git repo has always two branches:
+
+| Name | Release | Description |
+| :--: | :-----: | :---------: |
+| `main` | ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Leo-Corporation/Gerayis) | Stable versions |
+| `vNext` | ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Leo-Corporation/Gerayis?include_prereleases) | Next version of Gerayis (unstable) |
+
+> Note: Other branches can also - of course - exists.
+
 ## License
 This project is under the [MIT License](https://github.com/Leo-Corporation/Gerayis/blob/main/LICENSE).
