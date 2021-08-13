@@ -431,11 +431,11 @@ namespace Gerayis.Pages
 
 		private void ExportBtn_Click(object sender, RoutedEventArgs e)
 		{
-			SaveFileDialog saveFileDialog = new() 
-			{ 
-				FileName = "GerayisSettings.xml", 
-				Filter = "XML|*.xml", 
-				Title = Properties.Resources.Export 
+			SaveFileDialog saveFileDialog = new()
+			{
+				FileName = "GerayisSettings.xml",
+				Filter = "XML|*.xml",
+				Title = Properties.Resources.Export
 			}; // Create file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)
