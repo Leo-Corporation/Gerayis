@@ -303,4 +303,10 @@
   <data name="UPCA" xml:space="preserve">
     <value>UPC-A</value>
   </data>
+  <data name="MSI" xml:space="preserve">
+    <value>MSI</value>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN</value>
+  </data>
 </root>

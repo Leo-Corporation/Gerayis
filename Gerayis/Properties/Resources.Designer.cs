@@ -358,6 +358,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ISBN.
+        /// </summary>
+        public static string ISBN {
+            get {
+                return ResourceManager.GetString("ISBN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -381,6 +390,15 @@ namespace Gerayis.Properties {
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSI.
+        /// </summary>
+        public static string MSI {
+            get {
+                return ResourceManager.GetString("MSI", resourceCulture);
             }
         }
         
