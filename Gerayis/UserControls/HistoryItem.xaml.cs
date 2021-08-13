@@ -49,12 +49,15 @@ namespace Gerayis.UserControls
 		string ContentText { get; init; }
 		StackPanel StackPanel { get; init; }
 		AppPages AppPages { get; init; }
-		public HistoryItem(string value, StackPanel stackPanel, AppPages pages)
+		Barcodes BarcodeType { get; init; }
+
+		public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
 		{
 			InitializeComponent();
 			ContentText = value; // Set
 			StackPanel = stackPanel; // Set
 			AppPages = pages; // Set
+			BarcodeType = barcodeType; // Set
 
 			InitUI();
 		}
@@ -77,7 +80,8 @@ namespace Gerayis.UserControls
 			{
 				case AppPages.BarCode:
 					Global.BarCodePage.BarCodeStringTxt.Text = ContentText;
-					Global.BarCodePage.GenerateBtn_Click(this, null); // Click
+					Global.BarCodePage.BarCodeTypeComboBox.SelectedIndex = (int)BarcodeType; // Set selected index
+					Global.BarCodePage.GenerateBarCode(ContentText, this, BarcodeType); // Click
 					Global.BarCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
 					Global.BarCodePage.Content.Visibility = Visibility.Visible; // Show
 					Global.BarCodePage.HistoryBtn.Content = "\uF47F"; // Set text

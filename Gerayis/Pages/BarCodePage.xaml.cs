@@ -76,7 +76,7 @@ namespace Gerayis.Pages
 			GenerateBarCode(BarCodeStringTxt.Text, sender, (Barcodes)BarCodeTypeComboBox.SelectedIndex); // Generate
 		}
 
-		private void GenerateBarCode(string text, object sender, Barcodes barcodeType)
+		internal void GenerateBarCode(string text, object sender, Barcodes barcodeType)
 		{
 			try
 			{
@@ -119,7 +119,7 @@ namespace Gerayis.Pages
 
 					if (sender is not HistoryItem)
 					{
-						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode));
+						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
 					}
 				}
 				else
