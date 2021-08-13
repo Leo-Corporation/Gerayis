@@ -100,6 +100,7 @@ namespace Gerayis.Pages
 						Barcodes.Code128 => BarcodeLib.TYPE.CODE128, // Code128
 						Barcodes.Code11 => BarcodeLib.TYPE.CODE11, // Code11
 						Barcodes.UPCA => BarcodeLib.TYPE.UPCA, // UPC-A
+						Barcodes.MSI => BarcodeLib.TYPE.MSI_Mod10, // MSI
 						_ => BarcodeLib.TYPE.CODE128 // Default value
 					}; // Get
 

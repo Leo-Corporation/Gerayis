@@ -34,6 +34,7 @@
 						<ComboBoxItem Content="{x:Static lang:Resources.Code128}"/>
 						<ComboBoxItem Content="{x:Static lang:Resources.Code11}"/>
 						<ComboBoxItem Content="{x:Static lang:Resources.UPCA}"/>
+						<ComboBoxItem Content="{x:Static lang:Resources.MSI}"/>
 					</ComboBox>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">

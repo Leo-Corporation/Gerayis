@@ -47,6 +47,11 @@ namespace Gerayis.Enums
 		/// <summary>
 		/// UPC-A barcode.
 		/// </summary>
-		UPCA = 2
+		UPCA = 2,
+
+		/// <summary>
+		/// MSI barcode.
+		/// </summary>
+		MSI = 3
 	}
 }
