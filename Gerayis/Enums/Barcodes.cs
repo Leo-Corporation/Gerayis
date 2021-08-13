@@ -52,6 +52,11 @@ namespace Gerayis.Enums
 		/// <summary>
 		/// MSI barcode.
 		/// </summary>
-		MSI = 3
+		MSI = 3,
+
+		/// <summary>
+		/// ISBN barcode.
+		/// </summary>
+		ISBN = 4
 	}
 }
