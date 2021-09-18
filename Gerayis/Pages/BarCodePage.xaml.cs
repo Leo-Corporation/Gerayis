@@ -64,7 +64,15 @@ namespace Gerayis.Pages
 
 			if (Global.Settings.GenerateBarCodeOnStart.Value)
 			{
-				BarCodeStringTxt.Text = Properties.Resources.Gerayis; // Set text
+				BarCodeStringTxt.Text = Global.Settings.DefaultBarCodeType switch
+				{
+					Barcodes.Code128 => Properties.Resources.Gerayis, // Text
+					Barcodes.Code11 => "456146121546", // Code11
+					Barcodes.ISBN => "978146121546", // ISBN starts with 978
+					Barcodes.MSI => "163657455245", // MSI
+					Barcodes.UPCA => "12659456240", // UPC-A
+					_ => Properties.Resources.Gerayis // Default value
+				}; // Set text depending on the bar code type
 
 				GenerateBarCode(BarCodeStringTxt.Text, null, Global.Settings.DefaultBarCodeType.Value); // Generate bar code
 			}
