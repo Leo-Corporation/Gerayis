@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Gerayis.Enums;
 using LeoCorpLibrary;
 using Microsoft.Win32;
 using System;
@@ -90,6 +91,11 @@ namespace Gerayis.Pages
 					Global.Settings.QRCodeForegroundColor = "0;0;0"; // Set
 				}
 
+				if (!Global.Settings.DefaultBarCodeType.HasValue)
+				{
+					Global.Settings.DefaultBarCodeType = Barcodes.Code128; // Set default value
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -129,6 +135,8 @@ namespace Gerayis.Pages
 
 				LangApplyBtn.Visibility = Visibility.Hidden; // Hide
 				ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
+
+				BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
 
 				// Update the UpdateStatusTxt
 				if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -350,7 +358,8 @@ namespace Gerayis.Pages
 					GenerateQRCodeOnStart = true,
 					IsThemeSystem = false,
 					QRCodeBackgroundColor = "255;255;255",
-					QRCodeForegroundColor = "0;0;0"
+					QRCodeForegroundColor = "0;0;0",
+					DefaultBarCodeType = Barcodes.Code128
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -546,6 +555,12 @@ namespace Gerayis.Pages
 
 				QRBackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(colorDialog.Color.R, colorDialog.Color.G, colorDialog.Color.B) }; // Set color
 			}
+		}
+
+		private void BarCodeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultBarCodeType = (Barcodes)BarCodeTypeComboBox.SelectedIndex; // Set the default type
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

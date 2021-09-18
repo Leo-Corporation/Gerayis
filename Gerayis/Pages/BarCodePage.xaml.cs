@@ -60,13 +60,13 @@ namespace Gerayis.Pages
 
 		private void InitUI()
 		{
-			BarCodeTypeComboBox.SelectedIndex = 0; // Select the first item
+			BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
 
 			if (Global.Settings.GenerateBarCodeOnStart.Value)
 			{
 				BarCodeStringTxt.Text = Properties.Resources.Gerayis; // Set text
 
-				GenerateBarCode(BarCodeStringTxt.Text, null, Barcodes.Code128); // Generate bar code
+				GenerateBarCode(BarCodeStringTxt.Text, null, Global.Settings.DefaultBarCodeType.Value); // Generate bar code
 			}
 		}
 
