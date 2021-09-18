@@ -10,7 +10,7 @@
 	  FontFamily="../Fonts/#Montserrat"
 	  Title="SettingsPage">
 	<ScrollViewer HorizontalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollViewerControlTemplate}" CanContentScroll="True" Height="344">
-		<Grid Height="1050">
+		<Grid Height="1060">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition Height="Auto"/>
