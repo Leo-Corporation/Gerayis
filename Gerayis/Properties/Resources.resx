@@ -289,4 +289,7 @@
   <data name="ISBN" xml:space="preserve">
     <value>ISBN</value>
   </data>
+  <data name="DefaultBarCodeType" xml:space="preserve">
+    <value>Default bar code type</value>
+  </data>
 </root>
