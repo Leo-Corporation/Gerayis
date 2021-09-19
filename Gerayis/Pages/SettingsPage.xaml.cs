@@ -356,7 +356,7 @@ namespace Gerayis.Pages
 					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
 					GenerateQRCodeOnStart = true,
-					IsThemeSystem = false,
+					IsThemeSystem = true,
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
 					DefaultBarCodeType = Barcodes.Code128
