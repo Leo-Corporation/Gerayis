@@ -46,10 +46,10 @@ namespace Gerayis.UserControls
 	/// </summary>
 	public partial class HistoryItem : UserControl
 	{
-		string ContentText { get; init; }
+		internal string ContentText { get; init; }
 		StackPanel StackPanel { get; init; }
 		AppPages AppPages { get; init; }
-		Barcodes BarcodeType { get; init; }
+		internal Barcodes BarcodeType { get; init; }
 
 		public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
 		{

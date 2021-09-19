@@ -127,7 +127,18 @@ namespace Gerayis.Pages
 
 					if (sender is not HistoryItem)
 					{
-						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						bool contains = false;
+
+						for (int i = 0; i < BarCodeHistory.Children.Count; i++)
+						{
+							var historyItem = (HistoryItem)BarCodeHistory.Children[i];
+							contains = historyItem.ContentText == text && historyItem.BarcodeType == barcodeType;
+						}
+
+						if (!contains)
+						{
+							BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						}					
 					}
 				}
 				else
