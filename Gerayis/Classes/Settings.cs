@@ -21,14 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
+using Gerayis.Enums;
 using LeoCorpLibrary;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Serialization;
 
@@ -93,6 +90,11 @@ namespace Gerayis.Classes
 		/// QR code background color.
 		/// </summary>
 		public string QRCodeBackgroundColor { get; set; }
+
+		/// <summary>
+		/// The default bar code type
+		/// </summary>
+		public Barcodes? DefaultBarCodeType { get; set; }
 	}
 
 	/// <summary>
@@ -128,9 +130,10 @@ namespace Gerayis.Classes
 					BarCodeForegroundColor = "0;0;0",
 					GenerateBarCodeOnStart = true,
 					GenerateQRCodeOnStart = true,
-					IsThemeSystem = false,
+					IsThemeSystem = true,
 					QRCodeBackgroundColor = "255;255;255",
-					QRCodeForegroundColor = "0;0;0"
+					QRCodeForegroundColor = "0;0;0",
+					DefaultBarCodeType = Barcodes.Code128
 				}; // Create a new settings file
 
 				Save(); // Save the changes

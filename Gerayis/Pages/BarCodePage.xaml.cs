@@ -26,19 +26,9 @@ using Gerayis.Enums;
 using Gerayis.UserControls;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gerayis.Pages
 {
@@ -60,13 +50,21 @@ namespace Gerayis.Pages
 
 		private void InitUI()
 		{
-			BarCodeTypeComboBox.SelectedIndex = 0; // Select the first item
+			BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
 
 			if (Global.Settings.GenerateBarCodeOnStart.Value)
 			{
-				BarCodeStringTxt.Text = Properties.Resources.Gerayis; // Set text
+				BarCodeStringTxt.Text = Global.Settings.DefaultBarCodeType switch
+				{
+					Barcodes.Code128 => Properties.Resources.Gerayis, // Text
+					Barcodes.Code11 => "456146121546", // Code11
+					Barcodes.ISBN => "978146121546", // ISBN starts with 978
+					Barcodes.MSI => "163657455245", // MSI
+					Barcodes.UPCA => "12659456240", // UPC-A
+					_ => Properties.Resources.Gerayis // Default value
+				}; // Set text depending on the bar code type
 
-				GenerateBarCode(BarCodeStringTxt.Text, null, Barcodes.Code128); // Generate bar code
+				GenerateBarCode(BarCodeStringTxt.Text, null, Global.Settings.DefaultBarCodeType.Value); // Generate bar code
 			}
 		}
 
@@ -119,7 +117,18 @@ namespace Gerayis.Pages
 
 					if (sender is not HistoryItem)
 					{
-						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						bool contains = false;
+
+						for (int i = 0; i < BarCodeHistory.Children.Count; i++)
+						{
+							var historyItem = (HistoryItem)BarCodeHistory.Children[i];
+							contains = historyItem.ContentText == text && historyItem.BarcodeType == barcodeType;
+						}
+
+						if (!contains)
+						{
+							BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						}
 					}
 				}
 				else

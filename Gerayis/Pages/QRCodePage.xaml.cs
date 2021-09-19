@@ -26,19 +26,9 @@ using Gerayis.UserControls;
 using Microsoft.Win32;
 using QRCoder;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gerayis.Pages
 {
@@ -121,7 +111,17 @@ namespace Gerayis.Pages
 
 					if (sender is not HistoryItem)
 					{
-						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+						bool contains = false;
+						for (int i = 0; i < QRCodeHistory.Children.Count; i++)
+						{
+							var historyItem = (HistoryItem)QRCodeHistory.Children[i];
+							contains = historyItem.ContentText == QRCodeStringTxt.Text;
+						}
+
+						if (!contains)
+						{
+							QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+						}
 					}
 				}
 				else

@@ -23,21 +23,8 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using Gerayis.Enums;
-using LeoCorpLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gerayis.UserControls
 {
@@ -46,10 +33,10 @@ namespace Gerayis.UserControls
 	/// </summary>
 	public partial class HistoryItem : UserControl
 	{
-		string ContentText { get; init; }
+		internal string ContentText { get; init; }
 		StackPanel StackPanel { get; init; }
 		AppPages AppPages { get; init; }
-		Barcodes BarcodeType { get; init; }
+		internal Barcodes BarcodeType { get; init; }
 
 		public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
 		{
