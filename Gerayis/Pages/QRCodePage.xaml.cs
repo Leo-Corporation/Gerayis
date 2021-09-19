@@ -39,6 +39,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Gerayis.Pages
 {
@@ -121,7 +122,17 @@ namespace Gerayis.Pages
 
 					if (sender is not HistoryItem)
 					{
-						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+						bool contains = false;
+						for (int i = 0; i < QRCodeHistory.Children.Count; i++)
+						{
+							var historyItem = (HistoryItem)QRCodeHistory.Children[i];
+							contains = historyItem.ContentText == QRCodeStringTxt.Text;
+						}
+
+						if (!contains)
+						{
+							QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+						}					
 					}
 				}
 				else
