@@ -29,6 +29,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Gerayis.Pages
 {
@@ -118,7 +119,7 @@ namespace Gerayis.Pages
 							contains = historyItem.ContentText == QRCodeStringTxt.Text;
 						}
 
-						if (!contains)
+						if (!contains && sender is not TextBox)
 						{
 							QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
 						}
@@ -193,7 +194,7 @@ namespace Gerayis.Pages
 				}
 			}
 		}
-
+		
 		private void QRCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			GenerateBtn_Click(sender, null);
