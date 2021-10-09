@@ -207,5 +207,15 @@ namespace Gerayis.Pages
 				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
 			}
 		}
+
+		private void CopyGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Visible; // Show
+		}
+
+		private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Collapsed; // Hide
+		}
 	}
 }

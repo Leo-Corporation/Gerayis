@@ -26,7 +26,12 @@
 				<Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14"/>
 			</Grid>
 			<StackPanel x:Name="Content" Orientation="Vertical">
-				<Image x:Name="QRCodeImg" Width="290" Height="120" Cursor="Hand" MouseLeftButtonUp="QRCodeImg_MouseLeftButtonUp"/>
+				<Grid>
+					<Image x:Name="QRCodeImg" Width="290" Height="120" Cursor="Hand" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave"/>
+					<Grid x:Name="CopyGrid" Visibility="Collapsed" Cursor="Hand" Width="120" Height="120" Background="#CC2E2E2E" MouseLeftButtonUp="QRCodeImg_MouseLeftButtonUp" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave">
+						<TextBlock Text="&#xF381;" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+					</Grid>
+				</Grid>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 					<TextBlock Text="{x:Static lang:Resources.Text}" FontSize="15" FontWeight="Bold" VerticalAlignment="Center"/>
 					<TextBox x:Name="QRCodeStringTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#8B2DF0" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#8B2DF0" Margin="10,5,10,5" VerticalAlignment="Center" Width="400" TextChanged="QRCodeStringTxt_TextChanged"/>
