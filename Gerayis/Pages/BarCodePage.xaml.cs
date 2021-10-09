@@ -200,5 +200,25 @@ namespace Gerayis.Pages
 				}
 			}
 		}
+
+		private void BarCodeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (BarCodeStringTxt.Text == Properties.Resources.Gerayis ||
+				BarCodeStringTxt.Text == "456146121546" ||
+				BarCodeStringTxt.Text == "978146121546" ||
+				BarCodeStringTxt.Text == "163657455245" ||
+				BarCodeStringTxt.Text == "12659456240")
+			{
+				BarCodeStringTxt.Text = (Barcodes)BarCodeTypeComboBox.SelectedIndex switch
+				{
+					Barcodes.Code128 => Properties.Resources.Gerayis, // Text
+					Barcodes.Code11 => "456146121546", // Code11
+					Barcodes.ISBN => "978146121546", // ISBN starts with 978
+					Barcodes.MSI => "163657455245", // MSI
+					Barcodes.UPCA => "12659456240", // UPC-A
+					_ => Properties.Resources.Gerayis // Default value
+				};
+			}
+		}
 	}
 }
