@@ -199,5 +199,13 @@ namespace Gerayis.Pages
 		{
 			GenerateBtn_Click(sender, null);
 		}
+
+		private void QRCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (QRCodeImg.Source is not null) // If the image is not empty
+			{
+				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
 	}
 }
