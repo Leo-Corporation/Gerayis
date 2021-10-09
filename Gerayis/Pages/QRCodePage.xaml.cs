@@ -193,5 +193,10 @@ namespace Gerayis.Pages
 				}
 			}
 		}
+
+		private void QRCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			GenerateBtn_Click(sender, null);
+		}
 	}
 }
