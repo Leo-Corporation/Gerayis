@@ -113,7 +113,7 @@ namespace Gerayis.Pages
 				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
 				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart.HasValue ? Global.Settings.GenerateQRCodeOnStart.Value : true; // Set
 				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
-				
+
 				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
 
 				// Load LangComboBox

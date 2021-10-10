@@ -84,7 +84,7 @@ namespace Gerayis.Pages
 				border.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["LightAccentColor"].ToString()) }; // Set the background
 				BorderIconTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
 				BorderMsgTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
-				
+
 				BorderIconTxt.Text = "\uF299"; // Set icon
 				BorderMsgTxt.Text = Properties.Resources.SuccessBarCodeGenerated; // Set text
 

@@ -29,7 +29,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Gerayis.Pages
 {
@@ -194,7 +193,7 @@ namespace Gerayis.Pages
 				}
 			}
 		}
-		
+
 		private void QRCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			GenerateBtn_Click(sender, null);
