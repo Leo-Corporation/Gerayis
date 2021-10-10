@@ -43,6 +43,8 @@ namespace Gerayis.Pages
 			get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 		}
 
+		internal string Error { get; set; }
+
 		public BarCodePage()
 		{
 			InitializeComponent();
@@ -88,6 +90,8 @@ namespace Gerayis.Pages
 
 				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
+
+				ShowErrorBtn.Visibility = Visibility.Collapsed; // Hide
 
 				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
 				{
@@ -152,6 +156,9 @@ namespace Gerayis.Pages
 
 				BorderIconTxt.Text = "\uF36E"; // Set icon
 				BorderMsgTxt.Text = Properties.Resources.NoUseSpecialChars; // Set text
+
+				Error = ex.Message; // Set error message
+				ShowErrorBtn.Visibility = Visibility.Visible; // Show
 			}
 		}
 
@@ -232,6 +239,11 @@ namespace Gerayis.Pages
 					_ => Properties.Resources.Gerayis // Default value
 				};
 			}
+		}
+
+		private void ShowErrorBtn_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show(Error, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 	}
 }
