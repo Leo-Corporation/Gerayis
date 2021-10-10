@@ -574,6 +574,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The bar code was successfully generated..
+        /// </summary>
+        public static string SuccessBarCodeGenerated {
+            get {
+                return ResourceManager.GetString("SuccessBarCodeGenerated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
         public static string System {

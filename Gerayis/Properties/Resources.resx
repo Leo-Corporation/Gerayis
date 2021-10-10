@@ -292,4 +292,7 @@
   <data name="DefaultBarCodeType" xml:space="preserve">
     <value>Default bar code type</value>
   </data>
+  <data name="SuccessBarCodeGenerated" xml:space="preserve">
+    <value>The bar code was successfully generated.</value>
+  </data>
 </root>

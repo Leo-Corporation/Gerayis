@@ -28,6 +28,7 @@ using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Gerayis.Pages
@@ -78,6 +79,13 @@ namespace Gerayis.Pages
 		{
 			try
 			{
+				border.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["LightAccentColor"].ToString()) }; // Set the background
+				BorderIconTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
+				BorderMsgTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
+				
+				BorderIconTxt.Text = "\uF299"; // Set icon
+				BorderMsgTxt.Text = Properties.Resources.SuccessBarCodeGenerated; // Set text
+
 				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
 
@@ -138,7 +146,12 @@ namespace Gerayis.Pages
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show($"{Properties.Resources.Error}:\n{Properties.Resources.ErrorCode} {ex.HResult}\n{ex.Message}", $"{Properties.Resources.Error} - {ex.HResult}", MessageBoxButton.OK, MessageBoxImage.Error);
+				border.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Red"].ToString()) }; // Set the background
+				BorderIconTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkRed"].ToString()) }; // Set the foreground
+				BorderMsgTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkRed"].ToString()) }; // Set the foreground
+
+				BorderIconTxt.Text = "\uF36E"; // Set icon
+				BorderMsgTxt.Text = Properties.Resources.NoUseSpecialChars; // Set text
 			}
 		}
 
