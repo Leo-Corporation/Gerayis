@@ -196,7 +196,10 @@ namespace Gerayis.Pages
 
 		private void QRCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			GenerateBtn_Click(sender, null);
+			if (Global.Settings.GenerateQRCodeWhileTyping.Value)
+			{
+				GenerateBtn_Click(sender, null); 
+			}
 		}
 
 		private void QRCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
