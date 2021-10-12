@@ -118,7 +118,7 @@ namespace Gerayis.Pages
 							contains = historyItem.ContentText == QRCodeStringTxt.Text;
 						}
 
-						if (!contains)
+						if (!contains && sender is not TextBox)
 						{
 							QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
 						}
@@ -192,6 +192,32 @@ namespace Gerayis.Pages
 					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show
 				}
 			}
+		}
+
+		private void QRCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (Global.Settings.GenerateQRCodeWhileTyping.Value)
+			{
+				GenerateBtn_Click(sender, null); 
+			}
+		}
+
+		private void QRCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (QRCodeImg.Source is not null) // If the image is not empty
+			{
+				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+
+		private void CopyGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Visible; // Show
+		}
+
+		private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Collapsed; // Hide
 		}
 	}
 }

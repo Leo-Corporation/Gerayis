@@ -28,6 +28,7 @@ using Microsoft.Win32;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Gerayis.Pages
@@ -41,6 +42,8 @@ namespace Gerayis.Pages
 		{
 			get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 		}
+
+		internal string Error { get; set; }
 
 		public BarCodePage()
 		{
@@ -78,8 +81,17 @@ namespace Gerayis.Pages
 		{
 			try
 			{
+				border.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["LightAccentColor"].ToString()) }; // Set the background
+				BorderIconTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
+				BorderMsgTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
+
+				BorderIconTxt.Text = "\uF299"; // Set icon
+				BorderMsgTxt.Text = Properties.Resources.SuccessBarCodeGenerated; // Set text
+
 				System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 				System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
+
+				ShowErrorBtn.Visibility = Visibility.Collapsed; // Hide
 
 				if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
 				{
@@ -138,7 +150,15 @@ namespace Gerayis.Pages
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show($"{Properties.Resources.Error}:\n{Properties.Resources.ErrorCode} {ex.HResult}\n{ex.Message}", $"{Properties.Resources.Error} - {ex.HResult}", MessageBoxButton.OK, MessageBoxImage.Error);
+				border.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Red"].ToString()) }; // Set the background
+				BorderIconTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkRed"].ToString()) }; // Set the foreground
+				BorderMsgTxt.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["DarkRed"].ToString()) }; // Set the foreground
+
+				BorderIconTxt.Text = "\uF36E"; // Set icon
+				BorderMsgTxt.Text = Properties.Resources.NoUseSpecialChars; // Set text
+
+				Error = ex.Message; // Set error message
+				ShowErrorBtn.Visibility = Visibility.Visible; // Show
 			}
 		}
 
@@ -199,6 +219,31 @@ namespace Gerayis.Pages
 					MessageBox.Show(Properties.Resources.HistoryEmpty, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information); // Show
 				}
 			}
+		}
+
+		private void BarCodeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (BarCodeStringTxt.Text == Properties.Resources.Gerayis ||
+				BarCodeStringTxt.Text == "456146121546" ||
+				BarCodeStringTxt.Text == "978146121546" ||
+				BarCodeStringTxt.Text == "163657455245" ||
+				BarCodeStringTxt.Text == "12659456240")
+			{
+				BarCodeStringTxt.Text = (Barcodes)BarCodeTypeComboBox.SelectedIndex switch
+				{
+					Barcodes.Code128 => Properties.Resources.Gerayis, // Text
+					Barcodes.Code11 => "456146121546", // Code11
+					Barcodes.ISBN => "978146121546", // ISBN starts with 978
+					Barcodes.MSI => "163657455245", // MSI
+					Barcodes.UPCA => "12659456240", // UPC-A
+					_ => Properties.Resources.Gerayis // Default value
+				};
+			}
+		}
+
+		private void ShowErrorBtn_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBox.Show(Error, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 	}
 }

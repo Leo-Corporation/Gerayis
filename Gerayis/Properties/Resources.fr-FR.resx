@@ -312,4 +312,13 @@
   <data name="DefaultBarCodeType" xml:space="preserve">
     <value>Type de code barre par défaut</value>
   </data>
+  <data name="SuccessBarCodeGenerated" xml:space="preserve">
+    <value>Le code barre a été généré avec succès.</value>
+  </data>
+  <data name="Generation" xml:space="preserve">
+    <value>Generation</value>
+  </data>
+  <data name="GenerateQRTyping" xml:space="preserve">
+    <value>Générer un code QR lors de la saisie.</value>
+  </data>
 </root>

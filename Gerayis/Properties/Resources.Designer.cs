@@ -277,6 +277,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate QR code while typing..
+        /// </summary>
+        public static string GenerateQRTyping {
+            get {
+                return ResourceManager.GetString("GenerateQRTyping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generation.
+        /// </summary>
+        public static string Generation {
+            get {
+                return ResourceManager.GetString("Generation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gerayis.
         /// </summary>
         public static string Gerayis {
@@ -570,6 +588,15 @@ namespace Gerayis.Properties {
         public static string SettingsReset {
             get {
                 return ResourceManager.GetString("SettingsReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bar code was successfully generated..
+        /// </summary>
+        public static string SuccessBarCodeGenerated {
+            get {
+                return ResourceManager.GetString("SuccessBarCodeGenerated", resourceCulture);
             }
         }
         

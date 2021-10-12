@@ -112,6 +112,9 @@ namespace Gerayis.Pages
 				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
 				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
 				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart.HasValue ? Global.Settings.GenerateQRCodeOnStart.Value : true; // Set
+				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
+
+				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
 
 				// Load LangComboBox
 				LangComboBox.Items.Clear(); // Clear
@@ -350,7 +353,8 @@ namespace Gerayis.Pages
 					IsThemeSystem = true,
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
-					DefaultBarCodeType = Barcodes.Code128
+					DefaultBarCodeType = Barcodes.Code128,
+					GenerateQRCodeWhileTyping = true
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -551,6 +555,12 @@ namespace Gerayis.Pages
 		private void BarCodeTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Global.Settings.DefaultBarCodeType = (Barcodes)BarCodeTypeComboBox.SelectedIndex; // Set the default type
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void GenerateQRCodeTypingChk_Checked(object sender, RoutedEventArgs e)
+		{
+			Global.Settings.GenerateQRCodeWhileTyping = GenerateQRCodeTypingChk.IsChecked; // Set the default type
 			SettingsManager.Save(); // Save changes
 		}
 	}

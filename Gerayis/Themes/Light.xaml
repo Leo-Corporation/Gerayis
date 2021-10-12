@@ -14,5 +14,7 @@
     <sys:String x:Key="AccentColor">#8B2DF0</sys:String>
     <sys:String x:Key="LightAccentColor">#E5CFFC</sys:String>
     <sys:String x:Key="Gray">#DEDEDE</sys:String>
+	<sys:String x:Key="Red">#ff9999</sys:String>
+	<sys:String x:Key="DarkRed">#990000</sys:String>
 
 </ResourceDictionary>

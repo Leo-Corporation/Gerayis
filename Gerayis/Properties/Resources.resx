@@ -292,4 +292,13 @@
   <data name="DefaultBarCodeType" xml:space="preserve">
     <value>Default bar code type</value>
   </data>
+  <data name="SuccessBarCodeGenerated" xml:space="preserve">
+    <value>The bar code was successfully generated.</value>
+  </data>
+  <data name="Generation" xml:space="preserve">
+    <value>Generation</value>
+  </data>
+  <data name="GenerateQRTyping" xml:space="preserve">
+    <value>Generate QR code while typing.</value>
+  </data>
 </root>

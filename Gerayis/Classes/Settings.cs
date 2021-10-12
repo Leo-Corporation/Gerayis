@@ -95,6 +95,8 @@ namespace Gerayis.Classes
 		/// The default bar code type
 		/// </summary>
 		public Barcodes? DefaultBarCodeType { get; set; }
+
+		public bool? GenerateQRCodeWhileTyping { get; set; }
 	}
 
 	/// <summary>
@@ -133,7 +135,8 @@ namespace Gerayis.Classes
 					IsThemeSystem = true,
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
-					DefaultBarCodeType = Barcodes.Code128
+					DefaultBarCodeType = Barcodes.Code128,
+					GenerateQRCodeWhileTyping = true
 				}; // Create a new settings file
 
 				Save(); // Save the changes
