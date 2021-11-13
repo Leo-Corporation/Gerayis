@@ -321,4 +321,7 @@
   <data name="GenerateQRTyping" xml:space="preserve">
     <value>Generate QR code while typing.</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
 </root>
