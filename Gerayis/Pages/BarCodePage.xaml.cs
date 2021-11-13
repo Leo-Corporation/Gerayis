@@ -246,22 +246,22 @@ namespace Gerayis.Pages
 			MessageBox.Show(Error, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
-        private void CopyGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
+		private void CopyGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+		{
 			CopyGrid.Visibility = Visibility.Visible; // Show
 		}
 
-        private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
+		private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+		{
 			CopyGrid.Visibility = Visibility.Collapsed; // Hide
 		}
 
-        private void BarCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
+		private void BarCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
 			if (BarCodeImg.Source is not null) // If the image is not empty
 			{
 				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
 			}
 		}
-    }
+	}
 }

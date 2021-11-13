@@ -52,22 +52,22 @@ namespace Gerayis.UserControls
 		private void InitUI()
 		{
 			BarCodeTxt.Text = ContentText;
-            if (AppPages == AppPages.BarCode) // If the item is a barcode
-            {
-                BarCodeTypeTxt.Text = BarcodeType switch
-                {
-                    Barcodes.Code11 => Properties.Resources.Code11,
-                    Barcodes.Code128 => Properties.Resources.Code128,
-                    Barcodes.ISBN => Properties.Resources.ISBN,
-                    Barcodes.MSI => Properties.Resources.MSI,
-                    Barcodes.UPCA => Properties.Resources.UPCA,
-                    _ => Properties.Resources.Code128
-                }; // Set text 
-            }
-            else
-            {
+			if (AppPages == AppPages.BarCode) // If the item is a barcode
+			{
+				BarCodeTypeTxt.Text = BarcodeType switch
+				{
+					Barcodes.Code11 => Properties.Resources.Code11,
+					Barcodes.Code128 => Properties.Resources.Code128,
+					Barcodes.ISBN => Properties.Resources.ISBN,
+					Barcodes.MSI => Properties.Resources.MSI,
+					Barcodes.UPCA => Properties.Resources.UPCA,
+					_ => Properties.Resources.Code128
+				}; // Set text 
+			}
+			else
+			{
 				BarCodeTypeTxt.Visibility = Visibility.Collapsed; // Hide if History Item is from QR code page
-            }
+			}
 
 			GenerateBtn.Content = AppPages switch
 			{
