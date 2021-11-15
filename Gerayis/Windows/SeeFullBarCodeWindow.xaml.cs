@@ -91,7 +91,8 @@ namespace Gerayis.Windows
 
 		private void MaximizeBtn_Click(object sender, RoutedEventArgs e)
 		{
-
+			WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized; // Set
+			MaximizeBtn.Content = WindowState == WindowState.Maximized ? "\uF670" : "\uFA40"; // Set text
 		}
 	}
 }
