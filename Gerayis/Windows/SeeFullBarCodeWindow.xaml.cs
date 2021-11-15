@@ -57,6 +57,11 @@ namespace Gerayis.Windows
 		private void InitUI()
 		{
 			BarCodeImg.Source = BarCode; // Set image
+			StateChanged += (o, e) => 
+			{
+				MaximizeBtn.Content = WindowState == WindowState.Maximized ? "\uF670" : "\uFA40"; // Set text
+				MaximizeBtn.FontSize = WindowState == WindowState.Minimized ? 18 : 14;
+			};
 		}
 
 		private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
@@ -93,6 +98,7 @@ namespace Gerayis.Windows
 		{
 			WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized; // Set
 			MaximizeBtn.Content = WindowState == WindowState.Maximized ? "\uF670" : "\uFA40"; // Set text
+			MaximizeBtn.FontSize = WindowState == WindowState.Minimized ? 18 : 14;
 		}
 	}
 }
