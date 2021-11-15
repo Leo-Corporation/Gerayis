@@ -24,6 +24,7 @@ SOFTWARE.
 using Gerayis.Classes;
 using Gerayis.Enums;
 using Gerayis.UserControls;
+using Gerayis.Windows;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -261,6 +262,14 @@ namespace Gerayis.Pages
 			if (BarCodeImg.Source is not null) // If the image is not empty
 			{
 				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+
+		private void SeeFullBarCodeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (BarCodeImg.Source is not null)
+			{
+				new SeeFullBarCodeWindow(bitmapSource).Show(); // Show bar code
 			}
 		}
 	}

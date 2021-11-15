@@ -556,6 +556,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See bar code in a separated window.
+        /// </summary>
+        public static string SeeFullBarCode {
+            get {
+                return ResourceManager.GetString("SeeFullBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See licenses.
         /// </summary>
         public static string SeeLicenses {

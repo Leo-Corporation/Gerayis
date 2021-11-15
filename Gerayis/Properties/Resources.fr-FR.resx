@@ -324,4 +324,7 @@
   <data name="History" xml:space="preserve">
     <value>Historique</value>
   </data>
+  <data name="SeeFullBarCode" xml:space="preserve">
+    <value>Voir le code barre dans une fenêtre séparée</value>
+  </data>
 </root>
