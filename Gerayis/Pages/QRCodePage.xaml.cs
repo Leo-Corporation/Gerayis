@@ -198,7 +198,7 @@ namespace Gerayis.Pages
 		{
 			if (Global.Settings.GenerateQRCodeWhileTyping.Value)
 			{
-				GenerateBtn_Click(sender, null); 
+				GenerateBtn_Click(sender, null);
 			}
 		}
 

@@ -12,12 +12,15 @@
 				<ColumnDefinition/>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 
 			<TextBlock x:Name="BarCodeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="BarCodeTxt" Grid.Column="0" Margin="10" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+			
+            <TextBlock x:Name="BarCodeTypeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="Code128" Grid.Column="1" Margin="10" VerticalAlignment="Center" FontSize="11" FontWeight="Bold"/>
 
-			<Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="1" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10" Margin="5" Content="&#xF210;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
-			<Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="2" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10" Margin="5" Content="&#xF34D;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
+			<Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="2" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10" Margin="5" Content="&#xF210;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
+			<Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="3" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10" Margin="5" Content="&#xF34D;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
 		</Grid>
 	</Border>
 </UserControl>

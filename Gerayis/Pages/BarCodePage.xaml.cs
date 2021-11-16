@@ -24,6 +24,7 @@ SOFTWARE.
 using Gerayis.Classes;
 using Gerayis.Enums;
 using Gerayis.UserControls;
+using Gerayis.Windows;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -244,6 +245,32 @@ namespace Gerayis.Pages
 		private void ShowErrorBtn_Click(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show(Error, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+		}
+
+		private void CopyGrid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Visible; // Show
+		}
+
+		private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			CopyGrid.Visibility = Visibility.Collapsed; // Hide
+		}
+
+		private void BarCodeImg_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (BarCodeImg.Source is not null) // If the image is not empty
+			{
+				Clipboard.SetImage(bitmapSource); // Copy to clipboard 
+			}
+		}
+
+		private void SeeFullBarCodeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if (BarCodeImg.Source is not null)
+			{
+				new SeeFullBarCodeWindow(bitmapSource).Show(); // Show bar code
+			}
 		}
 	}
 }
