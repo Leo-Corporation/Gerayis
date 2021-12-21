@@ -176,7 +176,7 @@ namespace Gerayis.Pages
 			SaveFileDialog saveFileDialog = new()
 			{
 				Filter = "PNG|*.png",
-				FileName = $"{Properties.Resources.BarCode}.png",
+				FileName = $"{BarCodeStringTxt.Text}.png",
 				Title = Properties.Resources.Save
 			}; // Create Save file dialog
 
