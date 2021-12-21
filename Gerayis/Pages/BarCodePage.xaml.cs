@@ -175,14 +175,14 @@ namespace Gerayis.Pages
 		{
 			SaveFileDialog saveFileDialog = new()
 			{
-				Filter = "PNG|*.png",
+				Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg",
 				FileName = $"{BarCodeStringTxt.Text}.png",
 				Title = Properties.Resources.Save
 			}; // Create Save file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)
 			{
-				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
+				Global.SaveImage(saveFileDialog.FileName, bitmapSource, System.IO.Path.GetExtension(saveFileDialog.FileName));
 			}
 		}
 

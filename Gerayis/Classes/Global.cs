@@ -175,13 +175,19 @@ namespace Gerayis.Classes
 			}
 		}
 
-		public static void SaveImage(string filePath, BitmapSource bitmapImage)
+		public static void SaveImage(string filePath, BitmapSource bitmapImage, string extension = ".png")
 		{
 			try
 			{
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
 				{
-					BitmapEncoder encoder = new PngBitmapEncoder();
+					BitmapEncoder encoder = extension switch
+					{
+						".png" => new PngBitmapEncoder(),
+						".jpg" => new JpegBitmapEncoder(),
+						".jpeg" => new JpegBitmapEncoder(),
+						_ => new PngBitmapEncoder()
+					};
 					encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
 					encoder.Save(fileStream);
 				}
