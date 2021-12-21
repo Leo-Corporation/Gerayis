@@ -148,7 +148,7 @@ namespace Gerayis.Pages
 			SaveFileDialog saveFileDialog = new()
 			{
 				Filter = "PNG|*.png",
-				FileName = $"{Properties.Resources.QRCode}.png",
+				FileName = $"{QRCodeStringTxt.Text}.png",
 				Title = Properties.Resources.Save
 			}; // Create Save file dialog
 
