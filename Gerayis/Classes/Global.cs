@@ -41,7 +41,7 @@ namespace Gerayis.Classes
 		/// <summary>
 		/// The current version of Gerayis.
 		/// </summary>
-		public static string Version => "1.8.0.2111";
+		public static string Version => "1.9.0.2112-pre1";
 
 		/// <summary>
 		/// List of the available languages.
