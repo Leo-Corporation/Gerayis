@@ -176,8 +176,9 @@ namespace Gerayis.Pages
 			SaveFileDialog saveFileDialog = new()
 			{
 				Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg",
-				FileName = $"{BarCodeStringTxt.Text}.png",
-				Title = Properties.Resources.Save
+				FileName = $"{BarCodeStringTxt.Text}",
+				Title = Properties.Resources.Save,
+				FilterIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value + 1
 			}; // Create Save file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)

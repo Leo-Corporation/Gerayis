@@ -87,6 +87,11 @@ namespace Gerayis.Pages
 					Global.Settings.DefaultBarCodeType = Barcodes.Code128; // Set default value
 				}
 
+				if (!Global.Settings.DefaultBarCodeFileExtension.HasValue)
+				{
+					Global.Settings.DefaultBarCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -131,6 +136,8 @@ namespace Gerayis.Pages
 				ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 				BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
+
+				BarCodesSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value; // Select
 
 				// Update the UpdateStatusTxt
 				if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -542,7 +549,8 @@ namespace Gerayis.Pages
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
 					DefaultBarCodeType = Barcodes.Code128,
-					GenerateQRCodeWhileTyping = true
+					GenerateQRCodeWhileTyping = true,
+					DefaultBarCodeFileExtension = SupportedFileExtensions.PNG
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -562,6 +570,12 @@ namespace Gerayis.Pages
 				"barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
 				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
 				"Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void BarCodesSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultBarCodeFileExtension = (SupportedFileExtensions)BarCodesSaveFormatComboBox.SelectedIndex; // Set the default file extension
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

@@ -10,7 +10,7 @@
 	  FontFamily="../Fonts/#Montserrat"
 	  Title="SettingsPage">
 	<ScrollViewer HorizontalScrollBarVisibility="Hidden" Template="{DynamicResource ScrollViewerControlTemplate}" CanContentScroll="True" Height="344">
-		<Grid Height="1150">
+		<Grid Margin="0,0,0,40">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition Height="Auto"/>
@@ -135,8 +135,17 @@
 						<ComboBoxItem Content="{x:Static lang:Resources.ISBN}"/>
 					</ComboBox>
 				</StackPanel>
-				
-				<TextBlock Text="{x:Static lang:Resources.QRCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="{x:Static lang:Resources.DefaultBarCodeFileExtension}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="BarCodesSaveFormatComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodesSaveFormatComboBox_SelectionChanged">
+                        <ComboBoxItem Content="{x:Static lang:Resources.PNG}"/>
+                        <ComboBoxItem Content="{x:Static lang:Resources.JPG}"/>
+                        <ComboBoxItem Content="{x:Static lang:Resources.JPEG}"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <TextBlock Text="{x:Static lang:Resources.QRCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
 
 				<Grid>
 					<Grid.ColumnDefinitions>

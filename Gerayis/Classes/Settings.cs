@@ -97,6 +97,11 @@ namespace Gerayis.Classes
 		public Barcodes? DefaultBarCodeType { get; set; }
 
 		public bool? GenerateQRCodeWhileTyping { get; set; }
+
+		/// <summary>
+		/// The default file extension when saving a bar code as an image.
+		/// </summary>
+		public SupportedFileExtensions? DefaultBarCodeFileExtension { get; set; }
 	}
 
 	/// <summary>
@@ -136,7 +141,8 @@ namespace Gerayis.Classes
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
 					DefaultBarCodeType = Barcodes.Code128,
-					GenerateQRCodeWhileTyping = true
+					GenerateQRCodeWhileTyping = true,
+					DefaultBarCodeFileExtension = SupportedFileExtensions.PNG
 				}; // Create a new settings file
 
 				Save(); // Save the changes
