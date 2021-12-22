@@ -41,7 +41,7 @@ namespace Gerayis.Pages
 	public partial class SettingsPage : Page
 	{
 		bool isAvailable;
-		System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+		readonly System.Windows.Forms.NotifyIcon notifyIcon = new();
 		public SettingsPage()
 		{
 			InitializeComponent();
@@ -118,13 +118,13 @@ namespace Gerayis.Pages
 				RefreshBorders();
 
 				// Load checkboxes
-				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
-				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
-				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
-				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart.HasValue ? Global.Settings.GenerateQRCodeOnStart.Value : true; // Set
-				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
+				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart ?? true; // Set
+				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart ?? true; // Set
+				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping ?? true; // Set
 
-				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
+				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping ?? true; // Set
 
 				// Load LangComboBox
 				LangComboBox.Items.Clear(); // Clear

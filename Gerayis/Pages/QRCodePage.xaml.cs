@@ -63,9 +63,9 @@ namespace Gerayis.Pages
 						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
 					}
 
-					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
+					QRCodeGenerator qrGenerator = new(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
-					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
+					QRCode qrCode = new(qrCodeData); // Create QR Code
 					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();
@@ -98,9 +98,9 @@ namespace Gerayis.Pages
 						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
 					}
 
-					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
+					QRCodeGenerator qrGenerator = new(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
-					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
+					QRCode qrCode = new(qrCodeData); // Create QR Code
 					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();

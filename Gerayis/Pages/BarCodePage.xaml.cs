@@ -41,7 +41,7 @@ namespace Gerayis.Pages
 	{
 		private System.Drawing.Font BarCodeFont
 		{
-			get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
+			get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 		}
 
 		internal string Error { get; set; }
@@ -117,7 +117,7 @@ namespace Gerayis.Pages
 					}; // Get
 
 					// Generate bar code
-					BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+					BarcodeLib.Barcode barcode = new() { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
 					System.Drawing.Image image = barcode.Encode(barType, text, foreColor, backColor, BarCodeStringTxt.Text.Length * 50, 240); // Generate
 
 					// Create and set image
