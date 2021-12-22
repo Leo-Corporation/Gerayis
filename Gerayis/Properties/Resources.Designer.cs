@@ -223,6 +223,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default QR code save format.
+        /// </summary>
+        public static string DefaultQRCodeFileExtension {
+            get {
+                return ResourceManager.GetString("DefaultQRCodeFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {

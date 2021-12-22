@@ -149,7 +149,8 @@ namespace Gerayis.Pages
 			{
 				Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg",
 				FileName = $"{QRCodeStringTxt.Text}.png",
-				Title = Properties.Resources.Save
+				Title = Properties.Resources.Save,
+				FilterIndex = (int)Global.Settings.DefaultQRCodeFileExtension.Value + 1
 			}; // Create Save file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)

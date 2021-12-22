@@ -92,6 +92,11 @@ namespace Gerayis.Pages
 					Global.Settings.DefaultBarCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
 				}
 
+				if (!Global.Settings.DefaultQRCodeFileExtension.HasValue)
+				{
+					Global.Settings.DefaultQRCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -138,6 +143,7 @@ namespace Gerayis.Pages
 				BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
 
 				BarCodesSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value; // Select
+				QRCodeSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultQRCodeFileExtension.Value; // Select
 
 				// Update the UpdateStatusTxt
 				if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -550,7 +556,8 @@ namespace Gerayis.Pages
 					QRCodeForegroundColor = "0;0;0",
 					DefaultBarCodeType = Barcodes.Code128,
 					GenerateQRCodeWhileTyping = true,
-					DefaultBarCodeFileExtension = SupportedFileExtensions.PNG
+					DefaultBarCodeFileExtension = SupportedFileExtensions.PNG,
+					DefaultQRCodeFileExtension = SupportedFileExtensions.PNG
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -575,6 +582,12 @@ namespace Gerayis.Pages
 		private void BarCodesSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Global.Settings.DefaultBarCodeFileExtension = (SupportedFileExtensions)BarCodesSaveFormatComboBox.SelectedIndex; // Set the default file extension
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void QRCodeSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultQRCodeFileExtension = (SupportedFileExtensions)QRCodeSaveFormatComboBox.SelectedIndex; // Set the default file extension
 			SettingsManager.Save(); // Save changes
 		}
 	}

@@ -339,4 +339,7 @@
   <data name="JPEG" xml:space="preserve">
     <value>JPEG</value>
   </data>
+  <data name="DefaultQRCodeFileExtension" xml:space="preserve">
+    <value>Default QR code save format</value>
+  </data>
 </root>
