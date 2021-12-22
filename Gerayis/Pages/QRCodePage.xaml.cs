@@ -63,9 +63,9 @@ namespace Gerayis.Pages
 						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
 					}
 
-					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
+					QRCodeGenerator qrGenerator = new(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
-					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
+					QRCode qrCode = new(qrCodeData); // Create QR Code
 					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();
@@ -98,9 +98,9 @@ namespace Gerayis.Pages
 						backColor = System.Drawing.Color.FromArgb((byte)int.Parse(bC[0]), (byte)int.Parse(bC[1]), (byte)int.Parse(bC[2])); // Create new color
 					}
 
-					QRCodeGenerator qrGenerator = new QRCodeGenerator(); // Create new QRCode generator
+					QRCodeGenerator qrGenerator = new(); // Create new QRCode generator
 					QRCodeData qrCodeData = qrGenerator.CreateQrCode(QRCodeStringTxt.Text, QRCodeGenerator.ECCLevel.Q); // Create QR Code data
-					QRCode qrCode = new QRCode(qrCodeData); // Create QR Code
+					QRCode qrCode = new(qrCodeData); // Create QR Code
 					System.Drawing.Bitmap qrCodeImage = qrCode.GetGraphic(20, foreColor, backColor, true); // Get QR Code bitmap (image)
 
 					IntPtr bmpPt = qrCodeImage.GetHbitmap();
@@ -147,14 +147,15 @@ namespace Gerayis.Pages
 		{
 			SaveFileDialog saveFileDialog = new()
 			{
-				Filter = "PNG|*.png",
-				FileName = $"{Properties.Resources.QRCode}.png",
-				Title = Properties.Resources.Save
+				Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg",
+				FileName = $"{QRCodeStringTxt.Text}.png",
+				Title = Properties.Resources.Save,
+				FilterIndex = (int)Global.Settings.DefaultQRCodeFileExtension.Value + 1
 			}; // Create Save file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)
 			{
-				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
+				Global.SaveImage(saveFileDialog.FileName, bitmapSource, System.IO.Path.GetExtension(saveFileDialog.FileName));
 			}
 		}
 

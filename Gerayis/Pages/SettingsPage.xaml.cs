@@ -41,7 +41,7 @@ namespace Gerayis.Pages
 	public partial class SettingsPage : Page
 	{
 		bool isAvailable;
-		System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+		readonly System.Windows.Forms.NotifyIcon notifyIcon = new();
 		public SettingsPage()
 		{
 			InitializeComponent();
@@ -87,6 +87,16 @@ namespace Gerayis.Pages
 					Global.Settings.DefaultBarCodeType = Barcodes.Code128; // Set default value
 				}
 
+				if (!Global.Settings.DefaultBarCodeFileExtension.HasValue)
+				{
+					Global.Settings.DefaultBarCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
+				}
+
+				if (!Global.Settings.DefaultQRCodeFileExtension.HasValue)
+				{
+					Global.Settings.DefaultQRCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
+				}
+
 				// Load RadioButtons
 				DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 				LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -108,13 +118,13 @@ namespace Gerayis.Pages
 				RefreshBorders();
 
 				// Load checkboxes
-				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart.HasValue ? Global.Settings.CheckUpdatesOnStart.Value : true; // Set
-				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates.HasValue ? Global.Settings.NotifyUpdates.Value : true; // Set
-				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart.HasValue ? Global.Settings.GenerateBarCodeOnStart.Value : true; // Set
-				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart.HasValue ? Global.Settings.GenerateQRCodeOnStart.Value : true; // Set
-				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
+				CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
+				NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates ?? true; // Set
+				GenerateBarCodeOnStartChk.IsChecked = Global.Settings.GenerateBarCodeOnStart ?? true; // Set
+				GenerateQRCodeOnStartChk.IsChecked = Global.Settings.GenerateQRCodeOnStart ?? true; // Set
+				GenerateQRCodeTypingChk.IsChecked = Global.Settings.GenerateQRCodeWhileTyping ?? true; // Set
 
-				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping.HasValue ? Global.Settings.GenerateQRCodeWhileTyping.Value : true; // Set
+				Global.Settings.GenerateQRCodeWhileTyping = Global.Settings.GenerateQRCodeWhileTyping ?? true; // Set
 
 				// Load LangComboBox
 				LangComboBox.Items.Clear(); // Clear
@@ -131,6 +141,9 @@ namespace Gerayis.Pages
 				ThemeApplyBtn.Visibility = Visibility.Hidden; // Hide
 
 				BarCodeTypeComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeType.Value; // Select the first item
+
+				BarCodesSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value; // Select
+				QRCodeSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultQRCodeFileExtension.Value; // Select
 
 				// Update the UpdateStatusTxt
 				if (Global.Settings.CheckUpdatesOnStart.Value)
@@ -542,7 +555,9 @@ namespace Gerayis.Pages
 					QRCodeBackgroundColor = "255;255;255",
 					QRCodeForegroundColor = "0;0;0",
 					DefaultBarCodeType = Barcodes.Code128,
-					GenerateQRCodeWhileTyping = true
+					GenerateQRCodeWhileTyping = true,
+					DefaultBarCodeFileExtension = SupportedFileExtensions.PNG,
+					DefaultQRCodeFileExtension = SupportedFileExtensions.PNG
 				}; // Create default settings
 
 				SettingsManager.Save(); // Save the changes
@@ -562,6 +577,18 @@ namespace Gerayis.Pages
 				"barcodelib - Apache License - Version 2.0, January 2004 - © Brad Barnhill\n" +
 				"LeoCorpLibrary - MIT License - © 2020-2021 Léo Corporation\n" +
 				"Gerayis - MIT License - © 2021 Léo Corporation", $"{Properties.Resources.Gerayis} - {Properties.Resources.Licenses}", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void BarCodesSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultBarCodeFileExtension = (SupportedFileExtensions)BarCodesSaveFormatComboBox.SelectedIndex; // Set the default file extension
+			SettingsManager.Save(); // Save changes
+		}
+
+		private void QRCodeSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Global.Settings.DefaultQRCodeFileExtension = (SupportedFileExtensions)QRCodeSaveFormatComboBox.SelectedIndex; // Set the default file extension
+			SettingsManager.Save(); // Save changes
 		}
 	}
 }

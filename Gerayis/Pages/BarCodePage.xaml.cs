@@ -41,7 +41,7 @@ namespace Gerayis.Pages
 	{
 		private System.Drawing.Font BarCodeFont
 		{
-			get => new System.Drawing.Font(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
+			get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 		}
 
 		internal string Error { get; set; }
@@ -117,7 +117,7 @@ namespace Gerayis.Pages
 					}; // Get
 
 					// Generate bar code
-					BarcodeLib.Barcode barcode = new BarcodeLib.Barcode { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+					BarcodeLib.Barcode barcode = new() { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
 					System.Drawing.Image image = barcode.Encode(barType, text, foreColor, backColor, BarCodeStringTxt.Text.Length * 50, 240); // Generate
 
 					// Create and set image
@@ -175,14 +175,15 @@ namespace Gerayis.Pages
 		{
 			SaveFileDialog saveFileDialog = new()
 			{
-				Filter = "PNG|*.png",
-				FileName = $"{Properties.Resources.BarCode}.png",
-				Title = Properties.Resources.Save
+				Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg",
+				FileName = $"{BarCodeStringTxt.Text}",
+				Title = Properties.Resources.Save,
+				FilterIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value + 1
 			}; // Create Save file dialog
 
 			if (saveFileDialog.ShowDialog() ?? true)
 			{
-				Global.SaveImage(saveFileDialog.FileName, bitmapSource);
+				Global.SaveImage(saveFileDialog.FileName, bitmapSource, System.IO.Path.GetExtension(saveFileDialog.FileName));
 			}
 		}
 

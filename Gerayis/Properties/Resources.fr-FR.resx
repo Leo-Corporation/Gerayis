@@ -327,4 +327,19 @@
   <data name="SeeFullBarCode" xml:space="preserve">
     <value>Voir le code barre dans une fenêtre séparée</value>
   </data>
+  <data name="DefaultBarCodeFileExtension" xml:space="preserve">
+    <value>Format de sauvegarde par défaut du code barre</value>
+  </data>
+  <data name="PNG" xml:space="preserve">
+    <value>PNG</value>
+  </data>
+  <data name="JPG" xml:space="preserve">
+    <value>JPG</value>
+  </data>
+  <data name="JPEG" xml:space="preserve">
+    <value>JPEG</value>
+  </data>
+  <data name="DefaultQRCodeFileExtension" xml:space="preserve">
+    <value>Format de sauvegarde par défaut du QR code</value>
+  </data>
 </root>

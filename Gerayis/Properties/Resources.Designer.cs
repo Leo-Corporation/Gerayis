@@ -205,11 +205,29 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default bar code save format.
+        /// </summary>
+        public static string DefaultBarCodeFileExtension {
+            get {
+                return ResourceManager.GetString("DefaultBarCodeFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default bar code type.
         /// </summary>
         public static string DefaultBarCodeType {
             get {
                 return ResourceManager.GetString("DefaultBarCodeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default QR code save format.
+        /// </summary>
+        public static string DefaultQRCodeFileExtension {
+            get {
+                return ResourceManager.GetString("DefaultQRCodeFileExtension", resourceCulture);
             }
         }
         
@@ -403,6 +421,24 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JPEG.
+        /// </summary>
+        public static string JPEG {
+            get {
+                return ResourceManager.GetString("JPEG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JPG.
+        /// </summary>
+        public static string JPG {
+            get {
+                return ResourceManager.GetString("JPG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -498,6 +534,15 @@ namespace Gerayis.Properties {
         public static string PleaseSpecifyValue {
             get {
                 return ResourceManager.GetString("PleaseSpecifyValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PNG.
+        /// </summary>
+        public static string PNG {
+            get {
+                return ResourceManager.GetString("PNG", resourceCulture);
             }
         }
         

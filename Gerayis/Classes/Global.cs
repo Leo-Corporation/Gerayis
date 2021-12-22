@@ -41,7 +41,7 @@ namespace Gerayis.Classes
 		/// <summary>
 		/// The current version of Gerayis.
 		/// </summary>
-		public static string Version => "1.8.0.2111";
+		public static string Version => "1.9.0.2112";
 
 		/// <summary>
 		/// List of the available languages.
@@ -140,7 +140,7 @@ namespace Gerayis.Classes
 
 		public static bool IsSystemThemeDark()
 		{
-			if (Env.WindowsVersion != WindowsVersion.Windows10)
+			if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
 			{
 				return false; // Avoid errors on older OSs
 			}
@@ -175,13 +175,19 @@ namespace Gerayis.Classes
 			}
 		}
 
-		public static void SaveImage(string filePath, BitmapSource bitmapImage)
+		public static void SaveImage(string filePath, BitmapSource bitmapImage, string extension = ".png")
 		{
 			try
 			{
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
 				{
-					BitmapEncoder encoder = new PngBitmapEncoder();
+					BitmapEncoder encoder = extension switch
+					{
+						".png" => new PngBitmapEncoder(),
+						".jpg" => new JpegBitmapEncoder(),
+						".jpeg" => new JpegBitmapEncoder(),
+						_ => new PngBitmapEncoder()
+					};
 					encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
 					encoder.Save(fileStream);
 				}
