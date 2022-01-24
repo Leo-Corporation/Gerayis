@@ -129,5 +129,12 @@ namespace Gerayis
 
 			PageContent.Navigate(Global.SettingsPage); // Navigate
 		}
+
+		private void PinBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Topmost = !Topmost; // Pin/Unpin
+			PinBtn.Content = Topmost ? "\uF604" : "\uF602"; // Set text
+			PinToolTip.Content = Topmost ? Properties.Resources.Unpin : Properties.Resources.Pin; // Set text
+		}
 	}
 }
