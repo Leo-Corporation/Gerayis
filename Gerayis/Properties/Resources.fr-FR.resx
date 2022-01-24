@@ -342,4 +342,10 @@
   <data name="DefaultQRCodeFileExtension" xml:space="preserve">
     <value>Format de sauvegarde par défaut du QR code</value>
   </data>
+  <data name="Pin" xml:space="preserve">
+    <value>Épingler</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Désépingler</value>
+  </data>
 </root>

@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Gerayis" xml:space="preserve">
+    <value>Gerayis</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>二维码</value>
+  </data>
+  <data name="BarCode" xml:space="preserve">
+    <value>条码</value>
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>嗨</value>
+  </data>
+  <data name="GoodAfternoon" xml:space="preserve">
+    <value>下午好</value>
+  </data>
+  <data name="GoodNight" xml:space="preserve">
+    <value>晚安</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>晚上好</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="PleaseSpecifyValue" xml:space="preserve">
+    <value>请指定正确的值。</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>错误代码：</value>
+  </data>
+  <data name="NoUseSpecialChars" xml:space="preserve">
+    <value>不要使用特殊字符。</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>深色模式</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>浅色模式</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="ChangeTheme" xml:space="preserve">
+    <value>更改 Gerayis 主题。</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>更改 Gerayis 语言。</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Gerayis 是最新的。</value>
+  </data>
+  <data name="InstallConfirmMsg" xml:space="preserve">
+    <value>要安装更新，Gerayis 需要重新启动。 你要继续吗？</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="InstallVersion" xml:space="preserve">
+    <value>安装版本</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="AvailableUpdates" xml:space="preserve">
+    <value>有可用更新。</value>
+  </data>
+  <data name="NeedRestartToApplyChanges" xml:space="preserve">
+    <value>Gerayis 需要重新启动才能应用更改。 你想现在重新启动吗？</value>
+  </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>许可证</value>
+  </data>
+  <data name="SeeLicenses" xml:space="preserve">
+    <value>查看许可证</value>
+  </data>
+  <data name="CheckUpdatesOnStart" xml:space="preserve">
+    <value>开始时检查更新</value>
+  </data>
+  <data name="NotifyUpdates" xml:space="preserve">
+    <value>有可用更新时显示通知</value>
+  </data>
+  <data name="CheckUpdatesDisabledOnStart" xml:space="preserve">
+    <value>禁用启动时检查更新。</value>
+  </data>
+  <data name="UnableToCheckUpdates" xml:space="preserve">
+    <value>无法检查更新</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="ResetSettings" xml:space="preserve">
+    <value>重置设置</value>
+  </data>
+  <data name="ResetSettingsConfirmMsg" xml:space="preserve">
+    <value>您确定要重置所有设置吗？</value>
+  </data>
+  <data name="SettingsReset" xml:space="preserve">
+    <value>所有设置都已重置，Gerayis 现在将重新启动。</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>前景色</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="ResetColor" xml:space="preserve">
+    <value>重置颜色</value>
+  </data>
+  <data name="OnStart" xml:space="preserve">
+    <value>启动时</value>
+  </data>
+  <data name="GenerateBarCodeOnStart" xml:space="preserve">
+    <value>启动时生成条码</value>
+  </data>
+  <data name="GenerateQRCodeOnStart" xml:space="preserve">
+    <value>启动时生成二维码</value>
+  </data>
+  <data name="OnStartDesc" xml:space="preserve">
+    <value>启动时事件。</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>导入设置</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出设置</value>
+  </data>
+  <data name="SettingsExportedSucessMsg" xml:space="preserve">
+    <value>设置导出成功。</value>
+  </data>
+  <data name="SettingsImportedMsg" xml:space="preserve">
+    <value>设置已成功导入。 Gerayis 现在将重新启动。</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SaveSucess" xml:space="preserve">
+    <value>您的图像已成功保存。</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="HistoryEmpty" xml:space="preserve">
+    <value>历史是空的。</value>
+  </data>
+  <data name="Code11" xml:space="preserve">
+    <value>Code11</value>
+  </data>
+  <data name="Code128" xml:space="preserve">
+    <value>Code128</value>
+  </data>
+  <data name="UPCA" xml:space="preserve">
+    <value>UPC-A</value>
+  </data>
+  <data name="MSI" xml:space="preserve">
+    <value>MSI</value>
+  </data>
+  <data name="ISBN" xml:space="preserve">
+    <value>ISBN</value>
+  </data>
+  <data name="DefaultBarCodeType" xml:space="preserve">
+    <value>默认条码类型</value>
+  </data>
+  <data name="SuccessBarCodeGenerated" xml:space="preserve">
+    <value>条形码已成功生成。</value>
+  </data>
+  <data name="Generation" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="GenerateQRTyping" xml:space="preserve">
+    <value>输入时生成二维码。</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="SeeFullBarCode" xml:space="preserve">
+    <value>在单独的窗口中查看条形码</value>
+  </data>
+  <data name="DefaultBarCodeFileExtension" xml:space="preserve">
+    <value>默认条码保存格式</value>
+  </data>
+  <data name="PNG" xml:space="preserve">
+    <value>PNG</value>
+  </data>
+  <data name="JPG" xml:space="preserve">
+    <value>JPG</value>
+  </data>
+  <data name="JPEG" xml:space="preserve">
+    <value>JPEG</value>
+  </data>
+  <data name="DefaultQRCodeFileExtension" xml:space="preserve">
+    <value>默认二维码保存格式</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>固定</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>取消固定</value>
+  </data>
+</root>
