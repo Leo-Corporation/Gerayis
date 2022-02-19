@@ -50,7 +50,7 @@ public partial class SeeFullBarCodeWindow : Window
 		StateChanged += (o, e) =>
 		{
 			MaximizeBtn.Content = WindowState == WindowState.Maximized ? "\uF670" : "\uFA40"; // Set text
-				MaximizeBtn.FontSize = WindowState == WindowState.Minimized ? 18 : 14;
+			MaximizeBtn.FontSize = WindowState == WindowState.Minimized ? 18 : 14;
 			DefineMaximumSize();
 		};
 

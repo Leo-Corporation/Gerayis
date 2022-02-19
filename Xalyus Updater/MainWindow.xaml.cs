@@ -22,24 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Xalyus_Updater;
 
@@ -70,7 +58,7 @@ public partial class MainWindow : Window
 			{
 				Uri uri = new Uri(link);
 				client.DownloadFileAsync(uri, Global.Directory); // Download
-				});
+			});
 			thread.Start();
 		}
 	}
@@ -82,7 +70,7 @@ public partial class MainWindow : Window
 			Install();
 			Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"\Gerayis.exe");
 			Environment.Exit(0); // Close the app
-			});
+		});
 	}
 
 	private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -90,11 +78,11 @@ public partial class MainWindow : Window
 		Dispatcher.Invoke(() =>
 		{
 			double receive = double.Parse(e.BytesReceived.ToString()); // Total downloaded
-				double total = double.Parse(e.TotalBytesToReceive.ToString()); // Total
-				double percentage = receive / total * 100; // Calculate the percentage
-				ProgressTxt.Text = $"{string.Format("{0:0.##}", percentage)}%"; // Show the progress
-				Pgb.Value = int.Parse(Math.Truncate(percentage).ToString()); // Update the progress bar value
-			});
+			double total = double.Parse(e.TotalBytesToReceive.ToString()); // Total
+			double percentage = receive / total * 100; // Calculate the percentage
+			ProgressTxt.Text = $"{string.Format("{0:0.##}", percentage)}%"; // Show the progress
+			Pgb.Value = int.Parse(Math.Truncate(percentage).ToString()); // Update the progress bar value
+		});
 	}
 
 	/// <summary>
