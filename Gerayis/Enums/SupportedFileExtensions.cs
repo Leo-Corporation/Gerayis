@@ -22,23 +22,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Gerayis.Enums
+namespace Gerayis.Enums;
+
+public enum SupportedFileExtensions
 {
-	public enum SupportedFileExtensions
-	{
-		/// <summary>
-		/// <c>.png</c> file extension.
-		/// </summary>
-		PNG,
+	/// <summary>
+	/// <c>.png</c> file extension.
+	/// </summary>
+	PNG,
 
-		/// <summary>
-		/// <c>.jpg</c> file extension.
-		/// </summary>
-		JPG,
+	/// <summary>
+	/// <c>.jpg</c> file extension.
+	/// </summary>
+	JPG,
 
-		/// <summary>
-		/// <c>.jpeg</c> file extension.
-		/// </summary>
-		JPEG
-	}
+	/// <summary>
+	/// <c>.jpeg</c> file extension.
+	/// </summary>
+	JPEG
 }

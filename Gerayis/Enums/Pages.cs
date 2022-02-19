@@ -22,11 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Gerayis.Enums
+namespace Gerayis.Enums;
+
+public enum AppPages
 {
-	public enum AppPages
-	{
-		BarCode,
-		QRCode
-	}
+	BarCode,
+	QRCode
 }
