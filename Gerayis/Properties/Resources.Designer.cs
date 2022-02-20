@@ -340,6 +340,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting started.
+        /// </summary>
+        public static string GettingStarted {
+            get {
+                return ResourceManager.GetString("GettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Good afternoon.
         /// </summary>
         public static string GoodAfternoon {
@@ -795,6 +804,15 @@ namespace Gerayis.Properties {
         public static string WelcomeThanks {
             get {
                 return ResourceManager.GetString("WelcomeThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate bar codes and QR codes easily with Gerayis..
+        /// </summary>
+        public static string WelcomeTutorial {
+            get {
+                return ResourceManager.GetString("WelcomeTutorial", resourceCulture);
             }
         }
     }

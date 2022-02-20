@@ -363,4 +363,10 @@
   <data name="WelcomeThanks" xml:space="preserve">
     <value>Thanks for using Gerayis! Let's get started!</value>
   </data>
+  <data name="WelcomeTutorial" xml:space="preserve">
+    <value>Generate bar codes and QR codes easily with Gerayis.</value>
+  </data>
+  <data name="GettingStarted" xml:space="preserve">
+    <value>Getting started</value>
+  </data>
 </root>
