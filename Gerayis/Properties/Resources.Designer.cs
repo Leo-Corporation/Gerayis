@@ -88,6 +88,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background color.
         /// </summary>
         public static string BackgroundColor {
@@ -147,6 +156,15 @@ namespace Gerayis.Properties {
         public static string CheckUpdatesOnStart {
             get {
                 return ResourceManager.GetString("CheckUpdatesOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -493,6 +511,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show a notification when updates are available.
         /// </summary>
         public static string NotifyUpdates {
@@ -750,6 +777,24 @@ namespace Gerayis.Properties {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for using Gerayis! Let&apos;s get started!.
+        /// </summary>
+        public static string WelcomeThanks {
+            get {
+                return ResourceManager.GetString("WelcomeThanks", resourceCulture);
             }
         }
     }

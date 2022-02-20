@@ -348,4 +348,19 @@
   <data name="Unpin" xml:space="preserve">
     <value>取消固定</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WelcomeThanks" xml:space="preserve">
+    <value>Thanks for using Gerayis! Let's get started!</value>
+  </data>
 </root>
