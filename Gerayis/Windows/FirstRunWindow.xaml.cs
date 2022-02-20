@@ -45,6 +45,7 @@ public partial class FirstRunWindow : Window
 {
 	WelcomePage WelcomePage => new(); // PageID = 0
 	TutorialPage TutorialPage => new(); // PageID = 1
+	ThemePage ThemePage => new(); // PageID = 2
 
 	int pageID = 0;
 	public FirstRunWindow()
@@ -70,6 +71,7 @@ public partial class FirstRunWindow : Window
 		{
 			0 => WelcomePage,
 			1 => TutorialPage,
+			2 => ThemePage,
 			_ => WelcomePage // By default go the home page
 		}); // Navigate to the next page
 	}

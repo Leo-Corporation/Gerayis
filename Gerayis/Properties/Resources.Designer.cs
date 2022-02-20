@@ -124,6 +124,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Changes will be applied after a restart of Gerayis..
+        /// </summary>
+        public static string ChangesApplyAfterRestart {
+            get {
+                return ResourceManager.GetString("ChangesApplyAfterRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Gerayis theme..
         /// </summary>
         public static string ChangeTheme {
@@ -795,6 +804,15 @@ namespace Gerayis.Properties {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Gerayis yours.
+        /// </summary>
+        public static string WelcomeChangeTheme {
+            get {
+                return ResourceManager.GetString("WelcomeChangeTheme", resourceCulture);
             }
         }
         

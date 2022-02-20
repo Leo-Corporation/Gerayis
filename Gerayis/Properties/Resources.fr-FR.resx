@@ -369,4 +369,10 @@
   <data name="GettingStarted" xml:space="preserve">
     <value>Prise en main</value>
   </data>
+  <data name="ChangesApplyAfterRestart" xml:space="preserve">
+    <value>Les modifications seront appliquées après un redémarrage de Gerayis.</value>
+  </data>
+  <data name="WelcomeChangeTheme" xml:space="preserve">
+    <value>Faites de Gerayis le vôtre</value>
+  </data>
 </root>
