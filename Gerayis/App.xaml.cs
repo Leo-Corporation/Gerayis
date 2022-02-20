@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 using Gerayis.Classes;
+using Gerayis.Windows;
 using System.Windows;
 
 namespace Gerayis;
@@ -43,6 +44,13 @@ public partial class App : Application
 		Global.BarCodePage = new(); // Create a new BarCodePage
 		Global.QRCodePage = new(); // Create a new QRCodePage
 
-		base.OnStartup(e);
+		if (Global.Settings.IsFirstRun.Value)
+		{
+			new FirstRunWindow().Show(); // Show the "First run" window
+		}
+		else
+		{
+			new MainWindow().Show(); // Launch Gerayis
+		}
 	}
 }

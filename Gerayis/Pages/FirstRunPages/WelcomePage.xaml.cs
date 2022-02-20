@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
+using System;
 using System.Windows.Controls;
 
 namespace Gerayis.Pages.FirstRunPages;
@@ -33,5 +34,11 @@ public partial class WelcomePage : Page
 	public WelcomePage()
 	{
 		InitializeComponent();
+		InitUI(); // Load the UI
+	}
+
+	private void InitUI()
+	{
+		WelcomeTxt.Text = $"{Properties.Resources.Welcome}, {Environment.UserName}."; // Say hello to the user
 	}
 }
