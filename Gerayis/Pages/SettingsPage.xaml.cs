@@ -97,6 +97,11 @@ public partial class SettingsPage : Page
 				Global.Settings.DefaultQRCodeFileExtension = SupportedFileExtensions.PNG; // Set default value
 			}
 
+			if (!Global.Settings.IsFirstRun.HasValue)
+			{
+				Global.Settings.IsFirstRun = true; // Set default value
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
@@ -558,7 +563,8 @@ public partial class SettingsPage : Page
 				DefaultBarCodeType = Barcodes.Code128,
 				GenerateQRCodeWhileTyping = true,
 				DefaultBarCodeFileExtension = SupportedFileExtensions.PNG,
-				DefaultQRCodeFileExtension = SupportedFileExtensions.PNG
+				DefaultQRCodeFileExtension = SupportedFileExtensions.PNG,
+				IsFirstRun = false,
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
