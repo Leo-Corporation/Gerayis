@@ -102,10 +102,17 @@ public partial class SettingsPage : Page
 				Global.Settings.IsFirstRun = true; // Set default value
 			}
 
+			if (!Global.Settings.StartupPage.HasValue)
+			{
+				Global.Settings.StartupPage = AppPages.BarCode; // Set default value
+			}
+
 			// Load RadioButtons
 			DarkRadioBtn.IsChecked = Global.Settings.IsDarkTheme; // Change IsChecked property
 			LightRadioBtn.IsChecked = !Global.Settings.IsDarkTheme; // Change IsChecked property
 			SystemRadioBtn.IsChecked = Global.Settings.IsThemeSystem; // Change IsChecked property
+			BarCodePageRadioBtn.IsChecked = (int)Global.Settings.StartupPage == 0;
+			QrCodePageRadioBtn.IsChecked = (int)Global.Settings.StartupPage == 1;
 
 			// Borders
 			if (DarkRadioBtn.IsChecked.Value)
@@ -120,7 +127,18 @@ public partial class SettingsPage : Page
 			{
 				CheckedBorder = SystemBorder; // Set
 			}
+
+			if (BarCodePageRadioBtn.IsChecked.Value)
+			{
+				PageCheckedBorder = BarCodePageBorder; // Set
+			}
+			else if (QrCodePageRadioBtn.IsChecked.Value)
+			{
+				PageCheckedBorder = QrCodePageBorder; // Set
+			}
+			
 			RefreshBorders();
+			RefreshStartupBorders();
 
 			// Load checkboxes
 			CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart ?? true; // Set
@@ -452,7 +470,7 @@ public partial class SettingsPage : Page
 	private void Border_MouseLeave(object sender, MouseEventArgs e)
 	{
 		Border border = (Border)sender;
-		if (border != CheckedBorder)
+		if (border != CheckedBorder && border != PageCheckedBorder)
 		{
 			border.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
 		}
@@ -565,6 +583,7 @@ public partial class SettingsPage : Page
 				DefaultBarCodeFileExtension = SupportedFileExtensions.PNG,
 				DefaultQRCodeFileExtension = SupportedFileExtensions.PNG,
 				IsFirstRun = false,
+				StartupPage = AppPages.BarCode,
 			}; // Create default settings
 
 			SettingsManager.Save(); // Save the changes
@@ -595,6 +614,35 @@ public partial class SettingsPage : Page
 	private void QRCodeSaveFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		Global.Settings.DefaultQRCodeFileExtension = (SupportedFileExtensions)QRCodeSaveFormatComboBox.SelectedIndex; // Set the default file extension
+		SettingsManager.Save(); // Save changes
+	}
+
+	Border PageCheckedBorder { get; set; }
+	private void RefreshStartupBorders()
+	{
+		BarCodePageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color 
+		QrCodePageBorder.BorderBrush = new SolidColorBrush() { Color = Colors.Transparent }; // Set color
+
+		PageCheckedBorder.BorderBrush = new SolidColorBrush() { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set color
+	}
+
+	private void BarCodePageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+	{
+		PageCheckedBorder = BarCodePageBorder; // Set
+		BarCodePageRadioBtn.IsChecked = true;
+		RefreshStartupBorders(); // Refresh
+
+		Global.Settings.StartupPage = AppPages.BarCode; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void QrCodePageBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+	{
+		PageCheckedBorder = QrCodePageBorder; // Set
+		QrCodePageRadioBtn.IsChecked = true;
+		RefreshStartupBorders(); // Refresh
+
+		Global.Settings.StartupPage = AppPages.QRCode; // Set
 		SettingsManager.Save(); // Save changes
 	}
 }

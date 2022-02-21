@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Gerayis.Enums;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,8 +55,18 @@ public partial class MainWindow : Window
 	{
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
-		CheckButton(BarCodeTabBtn); // Check the start page button
-		PageContent.Content = Global.BarCodePage;
+		CheckButton(Global.Settings.StartupPage switch
+		{
+			AppPages.BarCode => BarCodeTabBtn,
+			AppPages.QRCode => QRCodeTabBtn,
+			_ => BarCodeTabBtn
+		}); // Check the start page button
+		PageContent.Content = Global.Settings.StartupPage switch
+		{
+			AppPages.BarCode => Global.BarCodePage,
+			AppPages.QRCode => Global.QRCodePage,
+			_ => Global.BarCodePage
+		}; // Set page
 
 		PageContent.Navigated += (o, e) => AnimatePage();
 	}

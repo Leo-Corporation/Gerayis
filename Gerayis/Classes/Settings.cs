@@ -104,7 +104,7 @@ public class Settings
 	public SupportedFileExtensions? DefaultBarCodeFileExtension { get; set; }
 
 	/// <summary>
-	/// The defaukt file extension when saving a bar code as an image.
+	/// The default file extension when saving a bar code as an image.
 	/// </summary>
 	public SupportedFileExtensions? DefaultQRCodeFileExtension { get; set; }
 
@@ -112,6 +112,11 @@ public class Settings
 	/// True if this is the first time Gerayis is launched.
 	/// </summary>
 	public bool? IsFirstRun { get; set; }
+
+	/// <summary>
+	/// The default page that shows up when starting Gerayis.
+	/// </summary>
+	public AppPages? StartupPage { get; set; }
 }
 
 /// <summary>
@@ -155,6 +160,7 @@ public static class SettingsManager
 				DefaultBarCodeFileExtension = SupportedFileExtensions.PNG,
 				DefaultQRCodeFileExtension = SupportedFileExtensions.PNG,
 				IsFirstRun = true,
+				StartupPage = AppPages.BarCode,
 			}; // Create a new settings file
 
 			Save(); // Save the changes

@@ -745,6 +745,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default page on start..
+        /// </summary>
+        public static string StartupPage {
+            get {
+                return ResourceManager.GetString("StartupPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The bar code was successfully generated..
         /// </summary>
         public static string SuccessBarCodeGenerated {

@@ -387,4 +387,7 @@
   <data name="ManageData" xml:space="preserve">
     <value>Gérez vos données.</value>
   </data>
+  <data name="StartupPage" xml:space="preserve">
+    <value>Page par défaut au démarrage.</value>
+  </data>
 </root>
