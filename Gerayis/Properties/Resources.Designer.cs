@@ -88,6 +88,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background color.
         /// </summary>
         public static string BackgroundColor {
@@ -106,11 +115,29 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bar Code settings..
+        /// </summary>
+        public static string BarCodeSettings {
+            get {
+                return ResourceManager.GetString("BarCodeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Gerayis language..
         /// </summary>
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes will be applied after a restart of Gerayis..
+        /// </summary>
+        public static string ChangesApplyAfterRestart {
+            get {
+                return ResourceManager.GetString("ChangesApplyAfterRestart", resourceCulture);
             }
         }
         
@@ -147,6 +174,15 @@ namespace Gerayis.Properties {
         public static string CheckUpdatesOnStart {
             get {
                 return ResourceManager.GetString("CheckUpdatesOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -322,6 +358,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting started.
+        /// </summary>
+        public static string GettingStarted {
+            get {
+                return ResourceManager.GetString("GettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Good afternoon.
         /// </summary>
         public static string GoodAfternoon {
@@ -448,6 +493,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Let&apos;s go.
+        /// </summary>
+        public static string LetsGo {
+            get {
+                return ResourceManager.GetString("LetsGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {
@@ -462,6 +516,15 @@ namespace Gerayis.Properties {
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your Data..
+        /// </summary>
+        public static string ManageData {
+            get {
+                return ResourceManager.GetString("ManageData", resourceCulture);
             }
         }
         
@@ -489,6 +552,15 @@ namespace Gerayis.Properties {
         public static string NeedRestartToApplyChanges {
             get {
                 return ResourceManager.GetString("NeedRestartToApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -561,6 +633,15 @@ namespace Gerayis.Properties {
         public static string QRCode {
             get {
                 return ResourceManager.GetString("QRCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QR Code settings..
+        /// </summary>
+        public static string QRCodeSettings {
+            get {
+                return ResourceManager.GetString("QRCodeSettings", resourceCulture);
             }
         }
         
@@ -664,6 +745,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default page on start..
+        /// </summary>
+        public static string StartupPage {
+            get {
+                return ResourceManager.GetString("StartupPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The bar code was successfully generated..
         /// </summary>
         public static string SuccessBarCodeGenerated {
@@ -750,6 +840,42 @@ namespace Gerayis.Properties {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Gerayis yours.
+        /// </summary>
+        public static string WelcomeChangeTheme {
+            get {
+                return ResourceManager.GetString("WelcomeChangeTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanks for using Gerayis! Let&apos;s get started!.
+        /// </summary>
+        public static string WelcomeThanks {
+            get {
+                return ResourceManager.GetString("WelcomeThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate bar codes and QR codes easily with Gerayis..
+        /// </summary>
+        public static string WelcomeTutorial {
+            get {
+                return ResourceManager.GetString("WelcomeTutorial", resourceCulture);
             }
         }
     }

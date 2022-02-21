@@ -26,92 +26,91 @@ using Gerayis.Enums;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Gerayis.UserControls
+namespace Gerayis.UserControls;
+
+/// <summary>
+/// Interaction logic for HistoryItem.xaml
+/// </summary>
+public partial class HistoryItem : UserControl
 {
-	/// <summary>
-	/// Interaction logic for HistoryItem.xaml
-	/// </summary>
-	public partial class HistoryItem : UserControl
+	internal string ContentText { get; init; }
+	StackPanel StackPanel { get; init; }
+	AppPages AppPages { get; init; }
+	internal Barcodes BarcodeType { get; init; }
+
+	public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
 	{
-		internal string ContentText { get; init; }
-		StackPanel StackPanel { get; init; }
-		AppPages AppPages { get; init; }
-		internal Barcodes BarcodeType { get; init; }
+		InitializeComponent();
+		ContentText = value; // Set
+		StackPanel = stackPanel; // Set
+		AppPages = pages; // Set
+		BarcodeType = barcodeType; // Set
 
-		public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
+		InitUI();
+	}
+
+	private void InitUI()
+	{
+		BarCodeTxt.Text = ContentText;
+		if (AppPages == AppPages.BarCode) // If the item is a barcode
 		{
-			InitializeComponent();
-			ContentText = value; // Set
-			StackPanel = stackPanel; // Set
-			AppPages = pages; // Set
-			BarcodeType = barcodeType; // Set
-
-			InitUI();
+			BarCodeTypeTxt.Text = BarcodeType switch
+			{
+				Barcodes.Code11 => Properties.Resources.Code11,
+				Barcodes.Code128 => Properties.Resources.Code128,
+				Barcodes.ISBN => Properties.Resources.ISBN,
+				Barcodes.MSI => Properties.Resources.MSI,
+				Barcodes.UPCA => Properties.Resources.UPCA,
+				_ => Properties.Resources.Code128
+			}; // Set text 
+		}
+		else
+		{
+			BarCodeTypeTxt.Visibility = Visibility.Collapsed; // Hide if History Item is from QR code page
 		}
 
-		private void InitUI()
+		GenerateBtn.Content = AppPages switch
 		{
-			BarCodeTxt.Text = ContentText;
-			if (AppPages == AppPages.BarCode) // If the item is a barcode
-			{
-				BarCodeTypeTxt.Text = BarcodeType switch
-				{
-					Barcodes.Code11 => Properties.Resources.Code11,
-					Barcodes.Code128 => Properties.Resources.Code128,
-					Barcodes.ISBN => Properties.Resources.ISBN,
-					Barcodes.MSI => Properties.Resources.MSI,
-					Barcodes.UPCA => Properties.Resources.UPCA,
-					_ => Properties.Resources.Code128
-				}; // Set text 
-			}
-			else
-			{
-				BarCodeTypeTxt.Visibility = Visibility.Collapsed; // Hide if History Item is from QR code page
-			}
+			AppPages.BarCode => "\uF210",
+			AppPages.QRCode => "\uF636",
+			_ => "\uF210",
+		};
+	}
 
-			GenerateBtn.Content = AppPages switch
-			{
-				AppPages.BarCode => "\uF210",
-				AppPages.QRCode => "\uF636",
-				_ => "\uF210",
-			};
+	private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+	{
+		switch (AppPages)
+		{
+			case AppPages.BarCode:
+				Global.BarCodePage.BarCodeStringTxt.Text = ContentText;
+				Global.BarCodePage.BarCodeTypeComboBox.SelectedIndex = (int)BarcodeType; // Set selected index
+				Global.BarCodePage.GenerateBarCode(ContentText, this, BarcodeType); // Click
+				Global.BarCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+				Global.BarCodePage.Content.Visibility = Visibility.Visible; // Show
+				Global.BarCodePage.HistoryBtn.Content = "\uF47F"; // Set text
+				break;
+			case AppPages.QRCode:
+				Global.QRCodePage.QRCodeStringTxt.Text = ContentText;
+				Global.QRCodePage.GenerateBtn_Click(this, null); // Click
+				Global.QRCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
+				Global.QRCodePage.Content.Visibility = Visibility.Visible; // Show
+				Global.QRCodePage.HistoryBtn.Content = "\uF47F"; // Set text
+				break;
 		}
+	}
 
-		private void GenerateBtn_Click(object sender, RoutedEventArgs e)
+	private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+	{
+		StackPanel.Children.Remove(this); // Remove
+
+		switch (AppPages)
 		{
-			switch (AppPages)
-			{
-				case AppPages.BarCode:
-					Global.BarCodePage.BarCodeStringTxt.Text = ContentText;
-					Global.BarCodePage.BarCodeTypeComboBox.SelectedIndex = (int)BarcodeType; // Set selected index
-					Global.BarCodePage.GenerateBarCode(ContentText, this, BarcodeType); // Click
-					Global.BarCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
-					Global.BarCodePage.Content.Visibility = Visibility.Visible; // Show
-					Global.BarCodePage.HistoryBtn.Content = "\uF47F"; // Set text
-					break;
-				case AppPages.QRCode:
-					Global.QRCodePage.QRCodeStringTxt.Text = ContentText;
-					Global.QRCodePage.GenerateBtn_Click(this, null); // Click
-					Global.QRCodePage.HistoryScroll.Visibility = Visibility.Collapsed; // Hide
-					Global.QRCodePage.Content.Visibility = Visibility.Visible; // Show
-					Global.QRCodePage.HistoryBtn.Content = "\uF47F"; // Set text
-					break;
-			}
-		}
-
-		private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-		{
-			StackPanel.Children.Remove(this); // Remove
-
-			switch (AppPages)
-			{
-				case AppPages.BarCode:
-					Global.BarCodePage.HistoryBtn_Click(this, null);
-					break;
-				case AppPages.QRCode:
-					Global.QRCodePage.HistoryBtn_Click(this, null);
-					break;
-			}
+			case AppPages.BarCode:
+				Global.BarCodePage.HistoryBtn_Click(this, null);
+				break;
+			case AppPages.QRCode:
+				Global.QRCodePage.HistoryBtn_Click(this, null);
+				break;
 		}
 	}
 }

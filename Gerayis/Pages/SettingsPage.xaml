@@ -5,7 +5,7 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	  xmlns:local="clr-namespace:Gerayis.Pages"
 	  xmlns:lang="clr-namespace:Gerayis.Properties"
-	  mc:Ignorable="d" 
+	  mc:Ignorable="d" Foreground="{Binding Source={StaticResource Foreground1}}"
 	  d:DesignHeight="344" d:DesignWidth="560"
 	  FontFamily="../Fonts/#Montserrat"
 	  Title="SettingsPage">
@@ -19,7 +19,7 @@
 			<StackPanel Margin="10,40,10,10" Grid.Row="0">
 				<TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
 
-				<Border Background="{Binding Source={StaticResource Background3}}" CornerRadius="10" Margin="10" Padding="10" HorizontalAlignment="Left">
+				<Border Background="{Binding Source={StaticResource Background3}}" CornerRadius="10" Margin="10" Padding="10" HorizontalAlignment="Stretch">
 					<Border.Effect>
 						<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality"/>
 					</Border.Effect>
@@ -40,178 +40,278 @@
 					</StackPanel>
 				</Border>
 
-				<TextBlock Text="{x:Static lang:Resources.OnStart}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<TextBlock Text="{x:Static lang:Resources.OnStartDesc}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
-
-				<CheckBox Margin="0 10 0 2" x:Name="GenerateBarCodeOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateBarCodeOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateBarCodeOnStartChk_Checked" Checked="GenerateBarCodeOnStartChk_Checked"/>
-				<CheckBox Margin="0 2 0 2" x:Name="GenerateQRCodeOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateQRCodeOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateQRCodeOnStartChk_Checked" Checked="GenerateQRCodeOnStartChk_Checked"/>
-				
-				<TextBlock Text="{x:Static lang:Resources.Theme}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<TextBlock Text="{x:Static lang:Resources.ChangeTheme}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
-
-				<StackPanel Orientation="Horizontal">
-					<Border x:Name="LightBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="LightBorder_MouseLeftButtonUp">
-						<StackPanel	Orientation="Vertical">
-							<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-								<Rectangle.Fill>
-									<ImageBrush ImageSource="..\Images\LightTheme.png"/>
-								</Rectangle.Fill>
-							</Rectangle>
-							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="LightRadioBtn" Checked="LightRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Light}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF33C;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Theme}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ChangeTheme}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
 						</StackPanel>
-					</Border>
+					</Expander.Header>
 
-					<Border x:Name="DarkBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="DarkBorder_MouseLeftButtonUp">
-						<StackPanel Orientation="Vertical">
-							<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-								<Rectangle.Fill>
-									<ImageBrush ImageSource="..\Images\DarkTheme.png"/>
-								</Rectangle.Fill>
-							</Rectangle>
-							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="DarkRadioBtn" Checked="DarkRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Dark}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" Margin="0,2,0,2" HorizontalAlignment="Center"/>
-						</StackPanel>
-					</Border>
+					<StackPanel Orientation="Horizontal" Margin="10">
+						<Border x:Name="LightBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="LightBorder_MouseLeftButtonUp">
+							<StackPanel	Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\LightTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="LightRadioBtn" Checked="LightRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Light}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+							</StackPanel>
+						</Border>
 
-					<Border x:Name="SystemBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="SystemBorder_MouseLeftButtonUp">
-						<StackPanel	Orientation="Vertical">
-							<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
-								<Rectangle.Fill>
-									<ImageBrush ImageSource="..\Images\SystemTheme.png"/>
-								</Rectangle.Fill>
-							</Rectangle>
-							<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="SystemRadioBtn" Checked="SystemRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.System}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+						<Border x:Name="DarkBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="DarkBorder_MouseLeftButtonUp">
+							<StackPanel Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\DarkTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="DarkRadioBtn" Checked="DarkRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.Dark}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" Margin="0,2,0,2" HorizontalAlignment="Center"/>
+							</StackPanel>
+						</Border>
+
+						<Border x:Name="SystemBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="SystemBorder_MouseLeftButtonUp">
+							<StackPanel	Orientation="Vertical">
+								<Rectangle RadiusX="10" RadiusY="10" Width="100" Height="100" HorizontalAlignment="Center">
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="..\Images\SystemTheme.png"/>
+									</Rectangle.Fill>
+								</Rectangle>
+								<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="SystemRadioBtn" Checked="SystemRadioBtn_Checked" GroupName="ThemeRadioGroup" Content="{x:Static lang:Resources.System}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="#FF8B2DF0" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,2"/>
+							</StackPanel>
+						</Border>
+						<Button x:Name="ThemeApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="ThemeApplyBtn_Click" Visibility="Hidden">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="&#xF296;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+								<TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Button>
+					</StackPanel>
+				</Expander>
+
+				<Border CornerRadius="5" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Margin="15,15,10,15" Orientation="Horizontal">
+							<TextBlock Text="&#xF834;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Language}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ChangeLanguage}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
 						</StackPanel>
-					</Border>
-					<Button x:Name="ThemeApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="ThemeApplyBtn_Click" Visibility="Hidden">
+
+						<StackPanel Orientation="Horizontal" Grid.Column="1">
+							<ComboBox SelectionChanged="LangComboBox_SelectionChanged" BorderThickness="2" Padding="5" Style="{DynamicResource ComboBoxStyle1}" x:Name="LangComboBox" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center"/>
+							<Button x:Name="LangApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="LangApplyBtn_Click" Visibility="Hidden">
+								<TextBlock Text="&#xF680;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+								<Button.ToolTip>
+									<ToolTip Content="{x:Static lang:Resources.Apply}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+								</Button.ToolTip>
+							</Button>
+						</StackPanel>
+					</Grid>
+				</Border>
+
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF60F;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.OnStart}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.OnStartDesc}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
+
+					<StackPanel Margin="10">
+						<CheckBox Margin="0 2 0 2" x:Name="GenerateBarCodeOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateBarCodeOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateBarCodeOnStartChk_Checked" Checked="GenerateBarCodeOnStartChk_Checked"/>
+						<CheckBox Margin="0 2 0 2" x:Name="GenerateQRCodeOnStartChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateQRCodeOnStart}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateQRCodeOnStartChk_Checked" Checked="GenerateQRCodeOnStartChk_Checked"/>
+
+						<TextBlock Text="{x:Static lang:Resources.StartupPage}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" Margin="0,10,0,0"/>
+
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="&#xF296;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-							<TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+							<Border x:Name="BarCodePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="BarCodePageBorder_MouseLeftButtonUp">
+								<StackPanel	Orientation="Vertical">
+									<TextBlock Text="&#xF210;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+									<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="BarCodePageRadioBtn" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.BarCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+								</StackPanel>
+							</Border>
+							<Border x:Name="QrCodePageBorder" CornerRadius="10" Margin="5" Background="{Binding Source={StaticResource Background1}}" BorderThickness="3" BorderBrush="{x:Null}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" Cursor="Hand" MouseLeftButtonUp="QrCodePageBorder_MouseLeftButtonUp">
+								<StackPanel	Orientation="Vertical">
+									<TextBlock Text="&#xF635;" Margin="20" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center"/>
+									<RadioButton Style="{DynamicResource RadioButtonStyle1}" x:Name="QrCodePageRadioBtn" GroupName="StartupPageRadioGroup" Content="{x:Static lang:Resources.QRCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}" BorderBrush="{Binding Source={StaticResource AccentColor}}" FontWeight="Bold" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2"/>
+								</StackPanel>
+							</Border>
 						</StackPanel>
-					</Button>
-				</StackPanel>
+					</StackPanel>
+				</Expander>
 
-				<TextBlock Text="{x:Static lang:Resources.Language}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-				<TextBlock Text="{x:Static lang:Resources.Language}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14"/>
-
-				<StackPanel Orientation="Horizontal">
-					<ComboBox SelectionChanged="LangComboBox_SelectionChanged" BorderThickness="2" Padding="5" Style="{DynamicResource ComboBoxStyle1}" x:Name="LangComboBox" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource Foreground1}}" HorizontalAlignment="Left" Margin="0,5,10,0" VerticalAlignment="Center"/>
-					<Button x:Name="LangApplyBtn" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Click="LangApplyBtn_Click" Visibility="Hidden">
-						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="&#xF296;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-							<TextBlock Text="{x:Static lang:Resources.Apply}" VerticalAlignment="Center"/>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF210;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.BarCode}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.BarCodeSettings}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
 						</StackPanel>
-					</Button>
-				</StackPanel>
+					</Expander.Header>
 
-				<TextBlock Text="{x:Static lang:Resources.BarCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+					<StackPanel Margin="10">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Resources.ForegroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<Rectangle Grid.Row="0" Grid.Column="1" x:Name="ForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="ForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Resources.ForegroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-                    <Rectangle Grid.Row="0" Grid.Column="1" x:Name="ForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="ForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
+							<TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Resources.BackgroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<Rectangle Grid.Row="1" Grid.Column="1" x:Name="BackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="BackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
+						</Grid>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Resources.BackgroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-                    <Rectangle Grid.Row="1" Grid.Column="1" x:Name="BackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="BackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
-                </Grid>
+						<Button x:Name="ResetColorsLink" Content="{x:Static lang:Resources.ResetColor}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="ResetColorsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14"/>
 
-                <Button x:Name="ResetColorsLink" Content="{x:Static lang:Resources.ResetColor}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="ResetColorsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+							<TextBlock Text="{x:Static lang:Resources.DefaultBarCodeType}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+							<ComboBox x:Name="BarCodeTypeComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodeTypeComboBox_SelectionChanged">
+								<ComboBoxItem Content="{x:Static lang:Resources.Code128}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.Code11}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.UPCA}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.MSI}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.ISBN}"/>
+							</ComboBox>
+						</StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-					<TextBlock Text="{x:Static lang:Resources.DefaultBarCodeType}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
-					<ComboBox x:Name="BarCodeTypeComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodeTypeComboBox_SelectionChanged">
-						<ComboBoxItem Content="{x:Static lang:Resources.Code128}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.Code11}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.UPCA}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.MSI}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.ISBN}"/>
-					</ComboBox>
-				</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+							<TextBlock Text="{x:Static lang:Resources.DefaultBarCodeFileExtension}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+							<ComboBox x:Name="BarCodesSaveFormatComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodesSaveFormatComboBox_SelectionChanged">
+								<ComboBoxItem Content="{x:Static lang:Resources.PNG}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.JPG}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.JPEG}"/>
+							</ComboBox>
+						</StackPanel>
+					</StackPanel>
+				</Expander>
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="{x:Static lang:Resources.DefaultBarCodeFileExtension}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <ComboBox x:Name="BarCodesSaveFormatComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodesSaveFormatComboBox_SelectionChanged">
-                        <ComboBoxItem Content="{x:Static lang:Resources.PNG}"/>
-                        <ComboBoxItem Content="{x:Static lang:Resources.JPG}"/>
-                        <ComboBoxItem Content="{x:Static lang:Resources.JPEG}"/>
-                    </ComboBox>
-                </StackPanel>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF635;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.QRCode}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.QRCodeSettings}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
 
-                <TextBlock Text="{x:Static lang:Resources.QRCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+					<StackPanel Margin="10">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
 
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-					</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
 
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Resources.ForegroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<Rectangle Grid.Row="0" Grid.Column="1" x:Name="QRForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="QRForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
 
-					<TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Resources.ForegroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-					<Rectangle Grid.Row="0" Grid.Column="1" x:Name="QRForeColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="QRForeColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
+							<TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Resources.BackgroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
+							<Rectangle Grid.Row="1" Grid.Column="1" x:Name="QRBackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="QRBackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
+						</Grid>
 
-					<TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Resources.BackgroundColor}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center"/>
-					<Rectangle Grid.Row="1" Grid.Column="1" x:Name="QRBackColorRec" Fill="#FFF" Height="30" Width="30" RadiusX="15" RadiusY="15" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="QRBackColorRec_MouseDown" Stroke="{Binding Source={StaticResource AccentColor}}" StrokeThickness="3" Cursor="Hand"/>
-				</Grid>
+						<Button x:Name="QRResetColorsLink" Content="{x:Static lang:Resources.ResetColor}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="QRResetColorsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14"/>
 
-                <Button x:Name="QRResetColorsLink" Content="{x:Static lang:Resources.ResetColor}" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="QRResetColorsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14"/>
+						<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+							<TextBlock Text="{x:Static lang:Resources.DefaultQRCodeFileExtension}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+							<ComboBox x:Name="QRCodeSaveFormatComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="QRCodeSaveFormatComboBox_SelectionChanged">
+								<ComboBoxItem Content="{x:Static lang:Resources.PNG}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.JPG}"/>
+								<ComboBoxItem Content="{x:Static lang:Resources.JPEG}"/>
+							</ComboBox>
+						</StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="{x:Static lang:Resources.DefaultQRCodeFileExtension}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <ComboBox x:Name="QRCodeSaveFormatComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="QRCodeSaveFormatComboBox_SelectionChanged">
-                        <ComboBoxItem Content="{x:Static lang:Resources.PNG}"/>
-                        <ComboBoxItem Content="{x:Static lang:Resources.JPG}"/>
-                        <ComboBoxItem Content="{x:Static lang:Resources.JPEG}"/>
-                    </ComboBox>
-                </StackPanel>
+						<CheckBox Margin="0 10 0 2" x:Name="GenerateQRCodeTypingChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateQRTyping}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateQRCodeTypingChk_Checked" Checked="GenerateQRCodeTypingChk_Checked"/>
 
-                <CheckBox Margin="0 10 0 2" x:Name="GenerateQRCodeTypingChk" Style="{DynamicResource CheckBoxStyle1}" Content="{x:Static lang:Resources.GenerateQRTyping}" BorderThickness="3" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="14" VerticalContentAlignment="Center" Unchecked="GenerateQRCodeTypingChk_Checked" Checked="GenerateQRCodeTypingChk_Checked"/>
+					</StackPanel>
+				</Expander>
 
-				<TextBlock Text="{x:Static lang:Resources.Data}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF419;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Data}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.ManageData}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
 
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                    <Button x:Name="ImportBtn" Click="ImportBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-                            <TextBlock Text="{x:Static lang:Resources.Import}" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="ExportBtn" Click="ExportBtn_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
-                            <TextBlock Text="{x:Static lang:Resources.Export}" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+					<StackPanel Margin="10">
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+							<Button x:Name="ImportBtn" Click="ImportBtn_Click" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" Margin="0,0,10,0">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="&#xF151;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+									<TextBlock Text="{x:Static lang:Resources.Import}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</Button>
+							<Button x:Name="ExportBtn" Click="ExportBtn_Click" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center" MouseEnter="BtnEnter" MouseLeave="BtnLeave">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="&#xF1A5;" FontWeight="Regular" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,5,0" VerticalAlignment="Center" FontSize="16"/>
+									<TextBlock Text="{x:Static lang:Resources.Export}" VerticalAlignment="Center"/>
+								</StackPanel>
+							</Button>
+						</StackPanel>
 
-                <Button x:Name="ResetSettingsLink" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="ResetSettingsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{x:Static lang:Resources.ResetSettings}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+						<Button x:Name="ResetSettingsLink" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="ResetSettingsLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+								<TextBlock Text="{x:Static lang:Resources.ResetSettings}" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Button>
+					</StackPanel>
+				</Expander>
 
-                <TextBlock Text="{x:Static lang:Resources.Licenses}" Foreground="{Binding Source={StaticResource Foreground1}}" FontWeight="Bold" FontSize="20" Margin="0,10,0,0"/>
-                <Button x:Name="SeeLicensesLink" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="SeeLicensesLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                        <TextBlock Text="{x:Static lang:Resources.SeeLicenses}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+				<Expander Style="{DynamicResource ExpanderStyle1}" Margin="10,10,10,0" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}">
+					<Expander.Header>
+						<StackPanel Margin="10 15" Orientation="Horizontal">
+							<TextBlock Text="&#xF906;" FontSize="22" FontFamily="..\Fonts\#FluentSystemIcons-Regular" VerticalAlignment="Center"/>
+							<StackPanel>
+								<TextBlock Text="{x:Static lang:Resources.Licenses}" FontSize="18" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+								<TextBlock Text="{x:Static lang:Resources.SeeLicenses}" FontSize="13" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+							</StackPanel>
+						</StackPanel>
+					</Expander.Header>
 
-
-            </StackPanel>
+					<StackPanel Margin="10">
+						<Button x:Name="SeeLicensesLink" Style="{DynamicResource LinkButtonStyle}" Foreground="{Binding Source={StaticResource AccentColor}}" Background="{x:Null}" Padding="5" Click="SeeLicensesLink_Click" HorizontalAlignment="Left" Margin="1" FontWeight="Bold" FontSize="14">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="&#xF583;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontWeight="Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+								<TextBlock Text="{x:Static lang:Resources.SeeLicenses}" VerticalAlignment="Center"/>
+							</StackPanel>
+						</Button>
+					</StackPanel>
+				</Expander>
+			</StackPanel>
 		</Grid>
 	</ScrollViewer>
 </Page>

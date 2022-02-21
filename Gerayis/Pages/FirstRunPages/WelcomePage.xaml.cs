@@ -22,10 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Gerayis.Enums;
+using System;
+using System.Windows.Controls;
 
-public enum AppPages
+namespace Gerayis.Pages.FirstRunPages;
+/// <summary>
+/// Interaction logic for WelcomePage.xaml
+/// </summary>
+public partial class WelcomePage : Page
 {
-	BarCode,
-	QRCode
+	public WelcomePage()
+	{
+		InitializeComponent();
+		InitUI(); // Load the UI
+	}
+
+	private void InitUI()
+	{
+		WelcomeTxt.Text = $"{Properties.Resources.Welcome}, {Environment.UserName}."; // Say hello to the user
+	}
 }

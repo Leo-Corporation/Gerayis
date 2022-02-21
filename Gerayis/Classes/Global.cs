@@ -31,175 +31,174 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Gerayis.Classes
+namespace Gerayis.Classes;
+
+/// <summary>
+/// The <see cref="Global"/> class contains various methods and properties.
+/// </summary>
+public static class Global
 {
 	/// <summary>
-	/// The <see cref="Global"/> class contains various methods and properties.
+	/// The current version of Gerayis.
 	/// </summary>
-	public static class Global
+	public static string Version => "2.0.0.2202";
+
+	/// <summary>
+	/// List of the available languages.
+	/// </summary>
+	public static List<string> LanguageList => new() { "English (United States)", "Français (France)", "中文（简体）" };
+
+	/// <summary>
+	/// List of the available languages codes.
+	/// </summary>
+	public static List<string> LanguageCodeList => new() { "en-US", "fr-FR", "zh-CN" };
+
+	/// <summary>
+	/// GitHub link for the last version (<see cref="string"/>).
+	/// </summary>
+	public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Gerayis/Version.txt"; }
+
+	/// <summary>
+	/// The <see cref="Pages.BarCodePage"/>.
+	/// </summary>
+	public static BarCodePage BarCodePage { get; set; }
+
+	/// <summary>
+	/// The <see cref="Pages.QRCodePage"/>.
+	/// </summary>
+	public static QRCodePage QRCodePage { get; set; }
+
+	/// <summary>
+	/// The <see cref="Pages.SettingsPage"/>.
+	/// </summary>
+	public static SettingsPage SettingsPage { get; set; }
+
+	/// <summary>
+	/// The <see cref="Classes.Settings"/> of Gerayis
+	/// </summary>
+	public static Settings Settings { get; set; }
+
+	/// <summary>
+	/// Gets the "Hi" sentence message.
+	/// </summary>
+	public static string GetHiSentence
 	{
-		/// <summary>
-		/// The current version of Gerayis.
-		/// </summary>
-		public static string Version => "1.9.1.2201";
-
-		/// <summary>
-		/// List of the available languages.
-		/// </summary>
-		public static List<string> LanguageList => new() { "English (United States)", "Français (France)", "中文（简体）" };
-
-		/// <summary>
-		/// List of the available languages codes.
-		/// </summary>
-		public static List<string> LanguageCodeList => new() { "en-US", "fr-FR", "zh-CN" };
-
-		/// <summary>
-		/// GitHub link for the last version (<see cref="string"/>).
-		/// </summary>
-		public static string LastVersionLink { get => "https://raw.githubusercontent.com/Leo-Corporation/LeoCorp-Docs/master/Liens/Update%20System/Gerayis/Version.txt"; }
-
-		/// <summary>
-		/// The <see cref="Pages.BarCodePage"/>.
-		/// </summary>
-		public static BarCodePage BarCodePage { get; set; }
-
-		/// <summary>
-		/// The <see cref="Pages.QRCodePage"/>.
-		/// </summary>
-		public static QRCodePage QRCodePage { get; set; }
-
-		/// <summary>
-		/// The <see cref="Pages.SettingsPage"/>.
-		/// </summary>
-		public static SettingsPage SettingsPage { get; set; }
-
-		/// <summary>
-		/// The <see cref="Classes.Settings"/> of Gerayis
-		/// </summary>
-		public static Settings Settings { get; set; }
-
-		/// <summary>
-		/// Gets the "Hi" sentence message.
-		/// </summary>
-		public static string GetHiSentence
+		get
 		{
-			get
+			if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour <= 7) // If between 9PM & 7AM
 			{
-				if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour <= 7) // If between 9PM & 7AM
-				{
-					return Properties.Resources.GoodNight + ", " + Environment.UserName + "."; // Return the correct value
-				}
-				else if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 12) // If between 7AM - 12PM
-				{
-					return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
-				}
-				else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 17) // If between 12PM - 5PM
-				{
-					return Properties.Resources.GoodAfternoon + ", " + Environment.UserName + "."; // Return the correct value
-				}
-				else if (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 21) // If between 5PM - 9PM
-				{
-					return Properties.Resources.GoodEvening + ", " + Environment.UserName + "."; // Return the correct value
-				}
-				else
-				{
-					return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
-				}
+				return Properties.Resources.GoodNight + ", " + Environment.UserName + "."; // Return the correct value
 			}
-		}
-
-		/// <summary>
-		/// Changes the application's theme.
-		/// </summary>
-		public static void ChangeTheme()
-		{
-			App.Current.Resources.MergedDictionaries.Clear();
-			ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
-
-			if (!Settings.IsThemeSystem.HasValue)
+			else if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 12) // If between 7AM - 12PM
 			{
-				Settings.IsThemeSystem = false;
+				return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
 			}
-
-			if (Settings.IsThemeSystem.Value)
+			else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 17) // If between 12PM - 5PM
 			{
-				Settings.IsDarkTheme = IsSystemThemeDark(); // Set
+				return Properties.Resources.GoodAfternoon + ", " + Environment.UserName + "."; // Return the correct value
 			}
-
-			if (Settings.IsDarkTheme) // If the dark theme is on
+			else if (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 21) // If between 5PM - 9PM
 			{
-				resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
+				return Properties.Resources.GoodEvening + ", " + Environment.UserName + "."; // Return the correct value
 			}
 			else
 			{
-				resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
-			}
-
-			App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
-		}
-
-		public static bool IsSystemThemeDark()
-		{
-			if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
-			{
-				return false; // Avoid errors on older OSs
-			}
-
-			var t = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme", "1");
-			return t switch
-			{
-				0 => true,
-				1 => false,
-				_ => false
-			}; // Return
-		}
-
-		/// <summary>
-		/// Changes the application's language.
-		/// </summary>
-		public static void ChangeLanguage()
-		{
-			switch (Global.Settings.Language) // For each case
-			{
-				case "_default": // No language
-					break;
-				case "en-US": // English (US)
-					Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US"); // Change
-					break;
-				case "fr-FR": // French (FR)
-					Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
-					break;
-				case "zh-CN": // Chinese (CN)
-					Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN"); // Change
-					break;
-				default: // No language
-					break;
+				return Properties.Resources.Hi + ", " + Environment.UserName + "."; // Return the correct value
 			}
 		}
+	}
 
-		public static void SaveImage(string filePath, BitmapSource bitmapImage, string extension = ".png")
+	/// <summary>
+	/// Changes the application's theme.
+	/// </summary>
+	public static void ChangeTheme()
+	{
+		App.Current.Resources.MergedDictionaries.Clear();
+		ResourceDictionary resourceDictionary = new(); // Create a resource dictionary
+
+		if (!Settings.IsThemeSystem.HasValue)
 		{
-			try
+			Settings.IsThemeSystem = false;
+		}
+
+		if (Settings.IsThemeSystem.Value)
+		{
+			Settings.IsDarkTheme = IsSystemThemeDark(); // Set
+		}
+
+		if (Settings.IsDarkTheme) // If the dark theme is on
+		{
+			resourceDictionary.Source = new Uri("..\\Themes\\Dark.xaml", UriKind.Relative); // Add source
+		}
+		else
+		{
+			resourceDictionary.Source = new Uri("..\\Themes\\Light.xaml", UriKind.Relative); // Add source
+		}
+
+		App.Current.Resources.MergedDictionaries.Add(resourceDictionary); // Add the dictionary
+	}
+
+	public static bool IsSystemThemeDark()
+	{
+		if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
+		{
+			return false; // Avoid errors on older OSs
+		}
+
+		var t = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme", "1");
+		return t switch
+		{
+			0 => true,
+			1 => false,
+			_ => false
+		}; // Return
+	}
+
+	/// <summary>
+	/// Changes the application's language.
+	/// </summary>
+	public static void ChangeLanguage()
+	{
+		switch (Global.Settings.Language) // For each case
+		{
+			case "_default": // No language
+				break;
+			case "en-US": // English (US)
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US"); // Change
+				break;
+			case "fr-FR": // French (FR)
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); // Change
+				break;
+			case "zh-CN": // Chinese (CN)
+				Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN"); // Change
+				break;
+			default: // No language
+				break;
+		}
+	}
+
+	public static void SaveImage(string filePath, BitmapSource bitmapImage, string extension = ".png")
+	{
+		try
+		{
+			using (var fileStream = new FileStream(filePath, FileMode.Create))
 			{
-				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				BitmapEncoder encoder = extension switch
 				{
-					BitmapEncoder encoder = extension switch
-					{
-						".png" => new PngBitmapEncoder(),
-						".jpg" => new JpegBitmapEncoder(),
-						".jpeg" => new JpegBitmapEncoder(),
-						_ => new PngBitmapEncoder()
-					};
-					encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-					encoder.Save(fileStream);
-				}
+					".png" => new PngBitmapEncoder(),
+					".jpg" => new JpegBitmapEncoder(),
+					".jpeg" => new JpegBitmapEncoder(),
+					_ => new PngBitmapEncoder()
+				};
+				encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+				encoder.Save(fileStream);
+			}
 
-				MessageBox.Show(Properties.Resources.SaveSucess, Properties.Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information); // Show sucess message
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
-			}
+			MessageBox.Show(Properties.Resources.SaveSucess, Properties.Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information); // Show sucess message
+		}
+		catch (Exception ex)
+		{
+			MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
 		}
 	}
 }

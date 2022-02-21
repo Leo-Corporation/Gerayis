@@ -22,10 +22,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Gerayis.Enums;
+using Gerayis.Classes;
+using System.Windows;
+using System.Windows.Controls;
 
-public enum AppPages
+namespace Gerayis.Pages.FirstRunPages;
+/// <summary>
+/// Interaction logic for UpdatePage.xaml
+/// </summary>
+public partial class UpdatePage : Page
 {
-	BarCode,
-	QRCode
+	public UpdatePage()
+	{
+		InitializeComponent();
+		InitUI(); // Load the UI
+	}
+
+	private void InitUI()
+	{
+		CheckUpdatesOnStartChk.IsChecked = Global.Settings.CheckUpdatesOnStart; // Set
+		NotifyUpdatesChk.IsChecked = Global.Settings.NotifyUpdates; // Set
+	}
+
+	private void CheckUpdatesOnStartChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.CheckUpdatesOnStart = CheckUpdatesOnStartChk.IsChecked.Value; // Set
+		SettingsManager.Save(); // Save changes
+	}
+
+	private void NotifyUpdatesChk_Checked(object sender, RoutedEventArgs e)
+	{
+		Global.Settings.NotifyUpdates = NotifyUpdatesChk.IsChecked.Value; // Set
+		SettingsManager.Save(); // Save changes
+	}
 }

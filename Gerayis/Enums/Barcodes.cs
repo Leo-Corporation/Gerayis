@@ -22,36 +22,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 
-namespace Gerayis.Enums
+namespace Gerayis.Enums;
+
+/// <summary>
+/// Barcodes available in Gerayis
+/// </summary>
+public enum Barcodes
 {
 	/// <summary>
-	/// Barcodes available in Gerayis
+	/// Code 128 barcode.
 	/// </summary>
-	public enum Barcodes
-	{
-		/// <summary>
-		/// Code 128 barcode.
-		/// </summary>
-		Code128 = 0,
+	Code128 = 0,
 
-		/// <summary>
-		/// Code 11 barcode.
-		/// </summary>
-		Code11 = 1,
+	/// <summary>
+	/// Code 11 barcode.
+	/// </summary>
+	Code11 = 1,
 
-		/// <summary>
-		/// UPC-A barcode.
-		/// </summary>
-		UPCA = 2,
+	/// <summary>
+	/// UPC-A barcode.
+	/// </summary>
+	UPCA = 2,
 
-		/// <summary>
-		/// MSI barcode.
-		/// </summary>
-		MSI = 3,
+	/// <summary>
+	/// MSI barcode.
+	/// </summary>
+	MSI = 3,
 
-		/// <summary>
-		/// ISBN barcode.
-		/// </summary>
-		ISBN = 4
-	}
+	/// <summary>
+	/// ISBN barcode.
+	/// </summary>
+	ISBN = 4
 }

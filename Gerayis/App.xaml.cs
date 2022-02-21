@@ -23,27 +23,34 @@ SOFTWARE.
 */
 
 using Gerayis.Classes;
+using Gerayis.Windows;
 using System.Windows;
 
-namespace Gerayis
+namespace Gerayis;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
+	protected override void OnStartup(StartupEventArgs e)
 	{
-		protected override void OnStartup(StartupEventArgs e)
+		SettingsManager.Load(); // Load settings
+
+		Global.ChangeTheme(); // Change the theme
+		Global.ChangeLanguage(); // Change the language
+
+		Global.SettingsPage = new(); // Create a new SettingsPage
+		Global.BarCodePage = new(); // Create a new BarCodePage
+		Global.QRCodePage = new(); // Create a new QRCodePage
+
+		if (Global.Settings.IsFirstRun.Value)
 		{
-			SettingsManager.Load(); // Load settings
-
-			Global.ChangeTheme(); // Change the theme
-			Global.ChangeLanguage(); // Change the language
-
-			Global.SettingsPage = new(); // Create a new SettingsPage
-			Global.BarCodePage = new(); // Create a new BarCodePage
-			Global.QRCodePage = new(); // Create a new QRCodePage
-
-			base.OnStartup(e);
+			new FirstRunWindow().Show(); // Show the "First run" window
+		}
+		else
+		{
+			new MainWindow().Show(); // Launch Gerayis
 		}
 	}
 }

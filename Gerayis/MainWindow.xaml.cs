@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Classes;
+using Gerayis.Enums;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,112 +30,139 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Gerayis
+namespace Gerayis;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+	private Button CheckedButton { get; set; }
+
+	readonly ColorAnimation colorAnimation = new()
 	{
-		private Button CheckedButton { get; set; }
+		From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()),
+		To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
+		Duration = new(TimeSpan.FromSeconds(0.2d))
+	};
+	public MainWindow()
+	{
+		InitializeComponent();
+		InitUI(); // Load the UI
+	}
 
-		readonly ColorAnimation colorAnimation = new()
+	private void InitUI()
+	{
+		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
+
+		CheckButton(Global.Settings.StartupPage switch
 		{
-			From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()),
-			To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
-			Duration = new(TimeSpan.FromSeconds(0.2d))
-		};
-		public MainWindow()
+			AppPages.BarCode => BarCodeTabBtn,
+			AppPages.QRCode => QRCodeTabBtn,
+			_ => BarCodeTabBtn
+		}); // Check the start page button
+		PageContent.Content = Global.Settings.StartupPage switch
 		{
-			InitializeComponent();
-			InitUI(); // Load the UI
+			AppPages.BarCode => Global.BarCodePage,
+			AppPages.QRCode => Global.QRCodePage,
+			_ => Global.BarCodePage
+		}; // Set page
+
+		PageContent.Navigated += (o, e) => AnimatePage();
+	}
+
+	private void CheckButton(Button button)
+	{
+		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+		button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+
+		CheckedButton = button; // Set the "checked" button
+	}
+
+	private void ResetAllCheckStatus()
+	{
+		BarCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		BarCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
+		QRCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		QRCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+
+		SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+	}
+
+	private void TabEnter(object sender, MouseEventArgs e)
+	{
+		Button button = (Button)sender; // Create button
+
+		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
+	}
+
+	private void TabLeave(object sender, MouseEventArgs e)
+	{
+		Button button = (Button)sender; // Create button
+
+		if (button != CheckedButton)
+		{
+			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
+			button.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation); // Play animation
 		}
+	}
 
-		private void InitUI()
-		{
-			HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
+	private void CloseBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Environment.Exit(0); // Quit
+	}
 
-			CheckButton(BarCodeTabBtn); // Check the start page button
-			PageContent.Content = Global.BarCodePage;
-		}
+	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
+	{
+		WindowState = WindowState.Minimized; // Minimize window
+	}
 
-		private void CheckButton(Button button)
-		{
-			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-			button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+	private void BarCodeTabBtn_Click(object sender, RoutedEventArgs e)
+	{
+		ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+		CheckButton(BarCodeTabBtn); // Check the "BarCode" button
 
-			CheckedButton = button; // Set the "checked" button
-		}
+		PageContent.Navigate(Global.BarCodePage); // Navigate
+	}
 
-		private void ResetAllCheckStatus()
-		{
-			BarCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-			BarCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+	private void QRCodeTabBtn_Click(object sender, RoutedEventArgs e)
+	{
+		ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+		CheckButton(QRCodeTabBtn); // Check the "QRCode" button
 
-			QRCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-			QRCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
+		PageContent.Navigate(Global.QRCodePage); // Navigate
+	}
 
-			SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
-			SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
-		}
+	private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
+	{
+		ResetAllCheckStatus(); // Reset the background and foreground of all buttons
+		CheckButton(SettingsTabBtn); // Check the "Settings" button
 
-		private void TabEnter(object sender, MouseEventArgs e)
-		{
-			Button button = (Button)sender; // Create button
+		PageContent.Navigate(Global.SettingsPage); // Navigate
+	}
 
-			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-		}
+	private void PinBtn_Click(object sender, RoutedEventArgs e)
+	{
+		Topmost = !Topmost; // Pin/Unpin
+		PinBtn.Content = Topmost ? "\uF604" : "\uF602"; // Set text
+		PinToolTip.Content = Topmost ? Properties.Resources.Unpin : Properties.Resources.Pin; // Set text
+	}
 
-		private void TabLeave(object sender, MouseEventArgs e)
-		{
-			Button button = (Button)sender; // Create button
+	private void AnimatePage()
+	{
+		Storyboard storyboard = new();
 
-			if (button != CheckedButton)
-			{
-				button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
-				button.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation); // Play animation
-			}
-		}
+		ThicknessAnimationUsingKeyFrames t = new();
+		t.KeyFrames.Add(new SplineThicknessKeyFrame(new(0, 30, 0, 0), KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0))));
+		t.KeyFrames.Add(new SplineThicknessKeyFrame(new(0), KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0.1))));
+		t.AccelerationRatio = 0.5;
 
-		private void CloseBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Environment.Exit(0); // Quit
-		}
+		storyboard.Children.Add(t);
 
-		private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
-		{
-			WindowState = WindowState.Minimized; // Minimize window
-		}
-
-		private void BarCodeTabBtn_Click(object sender, RoutedEventArgs e)
-		{
-			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-			CheckButton(BarCodeTabBtn); // Check the "BarCode" button
-
-			PageContent.Navigate(Global.BarCodePage); // Navigate
-		}
-
-		private void QRCodeTabBtn_Click(object sender, RoutedEventArgs e)
-		{
-			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-			CheckButton(QRCodeTabBtn); // Check the "QRCode" button
-
-			PageContent.Navigate(Global.QRCodePage); // Navigate
-		}
-
-		private void SettingsTabBtn_Click(object sender, RoutedEventArgs e)
-		{
-			ResetAllCheckStatus(); // Reset the background and foreground of all buttons
-			CheckButton(SettingsTabBtn); // Check the "Settings" button
-
-			PageContent.Navigate(Global.SettingsPage); // Navigate
-		}
-
-		private void PinBtn_Click(object sender, RoutedEventArgs e)
-		{
-			Topmost = !Topmost; // Pin/Unpin
-			PinBtn.Content = Topmost ? "\uF604" : "\uF602"; // Set text
-			PinToolTip.Content = Topmost ? Properties.Resources.Unpin : Properties.Resources.Pin; // Set text
-		}
+		Storyboard.SetTargetName(t, PageContent.Name);
+		Storyboard.SetTargetProperty(t, new(Frame.MarginProperty));
+		storyboard.Begin(this);
 	}
 }

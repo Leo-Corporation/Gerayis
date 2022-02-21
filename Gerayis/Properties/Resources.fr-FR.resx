@@ -348,4 +348,46 @@
   <data name="Unpin" xml:space="preserve">
     <value>Désépingler</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Suivant</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="WelcomeThanks" xml:space="preserve">
+    <value>Merci d'utiliser Gerayis ! Commençons !</value>
+  </data>
+  <data name="WelcomeTutorial" xml:space="preserve">
+    <value>Générez facilement des codes barres et des QR codes avec Gerayis.</value>
+  </data>
+  <data name="GettingStarted" xml:space="preserve">
+    <value>Prise en main</value>
+  </data>
+  <data name="ChangesApplyAfterRestart" xml:space="preserve">
+    <value>Les modifications seront appliquées après un redémarrage de Gerayis.</value>
+  </data>
+  <data name="WelcomeChangeTheme" xml:space="preserve">
+    <value>Faites de Gerayis le vôtre</value>
+  </data>
+  <data name="LetsGo" xml:space="preserve">
+    <value>Allons-y</value>
+  </data>
+  <data name="BarCodeSettings" xml:space="preserve">
+    <value>Paramètres du Code Barre.</value>
+  </data>
+  <data name="QRCodeSettings" xml:space="preserve">
+    <value>Paramètres du QR Code.</value>
+  </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Gérez vos données.</value>
+  </data>
+  <data name="StartupPage" xml:space="preserve">
+    <value>Page par défaut au démarrage.</value>
+  </data>
 </root>
