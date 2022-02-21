@@ -136,7 +136,7 @@ public partial class SettingsPage : Page
 			{
 				PageCheckedBorder = QrCodePageBorder; // Set
 			}
-			
+
 			RefreshBorders();
 			RefreshStartupBorders();
 

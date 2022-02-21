@@ -1,42 +1,42 @@
 ﻿<Page x:Class="Gerayis.Pages.FirstRunPages.TutorialPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Gerayis.Pages.FirstRunPages"
-      xmlns:lang="clr-namespace:Gerayis.Properties"
-      mc:Ignorable="d" FontFamily="..\..\Fonts\#Montserrat"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:local="clr-namespace:Gerayis.Pages.FirstRunPages"
+	  xmlns:lang="clr-namespace:Gerayis.Properties"
+	  mc:Ignorable="d" FontFamily="..\..\Fonts\#Montserrat"
 	  d:DesignHeight="450" d:DesignWidth="800" Foreground="{Binding Source={StaticResource Foreground1}}"
-      Title="TutorialPage">
+	  Title="TutorialPage">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-        <StackPanel Margin="10 10 10 0" Grid.ColumnSpan="2">
-            <TextBlock Text="{x:Static lang:Resources.GettingStarted}" FontSize="19" FontWeight="Bold"/>
-            <TextBlock Text="{x:Static lang:Resources.WelcomeTutorial}"/>
-        </StackPanel>
+		<StackPanel Margin="10 10 10 0" Grid.ColumnSpan="2">
+			<TextBlock Text="{x:Static lang:Resources.GettingStarted}" FontSize="19" FontWeight="Bold"/>
+			<TextBlock Text="{x:Static lang:Resources.WelcomeTutorial}"/>
+		</StackPanel>
 
-        <StackPanel Margin="10" Grid.Row="1">
-            <TextBlock Text="{x:Static lang:Resources.BarCode}" FontSize="16" FontWeight="Bold"/>
-            <Image x:Name="BarCodeImg" Width="290" Height="120" Margin="10"/>
-        </StackPanel>
+		<StackPanel Margin="10" Grid.Row="1">
+			<TextBlock Text="{x:Static lang:Resources.BarCode}" FontSize="16" FontWeight="Bold"/>
+			<Image x:Name="BarCodeImg" Width="290" Height="120" Margin="10"/>
+		</StackPanel>
 
-        <StackPanel Margin="10" Grid.Column="1" Grid.Row="1">
-            <TextBlock Text="{x:Static lang:Resources.QRCode}" FontSize="16" FontWeight="Bold"/>
-            <Image x:Name="QRCodeImg" Width="290" Height="120" Margin="10"/>
-        </StackPanel>
-        
-        <TextBox x:Name="BarCodeStringTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#8B2DF0" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#8B2DF0" Margin="10,5,10,30" VerticalAlignment="Center" Width="400" Grid.Row="2" Grid.ColumnSpan="2" TextChanged="BarCodeStringTxt_TextChanged" Text="{x:Static lang:Resources.Gerayis}"/>
+		<StackPanel Margin="10" Grid.Column="1" Grid.Row="1">
+			<TextBlock Text="{x:Static lang:Resources.QRCode}" FontSize="16" FontWeight="Bold"/>
+			<Image x:Name="QRCodeImg" Width="290" Height="120" Margin="10"/>
+		</StackPanel>
+		
+		<TextBox x:Name="BarCodeStringTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="Bold" Background="{x:Null}" BorderBrush="#8B2DF0" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#8B2DF0" Margin="10,5,10,30" VerticalAlignment="Center" Width="400" Grid.Row="2" Grid.ColumnSpan="2" TextChanged="BarCodeStringTxt_TextChanged" Text="{x:Static lang:Resources.Gerayis}"/>
 
-    </Grid>
+	</Grid>
 </Page>

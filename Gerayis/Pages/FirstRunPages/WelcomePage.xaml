@@ -10,10 +10,10 @@
 	  Title="WelcomePage" Foreground="{Binding Source={StaticResource Foreground1}}">
 
 	<Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="..\..\Images\Gerayis.png" Height="150" Width="150" Margin="10"/>
-            <TextBlock x:Name="WelcomeTxt" d:Text="Welcome, [USER]" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock Text="{x:Static lang:Resources.WelcomeThanks}" HorizontalAlignment="Center"/>
-        </StackPanel>
-    </Grid>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Image Source="..\..\Images\Gerayis.png" Height="150" Width="150" Margin="10"/>
+			<TextBlock x:Name="WelcomeTxt" d:Text="Welcome, [USER]" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Text="{x:Static lang:Resources.WelcomeThanks}" HorizontalAlignment="Center"/>
+		</StackPanel>
+	</Grid>
 </Page>
