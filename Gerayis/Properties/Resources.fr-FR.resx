@@ -378,4 +378,10 @@
   <data name="LetsGo" xml:space="preserve">
     <value>Allons-y</value>
   </data>
+  <data name="BarCodeSettings" xml:space="preserve">
+    <value>Paramètres du Code Barre.</value>
+  </data>
+  <data name="QRCodeSettings" xml:space="preserve">
+    <value>Paramètres du QR Code.</value>
+  </data>
 </root>

@@ -115,6 +115,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bar Code settings..
+        /// </summary>
+        public static string BarCodeSettings {
+            get {
+                return ResourceManager.GetString("BarCodeSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Gerayis language..
         /// </summary>
         public static string ChangeLanguage {
@@ -615,6 +624,15 @@ namespace Gerayis.Properties {
         public static string QRCode {
             get {
                 return ResourceManager.GetString("QRCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to QR Code settings..
+        /// </summary>
+        public static string QRCodeSettings {
+            get {
+                return ResourceManager.GetString("QRCodeSettings", resourceCulture);
             }
         }
         

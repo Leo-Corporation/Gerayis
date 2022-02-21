@@ -378,4 +378,10 @@
   <data name="LetsGo" xml:space="preserve">
     <value>Let's go</value>
   </data>
+  <data name="BarCodeSettings" xml:space="preserve">
+    <value>Bar Code settings.</value>
+  </data>
+  <data name="QRCodeSettings" xml:space="preserve">
+    <value>QR Code settings.</value>
+  </data>
 </root>
