@@ -364,4 +364,7 @@
   <data name="QRCodeSettings" xml:space="preserve">
     <value>QR Code settings.</value>
   </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Manage your Data.</value>
+  </data>
 </root>

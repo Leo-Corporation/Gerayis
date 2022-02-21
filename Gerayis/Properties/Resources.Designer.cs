@@ -520,6 +520,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage your Data..
+        /// </summary>
+        public static string ManageData {
+            get {
+                return ResourceManager.GetString("ManageData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MSI.
         /// </summary>
         public static string MSI {

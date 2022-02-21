@@ -384,4 +384,7 @@
   <data name="QRCodeSettings" xml:space="preserve">
     <value>Paramètres du QR Code.</value>
   </data>
+  <data name="ManageData" xml:space="preserve">
+    <value>Gérez vos données.</value>
+  </data>
 </root>
