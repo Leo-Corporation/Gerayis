@@ -332,7 +332,7 @@ public partial class SettingsPage : Page
 	/// <summary>
 	/// Restarts Gerayis.
 	/// </summary>
-	private void DisplayRestartMessage()
+	private static void DisplayRestartMessage()
 	{
 		if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
 		{

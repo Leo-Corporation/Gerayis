@@ -34,7 +34,7 @@ namespace Gerayis.Pages.FirstRunPages;
 /// </summary>
 public partial class TutorialPage : Page
 {
-	private System.Drawing.Font BarCodeFont
+	private static System.Drawing.Font BarCodeFont
 	{
 		get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 	}
