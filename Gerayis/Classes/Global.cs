@@ -212,9 +212,18 @@ public static class Global
 		// Add items
 		jumpList.JumpItems.Add(new JumpTask
 		{
-			Title = Properties.Resources.GenerateBarCode,
-			Description = Properties.Resources.SuccessBarCodeGenerated,
+			Title = Properties.Resources.BarCode,
+			Description = Properties.Resources.GenerateBarCode,
 			Arguments = "/page 0",
+			IconResourcePath = Assembly.GetEntryAssembly().Location,
+			CustomCategory = Properties.Resources.Generate
+		});
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.QRCode,
+			Description = Properties.Resources.GenerateQrCode,
+			Arguments = "/page 1",
 			IconResourcePath = Assembly.GetEntryAssembly().Location,
 			CustomCategory = Properties.Resources.Generate
 		});
