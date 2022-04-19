@@ -26,7 +26,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="1">
                     <Button Content="&#xF160;" Padding="5" x:Name="SeeFullQrCodeBtn" Click="SeeFullQrCodeBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0">
                         <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.SeeFullBarCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+                            <ToolTip Content="{x:Static lang:Resources.SeeFullQrCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
                         </Button.ToolTip>
                     </Button>
                     <Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14">
