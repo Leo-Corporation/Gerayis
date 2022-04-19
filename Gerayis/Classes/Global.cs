@@ -28,9 +28,11 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Shell;
 
 namespace Gerayis.Classes;
 
@@ -201,5 +203,26 @@ public static class Global
 		{
 			MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
 		}
+	}
+
+	internal static void CreateJumpLists()
+	{
+		JumpList jumpList = new(); // Create a new jump list
+
+		// Add items
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.GenerateBarCode,
+			Description = Properties.Resources.SuccessBarCodeGenerated,
+			Arguments = "/page 0",
+			IconResourcePath = Assembly.GetEntryAssembly().Location,
+			CustomCategory = Properties.Resources.Generate
+		});
+
+		jumpList.ShowFrequentCategory = false;
+		jumpList.ShowRecentCategory = false;
+
+		JumpList.SetJumpList(Application.Current, jumpList);
+		File.Create(Env.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt"); // Create a file
 	}
 }

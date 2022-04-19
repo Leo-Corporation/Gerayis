@@ -313,11 +313,29 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate a bar code.
+        /// </summary>
+        public static string GenerateBarCode {
+            get {
+                return ResourceManager.GetString("GenerateBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate bar code on start.
         /// </summary>
         public static string GenerateBarCodeOnStart {
             get {
                 return ResourceManager.GetString("GenerateBarCodeOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a QR Code.
+        /// </summary>
+        public static string GenerateQrCode {
+            get {
+                return ResourceManager.GetString("GenerateQrCode", resourceCulture);
             }
         }
         

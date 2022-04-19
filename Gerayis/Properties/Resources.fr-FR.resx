@@ -393,4 +393,10 @@
   <data name="SeeFullQrCode" xml:space="preserve">
     <value>Voir le QR Code dans une fenêtre séparée</value>
   </data>
+  <data name="GenerateBarCode" xml:space="preserve">
+    <value>Générer un code barre</value>
+  </data>
+  <data name="GenerateQrCode" xml:space="preserve">
+    <value>Générer un QR Code</value>
+  </data>
 </root>
