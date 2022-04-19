@@ -700,6 +700,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See QR Code in a separated window.
+        /// </summary>
+        public static string SeeFullQrCode {
+            get {
+                return ResourceManager.GetString("SeeFullQrCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See licenses.
         /// </summary>
         public static string SeeLicenses {
