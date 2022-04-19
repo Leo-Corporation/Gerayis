@@ -226,7 +226,7 @@ public partial class QRCodePage : Page
 	{
 		if (QRCodeImg.Source is not null) // If the image is not empty
 		{
-			new SeeFullBarCodeWindow(bitmapSource).Show(); // Show QR Code
+			new SeeFullBarCodeWindow(bitmapSource, Enums.AppPages.QRCode).Show(); // Show QR Code
 		}
 	}
 }

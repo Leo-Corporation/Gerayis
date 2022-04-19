@@ -270,7 +270,7 @@ public partial class BarCodePage : Page
 	{
 		if (BarCodeImg.Source is not null)
 		{
-			new SeeFullBarCodeWindow(bitmapSource).Show(); // Show bar code
+			new SeeFullBarCodeWindow(bitmapSource, AppPages.BarCode).Show(); // Show bar code
 		}
 	}
 }
