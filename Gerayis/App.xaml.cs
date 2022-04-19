@@ -57,7 +57,25 @@ public partial class App : Application
 		}
 		else
 		{
-			new MainWindow().Show(); // Launch Gerayis
+			if (e.Args.Length > 1)
+			{
+				switch ($"{e.Args[0]} {e.Args[1]}")
+				{
+					case "/page 0":
+						new MainWindow(Enums.AppPages.BarCode).Show(); // Launch Gerayis with the BarCode page
+						break;
+					case "/page 1":
+						new MainWindow(Enums.AppPages.QRCode).Show(); // Launch Gerayis with the QRCode page
+						break;
+					default:
+						new MainWindow().Show(); // Launch Gerayis with the default page
+						break;
+				}
+			}
+			else
+			{
+				new MainWindow().Show(); // Launch Gerayis with the default page
+			}
 		}
 	}
 }

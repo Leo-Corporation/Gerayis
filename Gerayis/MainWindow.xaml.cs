@@ -38,6 +38,7 @@ namespace Gerayis;
 public partial class MainWindow : Window
 {
 	private Button CheckedButton { get; set; }
+	private AppPages? PageToShow { get; init; }
 
 	readonly ColorAnimation colorAnimation = new()
 	{
@@ -45,9 +46,11 @@ public partial class MainWindow : Window
 		To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
 		Duration = new(TimeSpan.FromSeconds(0.2d))
 	};
-	public MainWindow()
+	public MainWindow(AppPages? pageToShow = null)
 	{
 		InitializeComponent();
+		PageToShow = pageToShow; // If we want to show a specific page on startup
+
 		InitUI(); // Load the UI
 	}
 
@@ -55,13 +58,13 @@ public partial class MainWindow : Window
 	{
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
-		CheckButton(Global.Settings.StartupPage switch
+		CheckButton(((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
 		{
 			AppPages.BarCode => BarCodeTabBtn,
 			AppPages.QRCode => QRCodeTabBtn,
 			_ => BarCodeTabBtn
 		}); // Check the start page button
-		PageContent.Content = Global.Settings.StartupPage switch
+		PageContent.Content = ((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
 		{
 			AppPages.BarCode => Global.BarCodePage,
 			AppPages.QRCode => Global.QRCodePage,
