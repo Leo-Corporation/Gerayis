@@ -38,6 +38,7 @@ namespace Gerayis.Pages;
 /// </summary>
 public partial class QRCodePage : Page
 {
+	
 	public QRCodePage()
 	{
 		InitializeComponent();
@@ -136,7 +137,7 @@ public partial class QRCodePage : Page
 		}
 	}
 
-	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	internal void CopyBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (QRCodeImg.Source is not null) // If the image is not empty
 		{
