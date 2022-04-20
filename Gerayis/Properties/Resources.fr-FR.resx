@@ -399,4 +399,7 @@
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Générer un QR Code</value>
   </data>
+  <data name="CreditsAndThanks" xml:space="preserve">
+    <value>Crédits et remerciements</value>
+  </data>
 </root>

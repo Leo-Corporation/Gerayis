@@ -379,4 +379,7 @@
   <data name="GenerateQrCode" xml:space="preserve">
     <value>Generate a QR Code</value>
   </data>
+  <data name="CreditsAndThanks" xml:space="preserve">
+    <value>Credits and special thanks</value>
+  </data>
 </root>
