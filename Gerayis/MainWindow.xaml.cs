@@ -23,7 +23,10 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using Gerayis.Enums;
+using Gerayis.Pages;
+using Gma.System.MouseKeyHook;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -39,6 +42,7 @@ public partial class MainWindow : Window
 {
 	private Button CheckedButton { get; set; }
 	private AppPages? PageToShow { get; init; }
+	private IKeyboardMouseEvents KeyboardMouseEvents;
 
 	readonly ColorAnimation colorAnimation = new()
 	{
@@ -56,6 +60,24 @@ public partial class MainWindow : Window
 
 	private void InitUI()
 	{
+		KeyboardMouseEvents = Hook.GlobalEvents(); // Hook the keyboard and mouse events
+		Hook.GlobalEvents().OnCombination(new Dictionary<Combination, Action>
+		{
+			{ 
+				Combination.FromString("Control+C"), () =>
+				{
+					if (PageContent.Content is BarCodePage)
+					{
+						Global.BarCodePage.CopyBtn_Click(null, null);
+					}
+					else if (PageContent.Content is QRCodePage)
+					{
+						Global.QRCodePage.CopyBtn_Click(null, null);
+					}
+				}
+			}
+		});
+		
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
 		CheckButton(((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
