@@ -163,7 +163,7 @@ public partial class BarCodePage : Page
 		}
 	}
 
-	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	internal void CopyBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (BarCodeImg.Source is not null) // If there is an image
 		{
