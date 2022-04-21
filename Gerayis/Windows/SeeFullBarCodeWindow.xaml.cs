@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 using Gerayis.Classes;
+using Gerayis.Enums;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -36,16 +37,26 @@ namespace Gerayis.Windows;
 public partial class SeeFullBarCodeWindow : Window
 {
 	internal BitmapSource BarCode { get; init; }
-	public SeeFullBarCodeWindow(BitmapSource barCode)
+	private AppPages ParentPage { get; init; }
+	public SeeFullBarCodeWindow(BitmapSource barCode, AppPages parentPage)
 	{
 		InitializeComponent();
 		BarCode = barCode;
+		ParentPage = parentPage;
 
 		InitUI(); // Load the UI
 	}
 
 	private void InitUI()
 	{
+		// Change the title according to the parent page
+		Title = ParentPage switch
+		{
+			AppPages.BarCode => Properties.Resources.SeeFullBarCode,
+			AppPages.QRCode => Properties.Resources.SeeFullQrCode,
+			_ => Properties.Resources.SeeFullBarCode
+		};
+
 		BarCodeImg.Source = BarCode; // Set image
 		StateChanged += (o, e) =>
 		{

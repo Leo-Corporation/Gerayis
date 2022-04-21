@@ -23,13 +23,16 @@ SOFTWARE.
 */
 using Gerayis.Pages;
 using LeoCorpLibrary;
+using LeoCorpLibrary.Enums;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Shell;
 
 namespace Gerayis.Classes;
 
@@ -41,7 +44,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Gerayis.
 	/// </summary>
-	public static string Version => "2.0.0.2202";
+	public static string Version => "2.1.0.2204";
 
 	/// <summary>
 	/// List of the available languages.
@@ -200,5 +203,35 @@ public static class Global
 		{
 			MessageBox.Show(ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
 		}
+	}
+
+	internal static void CreateJumpLists()
+	{
+		JumpList jumpList = new(); // Create a new jump list
+
+		// Add items
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.BarCode,
+			Description = Properties.Resources.GenerateBarCode,
+			Arguments = "/page 0",
+			IconResourcePath = Assembly.GetEntryAssembly().Location,
+			CustomCategory = Properties.Resources.Generate
+		});
+
+		jumpList.JumpItems.Add(new JumpTask
+		{
+			Title = Properties.Resources.QRCode,
+			Description = Properties.Resources.GenerateQrCode,
+			Arguments = "/page 1",
+			IconResourcePath = Assembly.GetEntryAssembly().Location,
+			CustomCategory = Properties.Resources.Generate
+		});
+
+		jumpList.ShowFrequentCategory = false;
+		jumpList.ShowRecentCategory = false;
+
+		JumpList.SetJumpList(Application.Current, jumpList);
+		File.Create(Env.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt"); // Create a file
 	}
 }

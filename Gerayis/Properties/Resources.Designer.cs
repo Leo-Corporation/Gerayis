@@ -214,6 +214,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credits and special thanks.
+        /// </summary>
+        public static string CreditsAndThanks {
+            get {
+                return ResourceManager.GetString("CreditsAndThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dark.
         /// </summary>
         public static string Dark {
@@ -313,11 +322,29 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate a bar code.
+        /// </summary>
+        public static string GenerateBarCode {
+            get {
+                return ResourceManager.GetString("GenerateBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate bar code on start.
         /// </summary>
         public static string GenerateBarCodeOnStart {
             get {
                 return ResourceManager.GetString("GenerateBarCodeOnStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a QR Code.
+        /// </summary>
+        public static string GenerateQrCode {
+            get {
+                return ResourceManager.GetString("GenerateQrCode", resourceCulture);
             }
         }
         
@@ -696,6 +723,15 @@ namespace Gerayis.Properties {
         public static string SeeFullBarCode {
             get {
                 return ResourceManager.GetString("SeeFullBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See QR Code in a separated window.
+        /// </summary>
+        public static string SeeFullQrCode {
+            get {
+                return ResourceManager.GetString("SeeFullQrCode", resourceCulture);
             }
         }
         

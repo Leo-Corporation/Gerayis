@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using Gerayis.UserControls;
+using Gerayis.Windows;
 using Microsoft.Win32;
 using QRCoder;
 using System;
@@ -37,6 +38,7 @@ namespace Gerayis.Pages;
 /// </summary>
 public partial class QRCodePage : Page
 {
+	
 	public QRCodePage()
 	{
 		InitializeComponent();
@@ -135,7 +137,7 @@ public partial class QRCodePage : Page
 		}
 	}
 
-	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	internal void CopyBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (QRCodeImg.Source is not null) // If the image is not empty
 		{
@@ -219,5 +221,13 @@ public partial class QRCodePage : Page
 	private void CopyGrid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
 	{
 		CopyGrid.Visibility = Visibility.Collapsed; // Hide
+	}
+
+	private void SeeFullQrCodeBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (QRCodeImg.Source is not null) // If the image is not empty
+		{
+			new SeeFullBarCodeWindow(bitmapSource, Enums.AppPages.QRCode).Show(); // Show QR Code
+		}
 	}
 }

@@ -332,7 +332,7 @@ public partial class SettingsPage : Page
 	/// <summary>
 	/// Restarts Gerayis.
 	/// </summary>
-	private void DisplayRestartMessage()
+	private static void DisplayRestartMessage()
 	{
 		if (MessageBox.Show(Properties.Resources.NeedRestartToApplyChanges, Properties.Resources.Gerayis, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
 		{
@@ -644,5 +644,14 @@ public partial class SettingsPage : Page
 
 		Global.Settings.StartupPage = AppPages.QRCode; // Set
 		SettingsManager.Save(); // Save changes
+	}
+
+	private void CreditsBtn_Click(object sender, RoutedEventArgs e)
+	{
+		MessageBox.Show($"{Properties.Resources.CreditsAndThanks}\n\n" +
+				$"@dependabot\n" +
+				$"@Leo-Peyronnet\n" +
+				$"@wcxu21",
+				Properties.Resources.CreditsAndThanks, MessageBoxButton.OK, MessageBoxImage.Information);
 	}
 }

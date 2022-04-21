@@ -390,4 +390,16 @@
   <data name="StartupPage" xml:space="preserve">
     <value>Default page on start.</value>
   </data>
+  <data name="SeeFullQrCode" xml:space="preserve">
+    <value>See QR Code in a separated window</value>
+  </data>
+  <data name="GenerateBarCode" xml:space="preserve">
+    <value>Generate a bar code</value>
+  </data>
+  <data name="GenerateQrCode" xml:space="preserve">
+    <value>Generate a QR Code</value>
+  </data>
+  <data name="CreditsAndThanks" xml:space="preserve">
+    <value>Credits and special thanks</value>
+  </data>
 </root>

@@ -30,7 +30,7 @@
 ## What is it?
 Gerayis is a modern Bar Code/QR Code generator for Windows. It is the next evolution of Bar Code Generator 2, which was release in 2020.
 
-Gerayis is written in C# .NET 5 using WPF.
+Gerayis is written in C# .NET 6 using WPF.
 
 ## Download
 - [Download](https://bit.ly/DownloadGerayis)

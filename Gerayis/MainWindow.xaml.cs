@@ -23,7 +23,10 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using Gerayis.Enums;
+using Gerayis.Pages;
+using Gma.System.MouseKeyHook;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -38,6 +41,9 @@ namespace Gerayis;
 public partial class MainWindow : Window
 {
 	private Button CheckedButton { get; set; }
+	private AppPages? PageToShow { get; init; }
+	private IKeyboardMouseEvents KeyboardMouseEvents;
+	private bool Focused { get; set; }
 
 	readonly ColorAnimation colorAnimation = new()
 	{
@@ -45,23 +51,49 @@ public partial class MainWindow : Window
 		To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
 		Duration = new(TimeSpan.FromSeconds(0.2d))
 	};
-	public MainWindow()
+	public MainWindow(AppPages? pageToShow = null)
 	{
 		InitializeComponent();
+		PageToShow = pageToShow; // If we want to show a specific page on startup
+
 		InitUI(); // Load the UI
 	}
 
 	private void InitUI()
 	{
+		Activated += (o, e) => { Focused = true; }; // The window is focused
+		Deactivated += (o, e) => { Focused = false; }; // The window isn't focused
+
+		KeyboardMouseEvents = Hook.GlobalEvents(); // Hook the keyboard and mouse events
+		Hook.GlobalEvents().OnCombination(new Dictionary<Combination, Action>
+		{
+			{
+				Combination.FromString("Control+C"), () =>
+				{
+					if (Focused)
+					{
+						if (PageContent.Content is BarCodePage)
+						{
+							Global.BarCodePage.CopyBtn_Click(null, null);
+						}
+						else if (PageContent.Content is QRCodePage)
+						{
+							Global.QRCodePage.CopyBtn_Click(null, null);
+						}
+					}
+				}
+			}
+		});
+
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
-		CheckButton(Global.Settings.StartupPage switch
+		CheckButton(((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
 		{
 			AppPages.BarCode => BarCodeTabBtn,
 			AppPages.QRCode => QRCodeTabBtn,
 			_ => BarCodeTabBtn
 		}); // Check the start page button
-		PageContent.Content = Global.Settings.StartupPage switch
+		PageContent.Content = ((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
 		{
 			AppPages.BarCode => Global.BarCodePage,
 			AppPages.QRCode => Global.QRCodePage,

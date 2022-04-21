@@ -39,7 +39,7 @@ namespace Gerayis.Pages;
 /// </summary>
 public partial class BarCodePage : Page
 {
-	private System.Drawing.Font BarCodeFont
+	private static System.Drawing.Font BarCodeFont
 	{
 		get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
 	}
@@ -163,7 +163,7 @@ public partial class BarCodePage : Page
 		}
 	}
 
-	private void CopyBtn_Click(object sender, RoutedEventArgs e)
+	internal void CopyBtn_Click(object sender, RoutedEventArgs e)
 	{
 		if (BarCodeImg.Source is not null) // If there is an image
 		{
@@ -270,7 +270,7 @@ public partial class BarCodePage : Page
 	{
 		if (BarCodeImg.Source is not null)
 		{
-			new SeeFullBarCodeWindow(bitmapSource).Show(); // Show bar code
+			new SeeFullBarCodeWindow(bitmapSource, AppPages.BarCode).Show(); // Show bar code
 		}
 	}
 }

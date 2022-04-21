@@ -24,6 +24,8 @@ SOFTWARE.
 
 using Gerayis.Classes;
 using Gerayis.Windows;
+using LeoCorpLibrary;
+using System.IO;
 using System.Windows;
 
 namespace Gerayis;
@@ -44,13 +46,36 @@ public partial class App : Application
 		Global.BarCodePage = new(); // Create a new BarCodePage
 		Global.QRCodePage = new(); // Create a new QRCodePage
 
+		if (!File.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt")) // Checks if the jumplists have already been generated
+		{
+			Global.CreateJumpLists(); // Create the JumpLists
+		}
+
 		if (Global.Settings.IsFirstRun.Value)
 		{
 			new FirstRunWindow().Show(); // Show the "First run" window
 		}
 		else
 		{
-			new MainWindow().Show(); // Launch Gerayis
+			if (e.Args.Length > 1)
+			{
+				switch ($"{e.Args[0]} {e.Args[1]}")
+				{
+					case "/page 0":
+						new MainWindow(Enums.AppPages.BarCode).Show(); // Launch Gerayis with the BarCode page
+						break;
+					case "/page 1":
+						new MainWindow(Enums.AppPages.QRCode).Show(); // Launch Gerayis with the QRCode page
+						break;
+					default:
+						new MainWindow().Show(); // Launch Gerayis with the default page
+						break;
+				}
+			}
+			else
+			{
+				new MainWindow().Show(); // Launch Gerayis with the default page
+			}
 		}
 	}
 }
