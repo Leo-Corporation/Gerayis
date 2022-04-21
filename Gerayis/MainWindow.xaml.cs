@@ -43,6 +43,7 @@ public partial class MainWindow : Window
 	private Button CheckedButton { get; set; }
 	private AppPages? PageToShow { get; init; }
 	private IKeyboardMouseEvents KeyboardMouseEvents;
+	private bool Focused { get; set; }
 
 	readonly ColorAnimation colorAnimation = new()
 	{
@@ -60,24 +61,30 @@ public partial class MainWindow : Window
 
 	private void InitUI()
 	{
+		Activated += (o, e) => { Focused = true; }; // The window is focused
+		Deactivated += (o, e) => { Focused = false; }; // The window isn't focused
+
 		KeyboardMouseEvents = Hook.GlobalEvents(); // Hook the keyboard and mouse events
 		Hook.GlobalEvents().OnCombination(new Dictionary<Combination, Action>
 		{
-			{ 
+			{
 				Combination.FromString("Control+C"), () =>
 				{
-					if (PageContent.Content is BarCodePage)
+					if (Focused)
 					{
-						Global.BarCodePage.CopyBtn_Click(null, null);
-					}
-					else if (PageContent.Content is QRCodePage)
-					{
-						Global.QRCodePage.CopyBtn_Click(null, null);
+						if (PageContent.Content is BarCodePage)
+						{
+							Global.BarCodePage.CopyBtn_Click(null, null);
+						}
+						else if (PageContent.Content is QRCodePage)
+						{
+							Global.QRCodePage.CopyBtn_Click(null, null);
+						}
 					}
 				}
 			}
 		});
-		
+
 		HelloTxt.Text = Global.GetHiSentence; // Set the "Hello" message
 
 		CheckButton(((PageToShow is null) ? Global.Settings.StartupPage : PageToShow) switch
