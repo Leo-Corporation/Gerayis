@@ -4,7 +4,7 @@
 #define MyAppName "Gerayis"
 #define MyAppVersion "2.1.1.2206"
 #define MyAppFullVersion "2.1.1.2206"
-#define MyAppPublisher "Léo Corporation"
+#define MyAppPublisher "LÃ©o Corporation"
 #define MyAppURL "https://leocorporation.dev/"
 #define MyAppExeName "Gerayis.exe"
 
@@ -22,7 +22,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
-DefaultGroupName=Léo Corp
+DefaultGroupName=LÃ©o Corp
 DisableProgramGroupPage=yes
 LicenseFile=..\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
