@@ -301,29 +301,59 @@ public partial class BarCodePage : Page
 		switch (barcode)
 		{
 			case Barcodes.Code11:
+				// Update icons
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF36A"; // Set text
+
+				// Update colors
+				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
+				MinLengthIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
 				break;
 			case Barcodes.Code128:
+				// Update icons
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF295"; // Set text
 				MinLengthIconTxt.Text = "\uF36A"; // Set text
+
+				// Update colors
+				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				MinLengthIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
 				break;
 			case Barcodes.ISBN:
+				// Update icons
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF295"; // Set text
+
+				// Update colors
+				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
+				MinLengthIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
 				break;
 			case Barcodes.MSI:
+				// Update icons
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF36A"; // Set text
+
+				// Update colors
+				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
+				MinLengthIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
 				break;
 			case Barcodes.UPCA:
+				// Update icons
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF295"; // Set text
+
+				// Update colors
+				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
+				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
+				MinLengthIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
 				break;
 		}
 	}
