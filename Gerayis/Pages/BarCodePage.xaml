@@ -41,7 +41,7 @@
 					</Button>
 				</StackPanel>
 			</Grid>
-			<Grid x:Name="InfoPanel" Visibility="Collapsed">
+			<Grid x:Name="InfoPanel" Margin="10" Visibility="Collapsed">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition/>
