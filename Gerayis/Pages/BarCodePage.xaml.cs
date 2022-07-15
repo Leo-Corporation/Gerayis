@@ -366,11 +366,11 @@ public partial class BarCodePage : Page
 		// Update Example text
 		ExampleTxt.Text = barcode switch
 		{
-			Barcodes.Code128 => Properties.Resources.Gerayis, // Text
-			Barcodes.Code11 => "456146121546", // Code11
-			Barcodes.ISBN => "978146121546", // ISBN starts with 978
-			Barcodes.MSI => "163657455245", // MSI
-			Barcodes.UPCA => "12659456240", // UPC-A
+			Barcodes.Code128 =>  $"{Properties.Resources.Example} - {Properties.Resources.Gerayis}", // Text
+			Barcodes.Code11 => $"{Properties.Resources.Example} - 456146121546", // Code11
+			Barcodes.ISBN => $"{Properties.Resources.Example} - 978146121546", // ISBN starts with 978
+			Barcodes.MSI => $"{Properties.Resources.Example} - 163657455245", // MSI
+			Barcodes.UPCA => $"{Properties.Resources.Example} - 12659456240", // UPC-A
 			_ => Properties.Resources.Gerayis // Default value
 		}; // Set text depending on the bar code type
 	}
