@@ -529,6 +529,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Letters.
+        /// </summary>
+        public static string Letters {
+            get {
+                return ResourceManager.GetString("Letters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {
@@ -552,6 +561,15 @@ namespace Gerayis.Properties {
         public static string ManageData {
             get {
                 return ResourceManager.GetString("ManageData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min length.
+        /// </summary>
+        public static string MinLength {
+            get {
+                return ResourceManager.GetString("MinLength", resourceCulture);
             }
         }
         
@@ -606,6 +624,15 @@ namespace Gerayis.Properties {
         public static string NoUseSpecialChars {
             get {
                 return ResourceManager.GetString("NoUseSpecialChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numbers.
+        /// </summary>
+        public static string Numbers {
+            get {
+                return ResourceManager.GetString("Numbers", resourceCulture);
             }
         }
         

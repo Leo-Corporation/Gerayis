@@ -382,4 +382,13 @@
   <data name="CreditsAndThanks" xml:space="preserve">
     <value>Credits and special thanks</value>
   </data>
+  <data name="Numbers" xml:space="preserve">
+    <value>Numbers</value>
+  </data>
+  <data name="Letters" xml:space="preserve">
+    <value>Letters</value>
+  </data>
+  <data name="MinLength" xml:space="preserve">
+    <value>Min length</value>
+  </data>
 </root>
