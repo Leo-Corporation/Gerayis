@@ -394,4 +394,7 @@
   <data name="Example" xml:space="preserve">
     <value>Example</value>
   </data>
+  <data name="OpenSourceMention" xml:space="preserve">
+    <value>Open Source - Made with ❤️ in France</value>
+  </data>
 </root>

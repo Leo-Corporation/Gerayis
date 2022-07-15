@@ -664,6 +664,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Source - Made with ❤️ in France.
+        /// </summary>
+        public static string OpenSourceMention {
+            get {
+                return ResourceManager.GetString("OpenSourceMention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin.
         /// </summary>
         public static string Pin {

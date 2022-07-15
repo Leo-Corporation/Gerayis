@@ -317,6 +317,7 @@
                         </Button>
                     </StackPanel>
 				</Expander>
+                <TextBlock Text="{x:Static lang:Resources.OpenSourceMention}" Margin="0,10,0,0" FontStyle="Italic" HorizontalAlignment="Center"/>
 			</StackPanel>
 		</Grid>
 	</ScrollViewer>
