@@ -273,4 +273,25 @@ public partial class BarCodePage : Page
 			new SeeFullBarCodeWindow(bitmapSource, AppPages.BarCode).Show(); // Show bar code
 		}
 	}
+
+	bool infoPanelToggled = false;
+	private void BarCodeInfoBtn_Click(object sender, RoutedEventArgs e)
+	{
+		if (infoPanelToggled)
+		{
+			InfoPanel.Visibility = Visibility.Collapsed; // Hide
+			Content.Visibility = Visibility.Visible; // Show
+			infoPanelToggled = false; // Set to false
+			
+			BarCodeInfoBtn.Content = "\uF4A4"; // Set text
+		}
+		else
+		{
+			InfoPanel.Visibility = Visibility.Visible; // Show
+			Content.Visibility = Visibility.Collapsed; // Hide
+			infoPanelToggled = true; // Set to true
+			
+			BarCodeInfoBtn.Content = "\uF36B"; // Set text
+		}
+	}
 }
