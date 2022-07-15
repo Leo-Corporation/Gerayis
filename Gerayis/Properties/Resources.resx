@@ -391,4 +391,7 @@
   <data name="MinLength" xml:space="preserve">
     <value>Min length</value>
   </data>
+  <data name="Example" xml:space="preserve">
+    <value>Example</value>
+  </data>
 </root>
