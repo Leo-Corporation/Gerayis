@@ -59,9 +59,9 @@
 				<TextBlock x:Name="MinLengthIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" Grid.Row="2"/>
 				
 				<!--Description TextBlock-->
-				<TextBlock x:Name="CharsTxt" FontSize="14" Grid.Column="1"/>
-				<TextBlock x:Name="NumbersTxt" FontSize="14" Grid.Column="1" Grid.Row="1"/>
-				<TextBlock x:Name="MinLengthTxt" FontSize="14" Grid.Column="1" Grid.Row="2"/>
+				<TextBlock Text="{x:Static lang:Resources.Letters}" x:Name="CharsTxt" FontSize="14" Grid.Column="1"/>
+                <TextBlock Text="{x:Static lang:Resources.Numbers}" x:Name="NumbersTxt" FontSize="14" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Text="{x:Static lang:Resources.MinLength}" x:Name="MinLengthTxt" FontSize="14" Grid.Column="1" Grid.Row="2"/>
 			</Grid>
 			<StackPanel x:Name="Content" Orientation="Vertical">
 				<Grid>

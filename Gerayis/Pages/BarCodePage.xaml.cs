@@ -292,6 +292,39 @@ public partial class BarCodePage : Page
 			infoPanelToggled = true; // Set to true
 			
 			BarCodeInfoBtn.Content = "\uF36B"; // Set text
+			LoadInfoPanel((Barcodes)BarCodeTypeComboBox.SelectedIndex); // Load info panel
+		}
+	}
+
+	private void LoadInfoPanel(Barcodes barcode)
+	{
+		switch (barcode)
+		{
+			case Barcodes.Code11:
+				NumbersIconTxt.Text = "\uF295"; // Set text
+				CharsIconTxt.Text = "\uF36A"; // Set text
+				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				break;
+			case Barcodes.Code128:
+				NumbersIconTxt.Text = "\uF295"; // Set text
+				CharsIconTxt.Text = "\uF295"; // Set text
+				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				break;
+			case Barcodes.ISBN:
+				NumbersIconTxt.Text = "\uF295"; // Set text
+				CharsIconTxt.Text = "\uF36A"; // Set text
+				MinLengthIconTxt.Text = "\uF295"; // Set text
+				break;
+			case Barcodes.MSI:
+				NumbersIconTxt.Text = "\uF295"; // Set text
+				CharsIconTxt.Text = "\uF36A"; // Set text
+				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				break;
+			case Barcodes.UPCA:
+				NumbersIconTxt.Text = "\uF295"; // Set text
+				CharsIconTxt.Text = "\uF36A"; // Set text
+				MinLengthIconTxt.Text = "\uF295"; // Set text
+				break;
 		}
 	}
 }
