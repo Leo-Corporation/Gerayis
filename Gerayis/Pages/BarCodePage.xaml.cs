@@ -328,6 +328,9 @@ public partial class BarCodePage : Page
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF295"; // Set text
 
+				// Update text
+				MinLengthTxt.Text = $"{Properties.Resources.MinLength} - 9/10/12/13"; // Set text
+
 				// Update colors
 				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
 				CharsIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color
@@ -349,6 +352,9 @@ public partial class BarCodePage : Page
 				NumbersIconTxt.Text = "\uF295"; // Set text
 				CharsIconTxt.Text = "\uF36A"; // Set text
 				MinLengthIconTxt.Text = "\uF295"; // Set text
+
+				// Update text
+				MinLengthTxt.Text = $"{Properties.Resources.MinLength} - 11/12"; // Set text
 
 				// Update colors
 				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
