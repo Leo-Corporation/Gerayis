@@ -27,6 +27,7 @@ using Gerayis.UserControls;
 using Gerayis.Windows;
 using Microsoft.Win32;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -241,6 +242,8 @@ public partial class BarCodePage : Page
 				_ => Properties.Resources.Gerayis // Default value
 			};
 		}
+
+		UpdateValidIcon(); // Update valid icon
 	}
 
 	private void ShowErrorBtn_Click(object sender, RoutedEventArgs e)
@@ -373,5 +376,28 @@ public partial class BarCodePage : Page
 			Barcodes.UPCA => $"{Properties.Resources.Example} - 12659456240", // UPC-A
 			_ => Properties.Resources.Gerayis // Default value
 		}; // Set text depending on the bar code type
+	}
+
+	private void BarCodeStringTxt_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		UpdateValidIcon();
+	}
+
+	private void UpdateValidIcon()
+	{
+		Regex regex = new((Barcodes)BarCodeTypeComboBox.SelectedIndex switch
+		{
+			Barcodes.Code11 => "^[0-9-]+$", // Code11 ('-' character is allowed)
+			Barcodes.Code128 => "^.[^éèàçùµ¤]+$", // Code128
+			Barcodes.ISBN => "^(?:[0-9]{9}|[0-9]{10}|[0-9]{12}|[0-9]{13})$", // ISBN
+			Barcodes.MSI => "^[0-9]+$", // MSI
+			Barcodes.UPCA => "^[0-9]{11,12}$", // UPC-A
+			_ => "^.[^éèàçùµ¤]+$" // Default value
+		});
+
+		// Check if the string is valid
+		ValidIconTxt.Text = regex.IsMatch(BarCodeStringTxt.Text) ? "\uF295" : "\uF36A"; // Set icon depending on the result
+		ValidIconTxt.Foreground = regex.IsMatch(BarCodeStringTxt.Text) ? new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())) : new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color depending on the result
+
 	}
 }
