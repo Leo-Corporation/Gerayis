@@ -7,7 +7,7 @@
 		xmlns:lang="clr-namespace:Gerayis.Properties"
 		mc:Ignorable="d"
 		Foreground="{Binding Source={StaticResource Foreground1}}"
-		FontFamily="/Fonts/#Montserrat"
+		FontFamily="/Fonts/#Hauora"
 		Title="{x:Static lang:Resources.SeeFullBarCode}" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent" AllowsTransparency="True">
 
 	<WindowChrome.WindowChrome>
@@ -130,8 +130,8 @@
                 </Grid.RowDefinitions>
                 <Image x:Name="BarCodeImg"/>
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,20" HorizontalAlignment="Center">
-                    <Button x:Name="CopyBtn" Click="CopyBtn_Click" Content="{x:Static lang:Resources.Copy}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="Bold" Margin="0,10,10,0"/>
-                    <Button x:Name="SaveBtn" Click="SaveBtn_Click" Content="{x:Static lang:Resources.Save}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="Bold" Margin="0,10,0,0"/>
+                    <Button x:Name="CopyBtn" Click="CopyBtn_Click" Content="{x:Static lang:Resources.Copy}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,10,0"/>
+                    <Button x:Name="SaveBtn" Click="SaveBtn_Click" Content="{x:Static lang:Resources.Save}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,0,0"/>
                 </StackPanel>
 
             </Grid>

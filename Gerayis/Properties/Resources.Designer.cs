@@ -295,6 +295,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example.
+        /// </summary>
+        public static string Example {
+            get {
+                return ResourceManager.GetString("Example", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export settings.
         /// </summary>
         public static string Export {
@@ -529,6 +538,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Letters.
+        /// </summary>
+        public static string Letters {
+            get {
+                return ResourceManager.GetString("Letters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Licenses.
         /// </summary>
         public static string Licenses {
@@ -552,6 +570,15 @@ namespace Gerayis.Properties {
         public static string ManageData {
             get {
                 return ResourceManager.GetString("ManageData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min length.
+        /// </summary>
+        public static string MinLength {
+            get {
+                return ResourceManager.GetString("MinLength", resourceCulture);
             }
         }
         
@@ -610,6 +637,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Numbers.
+        /// </summary>
+        public static string Numbers {
+            get {
+                return ResourceManager.GetString("Numbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to On start.
         /// </summary>
         public static string OnStart {
@@ -624,6 +660,15 @@ namespace Gerayis.Properties {
         public static string OnStartDesc {
             get {
                 return ResourceManager.GetString("OnStartDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Source - Made with ❤️ in France.
+        /// </summary>
+        public static string OpenSourceMention {
+            get {
+                return ResourceManager.GetString("OpenSourceMention", resourceCulture);
             }
         }
         
