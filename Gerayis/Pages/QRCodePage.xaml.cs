@@ -38,7 +38,7 @@ namespace Gerayis.Pages;
 /// </summary>
 public partial class QRCodePage : Page
 {
-	
+
 	public QRCodePage()
 	{
 		InitializeComponent();
@@ -76,7 +76,7 @@ public partial class QRCodePage : Page
 				bitmapSource.Freeze();
 				QRCodeImg.Source = bitmapSource;
 
-				QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+				QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, bitmapSource, QRCodeHistory, Enums.AppPages.QRCode));
 			}
 		}
 	}
@@ -122,7 +122,7 @@ public partial class QRCodePage : Page
 
 					if (!contains && sender is not TextBox)
 					{
-						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, QRCodeHistory, Enums.AppPages.QRCode));
+						QRCodeHistory.Children.Add(new HistoryItem(QRCodeStringTxt.Text, bitmapSource, QRCodeHistory, Enums.AppPages.QRCode));
 					}
 				}
 			}
