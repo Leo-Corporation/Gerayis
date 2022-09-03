@@ -141,7 +141,7 @@ public partial class BarCodePage : Page
 
 					if (!contains)
 					{
-						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						BarCodeHistory.Children.Add(new HistoryItem(text, bitmapSource, BarCodeHistory, AppPages.BarCode, barcodeType));
 					}
 				}
 			}

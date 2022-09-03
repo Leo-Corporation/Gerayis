@@ -93,9 +93,9 @@
 				</StackPanel>
 			</StackPanel>
 			<ScrollViewer x:Name="HistoryScroll" Visibility="Collapsed" Margin="10" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Template="{DynamicResource ScrollViewerControlTemplate}" Height="230">
-				<StackPanel x:Name="BarCodeHistory" >
+				<WrapPanel x:Name="BarCodeHistory" >
 
-				</StackPanel>
+				</WrapPanel>
 			</ScrollViewer>
 		</StackPanel>
 
