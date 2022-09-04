@@ -168,6 +168,8 @@ public partial class SettingsPage : Page
 			BarCodesSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultBarCodeFileExtension.Value; // Select
 			QRCodeSaveFormatComboBox.SelectedIndex = (int)Global.Settings.DefaultQRCodeFileExtension.Value; // Select
 
+			VersionTxt.Text = Global.Version; // Set text
+
 			// Update the UpdateStatusTxt
 			if (Global.Settings.CheckUpdatesOnStart.Value)
 			{
@@ -243,60 +245,69 @@ public partial class SettingsPage : Page
 				QRBackColorRec.Fill = new SolidColorBrush { Color = Color.FromRgb(255, 255, 255) }; // Set color
 			}
 
-			VersionTxt.Text = Global.Version; // Set text
-
 			SettingsManager.Save(); // Save changes
+		}
+		catch (System.Net.Http.HttpRequestException)
+		{
+			MessageBox.Show(Properties.Resources.CheckUpdateInternetMsg, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
+			MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error); // Show error
 		}
 	}
 
 	private async void RefreshInstallBtn_Click(object sender, RoutedEventArgs e)
 	{
-		if (Global.Settings.CheckUpdatesOnStart.Value)
+		try
 		{
-			if (await NetworkConnection.IsAvailableAsync()) // If there is Internet
+			if (Global.Settings.CheckUpdatesOnStart.Value)
 			{
-				if (isAvailable) // If there is updates
+				if (await NetworkConnection.IsAvailableAsync()) // If there is Internet
 				{
-					string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
-					if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+					if (isAvailable) // If there is updates
 					{
-						Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
-						Environment.Exit(0); // Close
+						string lastVersion = await Update.GetLastVersionAsync(Global.LastVersionLink); // Get last version
+						if (MessageBox.Show(Properties.Resources.InstallConfirmMsg, $"{Properties.Resources.InstallVersion} {lastVersion}", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+						{
+							Env.ExecuteAsAdmin(Directory.GetCurrentDirectory() + @"\Xalyus Updater.exe"); // Start the updater
+							Environment.Exit(0); // Close
+						}
+					}
+					else
+					{
+						// Update the UpdateStatusTxt
+						isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
+
+						UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
+						InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
+						InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
+
+						if (isAvailable && Global.Settings.NotifyUpdates.Value)
+						{
+							notifyIcon.Visible = true; // Show
+							notifyIcon.ShowBalloonTip(5000, Properties.Resources.Gerayis, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
+							notifyIcon.Visible = false; // Hide
+						}
 					}
 				}
 				else
 				{
-					// Update the UpdateStatusTxt
-					isAvailable = Update.IsAvailable(Global.Version, await Update.GetLastVersionAsync(Global.LastVersionLink));
-
-					UpdateStatusTxt.Text = isAvailable ? Properties.Resources.AvailableUpdates : Properties.Resources.UpToDate; // Set the text
-					InstallIconTxt.Text = isAvailable ? "\uF152" : "\uF191"; // Set text 
-					InstallMsgTxt.Text = isAvailable ? Properties.Resources.Install : Properties.Resources.CheckUpdate; // Set text
-
-					if (isAvailable && Global.Settings.NotifyUpdates.Value)
-					{
-						notifyIcon.Visible = true; // Show
-						notifyIcon.ShowBalloonTip(5000, Properties.Resources.Gerayis, Properties.Resources.AvailableUpdates, System.Windows.Forms.ToolTipIcon.Info);
-						notifyIcon.Visible = false; // Hide
-					}
+					UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
+					InstallIconTxt.Text = "\uF191"; // Set text 
+					InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
 				}
 			}
 			else
 			{
-				UpdateStatusTxt.Text = Properties.Resources.UnableToCheckUpdates; // Set the text
-				InstallIconTxt.Text = "\uF191"; // Set text 
+				UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
 				InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
+				InstallIconTxt.Text = "\uF191"; // Set text 
 			}
 		}
-		else
+		catch (System.Net.Http.HttpRequestException)
 		{
-			UpdateStatusTxt.Text = Properties.Resources.CheckUpdatesDisabledOnStart; // Set text
-			InstallMsgTxt.Text = Properties.Resources.CheckUpdate; // Set text
-			InstallIconTxt.Text = "\uF191"; // Set text 
+			MessageBox.Show(Properties.Resources.CheckUpdateInternetMsg, Properties.Resources.Gerayis, MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 

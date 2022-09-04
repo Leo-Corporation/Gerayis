@@ -23,19 +23,19 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Text="{x:Static lang:Resources.QRCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <Button Content="&#xF160;" Padding="5" x:Name="SeeFullQrCodeBtn" Click="SeeFullQrCodeBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.SeeFullQrCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14">
-                        <Button.ToolTip>
-                            <ToolTip Content="{x:Static lang:Resources.History}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-            </Grid>
+				<StackPanel Orientation="Horizontal" Grid.Column="1">
+					<Button Content="&#xF160;" Padding="5" x:Name="SeeFullQrCodeBtn" Click="SeeFullQrCodeBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.SeeFullQrCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+						</Button.ToolTip>
+					</Button>
+					<Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14">
+						<Button.ToolTip>
+							<ToolTip Content="{x:Static lang:Resources.History}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
+						</Button.ToolTip>
+					</Button>
+				</StackPanel>
+			</Grid>
 			<StackPanel x:Name="Content" Orientation="Vertical">
 				<Grid>
 					<Image x:Name="QRCodeImg" Width="290" Height="120" Cursor="Hand" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave"/>
@@ -54,9 +54,9 @@
 				</StackPanel>
 			</StackPanel>
 			<ScrollViewer x:Name="HistoryScroll" Visibility="Collapsed" Margin="10" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Template="{DynamicResource ScrollViewerControlTemplate}" Height="230">
-				<StackPanel x:Name="QRCodeHistory" >
+				<WrapPanel x:Name="QRCodeHistory" >
 
-				</StackPanel>
+				</WrapPanel>
 			</ScrollViewer>
 		</StackPanel>
 

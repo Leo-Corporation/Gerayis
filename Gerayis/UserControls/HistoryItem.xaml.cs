@@ -25,6 +25,7 @@ using Gerayis.Classes;
 using Gerayis.Enums;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Gerayis.UserControls;
 
@@ -34,23 +35,26 @@ namespace Gerayis.UserControls;
 public partial class HistoryItem : UserControl
 {
 	internal string ContentText { get; init; }
-	StackPanel StackPanel { get; init; }
+	WrapPanel WrapPanel { get; init; }
 	AppPages AppPages { get; init; }
 	internal Barcodes BarcodeType { get; init; }
+	private BitmapSource BitmapSource { get; init; }
 
-	public HistoryItem(string value, StackPanel stackPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
+	public HistoryItem(string value, BitmapSource bitmapSource, WrapPanel wrapPanel, AppPages pages, Barcodes barcodeType = Barcodes.Code128)
 	{
 		InitializeComponent();
 		ContentText = value; // Set
-		StackPanel = stackPanel; // Set
+		WrapPanel = wrapPanel; // Set
 		AppPages = pages; // Set
 		BarcodeType = barcodeType; // Set
+		BitmapSource = bitmapSource;
 
 		InitUI();
 	}
 
 	private void InitUI()
 	{
+		HistoryImage.Source = BitmapSource;
 		BarCodeTxt.Text = ContentText;
 		if (AppPages == AppPages.BarCode) // If the item is a barcode
 		{
@@ -101,7 +105,7 @@ public partial class HistoryItem : UserControl
 
 	private void DeleteBtn_Click(object sender, RoutedEventArgs e)
 	{
-		StackPanel.Children.Remove(this); // Remove
+		WrapPanel.Children.Remove(this); // Remove
 
 		switch (AppPages)
 		{

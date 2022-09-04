@@ -141,7 +141,7 @@ public partial class BarCodePage : Page
 
 					if (!contains)
 					{
-						BarCodeHistory.Children.Add(new HistoryItem(text, BarCodeHistory, AppPages.BarCode, barcodeType));
+						BarCodeHistory.Children.Add(new HistoryItem(text, bitmapSource, BarCodeHistory, AppPages.BarCode, barcodeType));
 					}
 				}
 			}
@@ -285,7 +285,7 @@ public partial class BarCodePage : Page
 			InfoPanel.Visibility = Visibility.Collapsed; // Hide
 			Content.Visibility = Visibility.Visible; // Show
 			infoPanelToggled = false; // Set to false
-			
+
 			BarCodeInfoBtn.Content = "\uF4A4"; // Set text
 		}
 		else
@@ -293,7 +293,7 @@ public partial class BarCodePage : Page
 			InfoPanel.Visibility = Visibility.Visible; // Show
 			Content.Visibility = Visibility.Collapsed; // Hide
 			infoPanelToggled = true; // Set to true
-			
+
 			BarCodeInfoBtn.Content = "\uF36B"; // Set text
 			LoadInfoPanel((Barcodes)BarCodeTypeComboBox.SelectedIndex); // Load info panel
 		}
@@ -369,7 +369,7 @@ public partial class BarCodePage : Page
 		// Update Example text
 		ExampleTxt.Text = barcode switch
 		{
-			Barcodes.Code128 =>  $"{Properties.Resources.Example} - {Properties.Resources.Gerayis}", // Text
+			Barcodes.Code128 => $"{Properties.Resources.Example} - {Properties.Resources.Gerayis}", // Text
 			Barcodes.Code11 => $"{Properties.Resources.Example} - 456146121546", // Code11
 			Barcodes.ISBN => $"{Properties.Resources.Example} - 978146121546", // ISBN starts with 978
 			Barcodes.MSI => $"{Properties.Resources.Example} - 163657455245", // MSI

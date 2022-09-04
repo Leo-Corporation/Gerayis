@@ -160,6 +160,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gerayis couldn&apos;t check for updates; you aren&apos;t connected to the Internet..
+        /// </summary>
+        public static string CheckUpdateInternetMsg {
+            get {
+                return ResourceManager.GetString("CheckUpdateInternetMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checking updates on start is disabled..
         /// </summary>
         public static string CheckUpdatesDisabledOnStart {
