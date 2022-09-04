@@ -417,4 +417,7 @@
   <data name="OpenSourceMention" xml:space="preserve">
     <value>Open Source - Made with ❤️ in France</value>
   </data>
+  <data name="CheckUpdateInternetMsg" xml:space="preserve">
+    <value>Gerayis couldn't check for updates; you aren't connected to the Internet.</value>
+  </data>
 </root>
