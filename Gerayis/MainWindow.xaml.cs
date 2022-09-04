@@ -63,6 +63,7 @@ public partial class MainWindow : Window
 	{
 		Activated += (o, e) => { Focused = true; }; // The window is focused
 		Deactivated += (o, e) => { Focused = false; }; // The window isn't focused
+		Closing += (o, e) => Application.Current.Shutdown();
 
 		KeyboardMouseEvents = Hook.GlobalEvents(); // Hook the keyboard and mouse events
 		Hook.GlobalEvents().OnCombination(new Dictionary<Combination, Action>
@@ -143,7 +144,7 @@ public partial class MainWindow : Window
 
 	private void CloseBtn_Click(object sender, RoutedEventArgs e)
 	{
-		Environment.Exit(0); // Quit
+		Application.Current.Shutdown(); // Quit
 	}
 
 	private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
