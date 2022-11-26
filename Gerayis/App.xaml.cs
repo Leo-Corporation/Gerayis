@@ -24,7 +24,7 @@ SOFTWARE.
 
 using Gerayis.Classes;
 using Gerayis.Windows;
-using LeoCorpLibrary;
+using PeyrSharp.Env;
 using System.IO;
 using System.Windows;
 
@@ -46,7 +46,7 @@ public partial class App : Application
 		Global.BarCodePage = new(); // Create a new BarCodePage
 		Global.QRCodePage = new(); // Create a new QRCodePage
 
-		if (!File.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt")) // Checks if the jumplists have already been generated
+		if (!File.Exists(FileSys.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt")) // Checks if the jumplists have already been generated
 		{
 			Global.CreateJumpLists(); // Create the JumpLists
 		}

@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Pages;
-using LeoCorpLibrary;
-using LeoCorpLibrary.Enums;
 using Microsoft.Win32;
+using PeyrSharp.Enums;
+using PeyrSharp.Env;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -143,7 +143,7 @@ public static class Global
 
 	public static bool IsSystemThemeDark()
 	{
-		if (Env.WindowsVersion != WindowsVersion.Windows10 && Env.WindowsVersion != WindowsVersion.Windows11)
+		if (Sys.CurrentWindowsVersion != WindowsVersion.Windows10 && Sys.CurrentWindowsVersion != WindowsVersion.Windows11)
 		{
 			return false; // Avoid errors on older OSs
 		}
@@ -232,6 +232,6 @@ public static class Global
 		jumpList.ShowRecentCategory = false;
 
 		JumpList.SetJumpList(Application.Current, jumpList);
-		File.Create(Env.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt"); // Create a file
+		File.Create(FileSys.AppDataPath + @"\Léo Corporation\Gerayis\JumpList.txt"); // Create a file
 	}
 }

@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. 
 */
 using Gerayis.Enums;
-using LeoCorpLibrary;
+using PeyrSharp.Env;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -129,7 +129,7 @@ public static class SettingsManager
 	/// </summary>
 	public static void Load()
 	{
-		string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
 		if (File.Exists(path)) // If the file exist
 		{
@@ -172,14 +172,14 @@ public static class SettingsManager
 	/// </summary>
 	public static void Save()
 	{
-		string path = Env.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
+		string path = FileSys.AppDataPath + @"\Léo Corporation\Gerayis\Settings.xml"; // The path of the settings file
 
 		XmlSerializer xmlSerializer = new(typeof(Settings)); // Create XML Serializer
 
-		if (!Directory.Exists(Env.AppDataPath + @"\Léo Corporation\Gerayis")) // If the directory doesn't exist
+		if (!Directory.Exists(FileSys.AppDataPath + @"\Léo Corporation\Gerayis")) // If the directory doesn't exist
 		{
-			Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\"); // Create the directory
-			Directory.CreateDirectory(Env.AppDataPath + @"\Léo Corporation\Gerayis"); // Create the directory
+			Directory.CreateDirectory(FileSys.AppDataPath + @"\Léo Corporation\"); // Create the directory
+			Directory.CreateDirectory(FileSys.AppDataPath + @"\Léo Corporation\Gerayis"); // Create the directory
 		}
 
 		StreamWriter streamWriter = new(path); // The place where the file is going to be written
