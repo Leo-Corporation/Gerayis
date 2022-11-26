@@ -44,7 +44,7 @@ public static class Global
 	/// <summary>
 	/// The current version of Gerayis.
 	/// </summary>
-	public static string Version => "2.3.0.2209";
+	public static string Version => "2.3.1.2211";
 
 	/// <summary>
 	/// List of the available languages.
