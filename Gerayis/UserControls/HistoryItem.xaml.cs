@@ -55,7 +55,7 @@ public partial class HistoryItem : UserControl
 	private void InitUI()
 	{
 		HistoryImage.Source = BitmapSource;
-		BarCodeTxt.Text = ContentText;
+		BarCodeTxt.Text = ContentText.Length > 20 ? $"{ContentText[..20]}..." : ContentText;
 		if (AppPages == AppPages.BarCode) // If the item is a barcode
 		{
 			BarCodeTypeTxt.Text = BarcodeType switch
