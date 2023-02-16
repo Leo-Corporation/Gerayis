@@ -199,7 +199,7 @@ public partial class BarCodePage : Page
 					Content.Visibility = Visibility.Collapsed; // Hide
 					HistoryScroll.Visibility = Visibility.Visible; // Show
 
-					HistoryBtn.Content = "\uF36E"; // Set text 
+					HistoryBtn.Content = "\uF36A"; // Set text 
 				}
 				else
 				{
