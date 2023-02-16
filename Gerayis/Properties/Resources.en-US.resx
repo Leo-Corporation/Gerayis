@@ -420,4 +420,7 @@
   <data name="CheckUpdateInternetMsg" xml:space="preserve">
     <value>Gerayis couldn't check for updates; you aren't connected to the Internet.</value>
   </data>
+  <data name="SpecialCharacters" xml:space="preserve">
+    <value>Special characters</value>
+  </data>
 </root>

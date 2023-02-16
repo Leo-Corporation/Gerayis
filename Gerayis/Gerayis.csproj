@@ -6,10 +6,10 @@
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Gerayis.ico</ApplicationIcon>
-    <Version>2.3.1.2211</Version>
+    <Version>2.4.0.2302</Version>
     <Authors>Léo Corporation</Authors>
     <Description>A modern Bar/QR Code generator for Windows.</Description>
-    <Copyright>© 2022</Copyright>
+    <Copyright>© 2023</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Leo-Corporation/Gerayis</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Leo-Corporation/Gerayis</RepositoryUrl>
@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\FluentSystemIcons-Filled.ttf" />
     <None Remove="Fonts\FluentSystemIcons-Regular.ttf" />
     <None Remove="Fonts\Hauora-ExtraBold.ttf" />
     <None Remove="Fonts\Hauora-Regular.ttf" />
@@ -33,7 +34,7 @@
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
     <PackageReference Include="MouseKeyHook" Version="5.6.0" />
-    <PackageReference Include="PeyrSharp" Version="1.0.0.2211" />
+    <PackageReference Include="PeyrSharp" Version="1.3.0.2302" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
   </ItemGroup>
 
@@ -59,6 +60,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\FluentSystemIcons-Filled.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Fonts\FluentSystemIcons-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

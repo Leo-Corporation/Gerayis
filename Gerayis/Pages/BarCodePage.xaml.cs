@@ -305,9 +305,9 @@ public partial class BarCodePage : Page
 		{
 			case Barcodes.Code11:
 				// Update icons
-				NumbersIconTxt.Text = "\uF295"; // Set text
-				CharsIconTxt.Text = "\uF36A"; // Set text
-				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				NumbersIconTxt.Text = "\uF299"; // Set text
+				CharsIconTxt.Text = "\uF36E"; // Set text
+				MinLengthIconTxt.Text = "\uF36E"; // Set text
 
 				// Update colors
 				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
@@ -316,9 +316,9 @@ public partial class BarCodePage : Page
 				break;
 			case Barcodes.Code128:
 				// Update icons
-				NumbersIconTxt.Text = "\uF295"; // Set text
-				CharsIconTxt.Text = "\uF295"; // Set text
-				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				NumbersIconTxt.Text = "\uF299"; // Set text
+				CharsIconTxt.Text = "\uF299"; // Set text
+				MinLengthIconTxt.Text = "\uF36E"; // Set text
 
 				// Update colors
 				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
@@ -327,9 +327,9 @@ public partial class BarCodePage : Page
 				break;
 			case Barcodes.ISBN:
 				// Update icons
-				NumbersIconTxt.Text = "\uF295"; // Set text
-				CharsIconTxt.Text = "\uF36A"; // Set text
-				MinLengthIconTxt.Text = "\uF295"; // Set text
+				NumbersIconTxt.Text = "\uF299"; // Set text
+				CharsIconTxt.Text = "\uF36E"; // Set text
+				MinLengthIconTxt.Text = "\uF299"; // Set text
 
 				// Update text
 				MinLengthTxt.Text = $"{Properties.Resources.MinLength} - 9/10/12/13"; // Set text
@@ -341,9 +341,9 @@ public partial class BarCodePage : Page
 				break;
 			case Barcodes.MSI:
 				// Update icons
-				NumbersIconTxt.Text = "\uF295"; // Set text
-				CharsIconTxt.Text = "\uF36A"; // Set text
-				MinLengthIconTxt.Text = "\uF36A"; // Set text
+				NumbersIconTxt.Text = "\uF299"; // Set text
+				CharsIconTxt.Text = "\uF36E"; // Set text
+				MinLengthIconTxt.Text = "\uF36E"; // Set text
 
 				// Update colors
 				NumbersIconTxt.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())); // Set color
@@ -352,9 +352,9 @@ public partial class BarCodePage : Page
 				break;
 			case Barcodes.UPCA:
 				// Update icons
-				NumbersIconTxt.Text = "\uF295"; // Set text
-				CharsIconTxt.Text = "\uF36A"; // Set text
-				MinLengthIconTxt.Text = "\uF295"; // Set text
+				NumbersIconTxt.Text = "\uF299"; // Set text
+				CharsIconTxt.Text = "\uF36E"; // Set text
+				MinLengthIconTxt.Text = "\uF299"; // Set text
 
 				// Update text
 				MinLengthTxt.Text = $"{Properties.Resources.MinLength} - 11/12"; // Set text
@@ -396,7 +396,7 @@ public partial class BarCodePage : Page
 		});
 
 		// Check if the string is valid
-		ValidIconTxt.Text = regex.IsMatch(BarCodeStringTxt.Text) ? "\uF295" : "\uF36A"; // Set icon depending on the result
+		ValidIconTxt.Text = regex.IsMatch(BarCodeStringTxt.Text) ? "\uF299" : "\uF36E"; // Set icon depending on the result
 		ValidIconTxt.Foreground = regex.IsMatch(BarCodeStringTxt.Text) ? new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Green"].ToString())) : new SolidColorBrush((Color)ColorConverter.ConvertFromString(App.Current.Resources["Red2"].ToString())); // Set color depending on the result
 
 	}

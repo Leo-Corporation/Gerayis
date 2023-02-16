@@ -420,4 +420,7 @@
   <data name="CheckUpdateInternetMsg" xml:space="preserve">
     <value>Gerayis n'a pas pu vérifier les mises à jour ; vous n'êtes pas connecté à Internet.</value>
   </data>
+  <data name="SpecialCharacters" xml:space="preserve">
+    <value>Caractères spéciaux</value>
+  </data>
 </root>

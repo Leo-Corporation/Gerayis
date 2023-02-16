@@ -22,7 +22,23 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
-				<TextBlock Text="{x:Static lang:Resources.BarCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+					<Border Visibility="Visible" Background="{Binding Source={StaticResource Background3}}" Margin="10 0" CornerRadius="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Border.Effect>
+							<DropShadowEffect Color="{Binding Source={StaticResource Gray}}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
+						</Border.Effect>
+						<Grid>
+							<TextBox x:Name="BarCodeStringTxt" Padding="2" Margin="3"  BorderThickness="0" FontWeight="Bold" Foreground="{Binding Source={StaticResource DarkGray}}" d:Text="123" Background="Transparent" VerticalAlignment="Center" Width="300" TextChanged="BarCodeStringTxt_TextChanged"/>
+						</Grid>
+					</Border>
+					<ComboBox x:Name="BarCodeTypeComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodeTypeComboBox_SelectionChanged">
+						<ComboBoxItem Content="{x:Static lang:Resources.Code128}"/>
+						<ComboBoxItem Content="{x:Static lang:Resources.Code11}"/>
+						<ComboBoxItem Content="{x:Static lang:Resources.UPCA}"/>
+						<ComboBoxItem Content="{x:Static lang:Resources.MSI}"/>
+						<ComboBoxItem Content="{x:Static lang:Resources.ISBN}"/>
+					</ComboBox>
+				</StackPanel>
 				<StackPanel Orientation="Horizontal" Grid.Column="1">
 					<TextBlock x:Name="ValidIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="22" Margin="0,0,5,0" VerticalAlignment="Center"/>
 
@@ -54,38 +70,30 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 
 				<!--Icon TextBlock-->
-				<TextBlock x:Name="CharsIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="22" Margin="0,0,5,0"/>
-				<TextBlock x:Name="NumbersIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="22" Grid.Row="1" Margin="0,0,5,0"/>
-				<TextBlock x:Name="MinLengthIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="22" Grid.Row="2" Margin="0,0,5,0"/>
-				<TextBlock Text="&#xF4A4;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="22" Grid.Row="3" Margin="0,0,5,0"/>
+				<TextBlock x:Name="CharsIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="22" Margin="0,0,5,0"/>
+				<TextBlock x:Name="NumbersIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="22" Grid.Row="1" Margin="0,0,5,0"/>
+				<TextBlock x:Name="MinLengthIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="22" Grid.Row="2" Margin="0,0,5,0"/>
+				<TextBlock Text="&#xF36E;" x:Name="SpecialCharsIconTxt" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="22" Grid.Row="3" Margin="0,0,5,0" Foreground="{Binding Source={StaticResource Red2}}"/>
+				<TextBlock Text="&#xF4AB;" Foreground="{Binding Source={StaticResource Gray}}" FontFamily="..\Fonts\#FluentSystemIcons-Filled" FontSize="22" Grid.Row="4" Margin="0,0,5,0"/>
 				
 				<!--Description TextBlock-->
 				<TextBlock Text="{x:Static lang:Resources.Letters}" x:Name="CharsTxt" FontSize="16" Grid.Column="1" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 				<TextBlock Text="{x:Static lang:Resources.Numbers}" x:Name="NumbersTxt" FontSize="16" Grid.Column="1" Grid.Row="1" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 				<TextBlock Text="{x:Static lang:Resources.MinLength}" x:Name="MinLengthTxt" FontSize="16" Grid.Column="1" Grid.Row="2" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
-				<TextBlock Text="{x:Static lang:Resources.MinLength}" x:Name="ExampleTxt" FontSize="16" Grid.Column="1" Grid.Row="3" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+				<TextBlock Text="{x:Static lang:Resources.SpecialCharacters}" x:Name="SpecialCharsTxt" FontSize="16" Grid.Column="1" Grid.Row="3" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
+				<TextBlock Text="{x:Static lang:Resources.MinLength}" x:Name="ExampleTxt" FontSize="16" Grid.Column="1" Grid.Row="4" FontWeight="ExtraBold" VerticalAlignment="Center" Foreground="{Binding Source={StaticResource Foreground1}}"/>
 			</Grid>
-			<StackPanel x:Name="Content" Orientation="Vertical">
+			<StackPanel x:Name="Content" Orientation="Vertical" Margin="0,10,0,0">
 				<Grid>
 					<Image x:Name="BarCodeImg" Width="290" Height="120" Cursor="Hand" MouseLeftButtonUp="BarCodeImg_MouseLeftButtonUp" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave"/>
 					<Grid x:Name="CopyGrid" Visibility="Collapsed" Cursor="Hand" Width="290" Height="120" Background="#CC2E2E2E" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave" MouseLeftButtonUp="BarCodeImg_MouseLeftButtonUp">
 						<TextBlock Text="&#xF381;" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
 					</Grid>
-				</Grid>
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<TextBlock Text="{x:Static lang:Resources.Text}" FontSize="15" FontWeight="ExtraBold" VerticalAlignment="Center"/>
-					<TextBox x:Name="BarCodeStringTxt" Style="{DynamicResource TextBoxStyle1}" FontSize="15" FontWeight="ExtraBold" Background="{x:Null}" BorderBrush="#8B2DF0" Foreground="{Binding Source={StaticResource Foreground1}}" CaretBrush="{Binding Source={StaticResource Foreground1}}" SelectionBrush="#8B2DF0" Margin="10,5,10,5" VerticalAlignment="Center" Width="400" TextChanged="BarCodeStringTxt_TextChanged"/>
-					<ComboBox x:Name="BarCodeTypeComboBox" Style="{DynamicResource ComboBoxStyle1}" BorderThickness="2" Padding="5" Foreground="{Binding Source={StaticResource Foreground1}}" Background="Transparent" BorderBrush="{Binding Source={StaticResource AccentColor}}" VerticalAlignment="Center" SelectionChanged="BarCodeTypeComboBox_SelectionChanged">
-						<ComboBoxItem Content="{x:Static lang:Resources.Code128}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.Code11}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.UPCA}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.MSI}"/>
-						<ComboBoxItem Content="{x:Static lang:Resources.ISBN}"/>
-					</ComboBox>
-				</StackPanel>
+				</Grid>				
 				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Content="{x:Static lang:Resources.Generate}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" Margin="0,10,10,0"/>
 					<Button x:Name="CopyBtn" Click="CopyBtn_Click" Content="{x:Static lang:Resources.Copy}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,10,0"/>
