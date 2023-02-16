@@ -835,6 +835,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Special characters.
+        /// </summary>
+        public static string SpecialCharacters {
+            get {
+                return ResourceManager.GetString("SpecialCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default page on start..
         /// </summary>
         public static string StartupPage {
