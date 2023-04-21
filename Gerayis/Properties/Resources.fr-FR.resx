@@ -423,4 +423,11 @@
   <data name="SpecialCharacters" xml:space="preserve">
     <value>Caractères spéciaux</value>
   </data>
+  <data name="ClearHistory" xml:space="preserve">
+    <value>Vider l'historique</value>
+  </data>
+  <data name="ClearHistoryMsg" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir vider l'historique ?
+Cette action ne peut pas être annulée.</value>
+  </data>
 </root>

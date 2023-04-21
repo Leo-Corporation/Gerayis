@@ -7,22 +7,22 @@
 			 mc:Ignorable="d" FontFamily="..\Fonts\#Hauora"
 			 Height="200" Width="175" Margin="5" HorizontalAlignment="Left">
 	<Border CornerRadius="10" Background="{Binding Source={StaticResource Background3}}">
-        <Border.Effect>
-            <DropShadowEffect Color="{Binding Source={StaticResource Gray}}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
-        </Border.Effect>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+		<Border.Effect>
+			<DropShadowEffect Color="{Binding Source={StaticResource Gray}}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
+		</Border.Effect>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
 
-            <Image x:Name="HistoryImage"/>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <TextBlock x:Name="BarCodeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="BarCodeTxt" Grid.Column="0" Margin="2" VerticalAlignment="Center" FontSize="16" FontWeight="ExtraBold" TextWrapping="Wrap"/>
-                <TextBlock x:Name="BarCodeTypeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="Code128" Grid.Column="1" Margin="2" VerticalAlignment="Center" FontSize="11" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+			<Image x:Name="HistoryImage" Cursor="Hand" MouseLeftButtonUp="HistoryImage_MouseLeftButtonUp"/>
+			<StackPanel Grid.Row="1" HorizontalAlignment="Center">
+				<TextBlock x:Name="BarCodeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="BarCodeTxt" Grid.Column="0" Margin="2" VerticalAlignment="Center" FontSize="16" FontWeight="ExtraBold" TextWrapping="Wrap"/>
+				<TextBlock x:Name="BarCodeTypeTxt" Foreground="{Binding Source={StaticResource Foreground1}}" d:Text="Code128" Grid.Column="1" Margin="2" VerticalAlignment="Center" FontSize="11" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
 				<Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="2" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Padding="10" Margin="5" Content="&#xF210;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
 				<Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Style="{DynamicResource TabButtonStyle}" Grid.Column="3" Background="{Binding Source={StaticResource Background2}}" Foreground="{Binding Source={StaticResource Foreground1}}" Padding="10" Margin="5" Content="&#xF34D;" FontFamily="..\Fonts\#FluentSystemIcons-Regular" FontSize="16" VerticalAlignment="Center"/>
 			</StackPanel>

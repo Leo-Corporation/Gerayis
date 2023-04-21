@@ -23,6 +23,7 @@ SOFTWARE.
 */
 using Gerayis.Classes;
 using Gerayis.Enums;
+using Gerayis.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -116,5 +117,10 @@ public partial class HistoryItem : UserControl
 				Global.QRCodePage.HistoryBtn_Click(this, null);
 				break;
 		}
+	}
+
+	private void HistoryImage_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+	{
+		new SeeFullBarCodeWindow(BitmapSource, AppPages).Show();
 	}
 }

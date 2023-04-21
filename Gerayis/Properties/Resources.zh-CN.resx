@@ -423,4 +423,11 @@
   <data name="SpecialCharacters" xml:space="preserve">
     <value>特殊字符</value>
   </data>
+  <data name="ClearHistory" xml:space="preserve">
+    <value>清除历史</value>
+  </data>
+  <data name="ClearHistoryMsg" xml:space="preserve">
+    <value>你确定要清空历史记录吗？
+这个动作不能被取消。</value>
+  </data>
 </root>

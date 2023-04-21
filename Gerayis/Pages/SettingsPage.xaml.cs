@@ -666,4 +666,13 @@ public partial class SettingsPage : Page
 				$"@wcxu21",
 				Properties.Resources.CreditsAndThanks, MessageBoxButton.OK, MessageBoxImage.Information);
 	}
+
+	private void ClearHistoryLink_Click(object sender, RoutedEventArgs e)
+	{
+		if (MessageBox.Show(Properties.Resources.ClearHistoryMsg, Properties.Resources.ClearHistory, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+		{
+			Global.BarCodePage.BarCodeHistory.Children.Clear();
+			Global.QRCodePage.QRCodeHistory.Children.Clear();
+		}
+    }
 }
