@@ -427,7 +427,7 @@
     <value>Clear history</value>
   </data>
   <data name="ClearHistoryMsg" xml:space="preserve">
-    <value>Are you sure you want to empty the history.
+    <value>Are you sure you want to empty the history?
 This action cannot be cancelled.</value>
   </data>
 </root>

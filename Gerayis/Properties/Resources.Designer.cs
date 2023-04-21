@@ -196,7 +196,7 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to empty the history.
+        ///   Looks up a localized string similar to Are you sure you want to empty the history?
         ///This action cannot be cancelled..
         /// </summary>
         public static string ClearHistoryMsg {
