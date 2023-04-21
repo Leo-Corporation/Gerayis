@@ -285,8 +285,6 @@ public partial class BarCodePage : Page
 			InfoPanel.Visibility = Visibility.Collapsed; // Hide
 			Content.Visibility = Visibility.Visible; // Show
 			infoPanelToggled = false; // Set to false
-
-			BarCodeInfoBtn.Content = "\uF4A4"; // Set text
 		}
 		else
 		{
@@ -294,7 +292,6 @@ public partial class BarCodePage : Page
 			Content.Visibility = Visibility.Collapsed; // Hide
 			infoPanelToggled = true; // Set to true
 
-			BarCodeInfoBtn.Content = "\uF36B"; // Set text
 			LoadInfoPanel((Barcodes)BarCodeTypeComboBox.SelectedIndex); // Load info panel
 		}
 	}
