@@ -187,6 +187,25 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear history.
+        /// </summary>
+        public static string ClearHistory {
+            get {
+                return ResourceManager.GetString("ClearHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to empty the history.
+        ///This action cannot be cancelled..
+        /// </summary>
+        public static string ClearHistoryMsg {
+            get {
+                return ResourceManager.GetString("ClearHistoryMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
