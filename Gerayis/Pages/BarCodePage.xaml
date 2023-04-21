@@ -17,7 +17,12 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Margin="10,40,10,5" Grid.Row="0">
-			<Grid>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Foreground="{Binding Source={StaticResource AccentColor}}"  Text="&#xF210;" FontSize="17" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static lang:Resources.BarCode}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -107,7 +112,7 @@
 			</ScrollViewer>
 		</StackPanel>
 
-		<Border x:Name="border" Background="{Binding Source={StaticResource LightAccentColor}}" CornerRadius="5" Padding="10 8" Margin="10,5,10,10" Grid.Row="2">
+		<Border x:Name="border" Background="{Binding Source={StaticResource LightAccentColor}}" CornerRadius="5" Padding="10 8" Margin="10,0,10,10" Grid.Row="2">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>

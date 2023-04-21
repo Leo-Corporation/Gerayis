@@ -17,9 +17,12 @@
 			</Grid.RowDefinitions>
 
 			<StackPanel Margin="10,40,10,10" Grid.Row="0">
-				<TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="{Binding Source={StaticResource AccentColor}}"  Text="&#xF6AA;" FontSize="17" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{x:Static lang:Resources.Settings}" Foreground="{Binding Source={StaticResource Foreground1}}" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
 
-				<Border Background="{Binding Source={StaticResource Background3}}" CornerRadius="10" Margin="10" Padding="10" HorizontalAlignment="Stretch">
+                <Border Background="{Binding Source={StaticResource Background3}}" CornerRadius="10" Margin="10" Padding="10" HorizontalAlignment="Stretch">
 					<Border.Effect>
 						<DropShadowEffect Color="Black" ShadowDepth="0" BlurRadius="10" Opacity="0.4" RenderingBias="Quality"/>
 					</Border.Effect>
