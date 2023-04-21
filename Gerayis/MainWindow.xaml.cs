@@ -47,7 +47,7 @@ public partial class MainWindow : Window
 
 	readonly ColorAnimation colorAnimation = new()
 	{
-		From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()),
+		From = (Color)ColorConverter.ConvertFromString(App.Current.Resources["LightAccentColor"].ToString()),
 		To = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()),
 		Duration = new(TimeSpan.FromSeconds(0.2d))
 	};
@@ -106,29 +106,21 @@ public partial class MainWindow : Window
 
 	private void CheckButton(Button button)
 	{
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
-		button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the background
+		button.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["LightAccentColor"].ToString()) }; // Set the background
 
 		CheckedButton = button; // Set the "checked" button
 	}
 
 	private void ResetAllCheckStatus()
 	{
-		BarCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		BarCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
 		BarCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
 
-		QRCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		QRCodeTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
 		QRCodeTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
 
-		SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground
+		SettingsTabBtn.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["AccentColor"].ToString()) }; // Set the foreground
 		SettingsTabBtn.Background = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Background1"].ToString()) }; // Set the background
-	}
-
-	private void TabEnter(object sender, MouseEventArgs e)
-	{
-		Button button = (Button)sender; // Create button
-
-		button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["WindowButtonsHoverForeground1"].ToString()) }; // Set the foreground
 	}
 
 	private void TabLeave(object sender, MouseEventArgs e)
@@ -137,7 +129,6 @@ public partial class MainWindow : Window
 
 		if (button != CheckedButton)
 		{
-			button.Foreground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString(App.Current.Resources["Foreground1"].ToString()) }; // Set the foreground 
 			button.Background.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation); // Play animation
 		}
 	}
