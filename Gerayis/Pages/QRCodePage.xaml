@@ -22,21 +22,21 @@
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
-                <Border Visibility="Visible" Background="{Binding Source={StaticResource Background3}}" Margin="10 0" CornerRadius="5" VerticalAlignment="Center">
-                    <Border.Effect>
-                        <DropShadowEffect Color="{Binding Source={StaticResource Gray}}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
-                    </Border.Effect>
-                    <Grid>
-                        <TextBox x:Name="QRCodeStringTxt" Padding="2" Margin="3"  BorderThickness="0" FontWeight="Bold" Foreground="{Binding Source={StaticResource DarkGray}}" d:Text="123" Background="Transparent" VerticalAlignment="Center" TextChanged="QRCodeStringTxt_TextChanged"/>
-                    </Grid>
-                </Border>
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-					<Button Content="&#xF160;" Padding="5" x:Name="SeeFullQrCodeBtn" Click="SeeFullQrCodeBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14" Margin="0,0,5,0">
+				<Border Visibility="Visible" Background="{Binding Source={StaticResource Background3}}" Margin="10 0" CornerRadius="5" VerticalAlignment="Center">
+					<Border.Effect>
+						<DropShadowEffect Color="{Binding Source={StaticResource Gray}}" BlurRadius="15" Opacity="0.2" ShadowDepth="0"/>
+					</Border.Effect>
+					<Grid>
+						<TextBox x:Name="QRCodeStringTxt" Padding="2" Margin="3"  BorderThickness="0" FontWeight="Bold" Foreground="{Binding Source={StaticResource DarkGray}}" d:Text="123" Background="Transparent" VerticalAlignment="Center" TextChanged="QRCodeStringTxt_TextChanged"/>
+					</Grid>
+				</Border>
+				<StackPanel Orientation="Horizontal" Grid.Column="1">
+					<Button Content="&#xF160;" Padding="5" x:Name="SeeFullQrCodeBtn" Click="SeeFullQrCodeBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14" Margin="0,0,5,0">
 						<Button.ToolTip>
 							<ToolTip Content="{x:Static lang:Resources.SeeFullQrCode}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
 						</Button.ToolTip>
 					</Button>
-					<Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource AccentColor}}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" FontSize="14">
+					<Button Content="&#xF47F;" Padding="5" x:Name="HistoryBtn" Click="HistoryBtn_Click" FontFamily="..\Fonts\#FluentSystemIcons-Regular" Grid.Column="1" Style="{DynamicResource TabButtonStyle}" Background="{Binding Source={StaticResource LightAccentColor}}" Foreground="{Binding Source={StaticResource AccentColor}}" FontSize="14">
 						<Button.ToolTip>
 							<ToolTip Content="{x:Static lang:Resources.History}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background1}}"/>
 						</Button.ToolTip>
@@ -44,13 +44,13 @@
 				</StackPanel>
 			</Grid>
 			<StackPanel x:Name="Content" Orientation="Vertical" Margin="0,10,0,0">
-                <Grid>
-                    <Image x:Name="QRCodeImg" Width="290" Height="120" Cursor="Hand" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave"/>
-                    <Grid x:Name="CopyGrid" Visibility="Collapsed" Cursor="Hand" Width="120" Height="120" Background="#CC2E2E2E" MouseLeftButtonUp="QRCodeImg_MouseLeftButtonUp" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave">
-                        <TextBlock Text="&#xF381;" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-                    </Grid>
-                </Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Grid>
+					<Image x:Name="QRCodeImg" Width="290" Height="120" Cursor="Hand" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave"/>
+					<Grid x:Name="CopyGrid" Visibility="Collapsed" Cursor="Hand" Width="120" Height="120" Background="#CC2E2E2E" MouseLeftButtonUp="QRCodeImg_MouseLeftButtonUp" MouseEnter="CopyGrid_MouseEnter" MouseLeave="CopyGrid_MouseLeave">
+						<TextBlock Text="&#xF381;" FontSize="64" FontFamily="..\Fonts\#FluentSystemIcons-Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+					</Grid>
+				</Grid>
+				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button x:Name="GenerateBtn" Click="GenerateBtn_Click" Content="{x:Static lang:Resources.Generate}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource WindowButtonsHoverForeground1}}" Background="{Binding Source={StaticResource AccentColor}}" FontWeight="ExtraBold" Margin="0,10,10,0"/>
 					<Button x:Name="CopyBtn" Click="CopyBtn_Click" Content="{x:Static lang:Resources.Copy}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,10,0"/>
 					<Button x:Name="SaveBtn" Click="SaveBtn_Click" Content="{x:Static lang:Resources.Save}" HorizontalAlignment="Center" Padding="10,5,10,5" Style="{StaticResource TabButtonStyle}" Foreground="{Binding Source={StaticResource Foreground1}}" Background="{Binding Source={StaticResource Background2}}" FontWeight="ExtraBold" Margin="0,10,0,0"/>

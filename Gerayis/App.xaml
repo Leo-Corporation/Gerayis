@@ -59,12 +59,10 @@
 								<Trigger Property="IsMouseOver" Value="true">
 									<Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
 									<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-									<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
 								</Trigger>
 								<Trigger Property="IsPressed" Value="true">
 									<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
 									<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
-									<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
 								</Trigger>
 								<Trigger Property="IsEnabled" Value="false">
 									<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
