@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Gerayis"
-#define MyAppVersion "2.5.0.2304"
-#define MyAppFullVersion "2.5.0.2304"
+#define MyAppVersion "2.5.1.2307"
+#define MyAppFullVersion "2.5.1.2307"
 #define MyAppPublisher "Léo Corporation"
 #define MyAppURL "https://leocorporation.dev/"
 #define MyAppExeName "Gerayis.exe"
