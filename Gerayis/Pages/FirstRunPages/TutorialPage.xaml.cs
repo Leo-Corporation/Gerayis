@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 using QRCoder;
+using SkiaSharp;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,10 +35,6 @@ namespace Gerayis.Pages.FirstRunPages;
 /// </summary>
 public partial class TutorialPage : Page
 {
-	private static System.Drawing.Font BarCodeFont
-	{
-		get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
-	}
 
 	public TutorialPage()
 	{
@@ -53,8 +50,8 @@ public partial class TutorialPage : Page
 			if (BarCodeStringTxt.Text.Length > 0)
 			{
 				// Generate bar code
-				BarcodeLib.Barcode barcode = new() { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
-				System.Drawing.Image image = barcode.Encode(BarcodeLib.TYPE.CODE128, BarCodeStringTxt.Text, System.Drawing.Color.Black, System.Drawing.Color.White, BarCodeStringTxt.Text.Length * 50, 240); // Generate
+				BarcodeStandard.Barcode barcode = new() { IncludeLabel = true}; // Create a new barcode generator
+				var image = System.Drawing.Image.FromStream(barcode.Encode(BarcodeStandard.Type.Code128, BarCodeStringTxt.Text, SKColors.Black, SKColors.White, BarCodeStringTxt.Text.Length * 50, 240).Encode().AsStream()); // Generate
 
 				// Create and set image
 				var bitmap = new System.Drawing.Bitmap(image);
