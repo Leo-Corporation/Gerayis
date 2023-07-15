@@ -26,6 +26,7 @@ using Gerayis.Enums;
 using Gerayis.UserControls;
 using Gerayis.Windows;
 using Microsoft.Win32;
+using SkiaSharp;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -40,9 +41,9 @@ namespace Gerayis.Pages;
 /// </summary>
 public partial class BarCodePage : Page
 {
-	private static System.Drawing.Font BarCodeFont
+	private static SKFont BarCodeFont
 	{
-		get => new(System.Drawing.SystemFonts.DefaultFont.FontFamily, 13.0f);
+		get => new();
 	}
 
 	internal string Error { get; set; }
@@ -92,7 +93,6 @@ public partial class BarCodePage : Page
 
 			System.Drawing.Color foreColor = System.Drawing.Color.White; // Foreground
 			System.Drawing.Color backColor = System.Drawing.Color.Black; // Background
-
 			ShowErrorBtn.Visibility = Visibility.Collapsed; // Hide
 
 			if (!string.IsNullOrEmpty(Global.Settings.BarCodeBackgroundColor) && !string.IsNullOrEmpty(Global.Settings.BarCodeForegroundColor))
@@ -107,19 +107,20 @@ public partial class BarCodePage : Page
 			if (!string.IsNullOrEmpty(text) && !string.IsNullOrWhiteSpace(text))
 			{
 				// Find the barcode type
-				BarcodeLib.TYPE barType = barcodeType switch
+				BarcodeStandard.Type barType = barcodeType switch
 				{
-					Barcodes.Code128 => BarcodeLib.TYPE.CODE128, // Code128
-					Barcodes.Code11 => BarcodeLib.TYPE.CODE11, // Code11
-					Barcodes.UPCA => BarcodeLib.TYPE.UPCA, // UPC-A
-					Barcodes.MSI => BarcodeLib.TYPE.MSI_Mod10, // MSI
-					Barcodes.ISBN => BarcodeLib.TYPE.ISBN, // ISBN
-					_ => BarcodeLib.TYPE.CODE128 // Default value
+					Barcodes.Code128 => BarcodeStandard.Type.Code128, // Code128
+					Barcodes.Code11 => BarcodeStandard.Type.Code11, // Code11
+					Barcodes.UPCA => BarcodeStandard.Type.UpcA, // UPC-A
+					Barcodes.MSI => BarcodeStandard.Type.MsiMod10, // MSI
+					Barcodes.ISBN => BarcodeStandard.Type.Isbn, // ISBN
+					_ => BarcodeStandard.Type.Code128 // Default value
 				}; // Get
 
 				// Generate bar code
-				BarcodeLib.Barcode barcode = new() { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
-				System.Drawing.Image image = barcode.Encode(barType, text, foreColor, backColor, BarCodeStringTxt.Text.Length * 50, 240); // Generate
+				
+				BarcodeStandard.Barcode barcode = new() { IncludeLabel = true, LabelFont = BarCodeFont }; // Create a new barcode generator
+				var image = System.Drawing.Image.FromStream(barcode.Encode(barType, text, ToSkiaColor(foreColor), ToSkiaColor(backColor), BarCodeStringTxt.Text.Length * 50, 240).Encode().AsStream()); // Generate
 
 				// Create and set image
 				var bitmap = new System.Drawing.Bitmap(image);
@@ -163,6 +164,8 @@ public partial class BarCodePage : Page
 			ShowErrorBtn.Visibility = Visibility.Visible; // Show
 		}
 	}
+
+	private SKColor ToSkiaColor(System.Drawing.Color color) => new (color.R, color.G, color.B);
 
 	internal void CopyBtn_Click(object sender, RoutedEventArgs e)
 	{
