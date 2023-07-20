@@ -103,6 +103,11 @@ public partial class MainWindow : Window
 		}; // Set page
 
 		PageContent.Navigated += (o, e) => AnimatePage();
+
+		if (MessageBox.Show(Properties.Resources.UseQrixMsg, Properties.Resources.LaunchQrix, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+		{
+			Process.Start("explorer.exe", "https://qrix.leocorporation.dev");
+		}
 	}
 
 	private void CheckButton(Button button)
