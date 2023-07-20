@@ -557,6 +557,15 @@ namespace Gerayis.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch Qrix.
+        /// </summary>
+        public static string LaunchQrix {
+            get {
+                return ResourceManager.GetString("LaunchQrix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Let&apos;s go.
         /// </summary>
         public static string LetsGo {
@@ -949,6 +958,15 @@ namespace Gerayis.Properties {
         public static string UpToDate {
             get {
                 return ResourceManager.GetString("UpToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gerayis has evolved into a web app - it is now called Qrix. Gerayis for desktop is longer supported, do you want to launch Qrix?.
+        /// </summary>
+        public static string UseQrixMsg {
+            get {
+                return ResourceManager.GetString("UseQrixMsg", resourceCulture);
             }
         }
         
