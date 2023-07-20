@@ -27,6 +27,7 @@ using Gerayis.Pages;
 using Gma.System.MouseKeyHook;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -189,4 +190,9 @@ public partial class MainWindow : Window
 		Storyboard.SetTargetProperty(t, new(Frame.MarginProperty));
 		storyboard.Begin(this);
 	}
+
+	private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+	{
+		Process.Start("explorer.exe", "https://qrix.leocorporation.dev");
+    }
 }
