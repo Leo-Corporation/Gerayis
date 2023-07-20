@@ -430,4 +430,10 @@
     <value>你确定要清空历史记录吗？
 这个动作不能被取消。</value>
   </data>
+  <data name="LaunchQrix" xml:space="preserve">
+    <value>启动 Qrix</value>
+  </data>
+  <data name="UseQrixMsg" xml:space="preserve">
+    <value>Gerayis 已发展成为一款网络应用程序，现更名为 Qrix。桌面版 Gerayis 不再受支持，您想启动 Qrix 吗？</value>
+  </data>
 </root>

@@ -410,4 +410,10 @@
     <value>Are you sure you want to empty the history?
 This action cannot be cancelled.</value>
   </data>
+  <data name="LaunchQrix" xml:space="preserve">
+    <value>Launch Qrix</value>
+  </data>
+  <data name="UseQrixMsg" xml:space="preserve">
+    <value>Gerayis has evolved into a web app - it is now called Qrix. Gerayis for desktop is longer supported, do you want to launch Qrix?</value>
+  </data>
 </root>

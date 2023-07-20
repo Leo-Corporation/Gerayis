@@ -430,4 +430,10 @@
     <value>Êtes-vous sûr de vouloir vider l'historique ?
 Cette action ne peut pas être annulée.</value>
   </data>
+  <data name="LaunchQrix" xml:space="preserve">
+    <value>Lancer Qrix</value>
+  </data>
+  <data name="UseQrixMsg" xml:space="preserve">
+    <value>Gerayis a évolué vers une application web - elle s'appelle désormais Qrix. Gerayis pour ordinateur de bureau n'est plus supporté, voulez-vous lancer Qrix ?</value>
+  </data>
 </root>

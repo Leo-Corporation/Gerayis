@@ -27,6 +27,7 @@ using Gerayis.Pages;
 using Gma.System.MouseKeyHook;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -102,6 +103,11 @@ public partial class MainWindow : Window
 		}; // Set page
 
 		PageContent.Navigated += (o, e) => AnimatePage();
+
+		if (MessageBox.Show(Properties.Resources.UseQrixMsg, Properties.Resources.LaunchQrix, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+		{
+			Process.Start("explorer.exe", "https://qrix.leocorporation.dev");
+		}
 	}
 
 	private void CheckButton(Button button)
@@ -189,4 +195,9 @@ public partial class MainWindow : Window
 		Storyboard.SetTargetProperty(t, new(Frame.MarginProperty));
 		storyboard.Begin(this);
 	}
+
+	private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+	{
+		Process.Start("explorer.exe", "https://qrix.leocorporation.dev");
+    }
 }
